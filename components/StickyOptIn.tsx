@@ -8,11 +8,22 @@ export const StickyOptIn: React.FC = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      // Show after user scrolls past the hero section (approx 600px)
-      if (window.pageYOffset > 600) {
-        setIsVisible(true);
+      const aboutSection = document.getElementById('about');
+      if (aboutSection) {
+        const rect = aboutSection.getBoundingClientRect();
+        // Becomes visible once the bottom of the "About" section is above the top of the viewport
+        if (rect.bottom < 0) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
       } else {
-        setIsVisible(false);
+        // Fallback if section not found
+        if (window.pageYOffset > 1500) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
       }
     };
 

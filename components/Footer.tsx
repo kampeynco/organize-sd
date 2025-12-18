@@ -2,6 +2,14 @@
 import React from 'react';
 
 export const Footer: React.FC = () => {
+  const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-[#311b92] text-white pt-20 pb-10">
       <div className="container mx-auto px-4">
@@ -21,18 +29,18 @@ export const Footer: React.FC = () => {
                 <div>
                     <h3 className="font-bold uppercase tracking-widest text-teal-400 mb-6">Get Involved</h3>
                     <ul className="space-y-3 font-semibold text-sm">
-                        <li><a href="#" className="hover:underline">Apply for Training</a></li>
-                        <li><a href="#" className="hover:underline">Donate</a></li>
-                        <li><a href="#" className="hover:underline">Become a Trainer</a></li>
+                        <li><a href="#training" onClick={(e) => smoothScroll(e, 'training')} className="hover:underline">Apply for Training</a></li>
+                        <li><a href="#donate" onClick={(e) => smoothScroll(e, 'donate')} className="hover:underline">Donate</a></li>
+                        <li><a href="#contact" onClick={(e) => smoothScroll(e, 'contact')} className="hover:underline">Become a Trainer</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 className="font-bold uppercase tracking-widest text-teal-400 mb-6">Initiative</h3>
                     <ul className="space-y-3 font-semibold text-sm">
-                        <li><a href="#" className="hover:underline">About OSD</a></li>
+                        <li><a href="#mission" onClick={(e) => smoothScroll(e, 'mission')} className="hover:underline">About OSD</a></li>
                         <li><a href="#" className="hover:underline">Compliance</a></li>
                         <li><a href="#" className="hover:underline">Pressroom</a></li>
-                        <li><a href="#" className="hover:underline">Contact</a></li>
+                        <li><a href="#contact" onClick={(e) => smoothScroll(e, 'contact')} className="hover:underline">Contact Us</a></li>
                     </ul>
                 </div>
                 <div>
