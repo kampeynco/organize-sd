@@ -7,6 +7,8 @@ import { Features } from './components/Features';
 import { AboutSection } from './components/AboutSection';
 import { DonationGrid } from './components/DonationGrid';
 import { Footer } from './components/Footer';
+import { ScrollToTop } from './components/ScrollToTop';
+import { StickyOptIn } from './components/StickyOptIn';
 
 const App: React.FC = () => {
   return (
@@ -20,6 +22,8 @@ const App: React.FC = () => {
         <DonationGrid />
       </main>
       <Footer />
+      <ScrollToTop />
+      <StickyOptIn />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import React from "react";
 
 export const MissionStatement: React.FC = () => {
   return (
-    <section className="bg-[#4a148c] py-20 text-white">
+    <section id="mission" className="bg-[#4a148c] py-20 text-white">
       <div className="container mx-auto px-4 max-w-5xl">
         {/* pre-headline */}
         <p className="text-sm md:text-base font-bold tracking-widest uppercase opacity-80 mb-4">

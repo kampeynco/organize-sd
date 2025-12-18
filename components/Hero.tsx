@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
             Developing high-skill grassroots operatives to build and run effective organizing programs across South Dakota for 2026 and beyond.
           </p>
           
-          <div className="w-full max-w-3xl mx-auto pt-4">
+          <div id="join" className="w-full max-w-3xl mx-auto pt-4 scroll-mt-24">
             <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-3">
               <input
                 required
