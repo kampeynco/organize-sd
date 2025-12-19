@@ -10,7 +10,7 @@ export const AboutSection: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-12 mt-12">
             <div className="space-y-6">
                 <p className="text-xl leading-relaxed font-semibold">
-                    Organize SD is designed for first-time and rising organizers, field directors, volunteer leaders, and down-ballot campaigns that need field capacity fast.
+                    Organize SD is designed for first-time and rising organizers, field directors, and volunteer leaders who want to leaarn how to build grassroots capacity effectively.
                 </p>
                 <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20">
                     <h3 className="text-orange-400 font-bold uppercase mb-4 tracking-widest">What we don’t do</h3>

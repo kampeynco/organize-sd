@@ -15,7 +15,7 @@ export const ContactSection: React.FC = () => {
     <section id="contact" className="py-24 bg-white scroll-mt-20">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-[#311b92] mb-4 uppercase tracking-tighter italic">Contact Organize SD</h2>
+          <h2 className="text-4xl md:text-5xl font-black text-[#311b92] mb-4 uppercase tracking-tighter italic">Contact us</h2>
           <div className="w-24 h-2 bg-rose-500 mx-auto"></div>
           <p className="mt-6 text-gray-600 text-lg font-medium">Have questions about our training or want to partner with us? Drop us a line.</p>
         </div>

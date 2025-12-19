@@ -45,7 +45,7 @@ export const Features: React.FC = () => {
         <StoryBlock 
             title="Grassroots Fundamentals"
             text="We run live and virtual trainings on field, volunteer, and community organizing. We teach operatives how to build sustainable programs that last—not just one-off events."
-            img="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop"
+            img="https://images.unsplash.com/photo-1622675363311-3e1904dc1885?q=80&w=800&auto=format&fit=crop"
             cta="See training schedule"
             ctaLink="#schedule"
         />
@@ -61,7 +61,7 @@ export const Features: React.FC = () => {
         <StoryBlock 
             title="Coaching & Peer Support"
             text="Beyond training, we offer direct office hours for trainees and local leaders, providing templates for tracking and a peer network of South Dakota Democratic operatives to share learnings."
-            img="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=800&auto=format&fit=crop"
+            img="https://images.unsplash.com/photo-1603202662706-62ead3176b8f?q=80&w=800&auto=format&fit=crop"
             cta="Join the network"
         />
 
