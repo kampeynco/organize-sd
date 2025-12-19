@@ -21,7 +21,7 @@ export const MissionStatement: React.FC = () => {
             Organize SD is a South Dakota-based training initiative that strengthens the Democratic ecosystem by developing high-skill grassroots operatives who can build and run effective organizing programs across federal, state, and local races.
           </p>
           <p className="border-l-4 border-teal-400 pl-6 italic">
-            "We train local teams to scale voter contact, volunteer power, and turnout using movement-building best practices."
+            "We train local operatives and leaders to scale voter contact, volunteer power, and turnout using movement-building best practices."
           </p>
         </div>
       </div>

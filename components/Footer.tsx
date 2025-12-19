@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
                 <div>
                     <h3 className="font-bold uppercase tracking-widest text-teal-400 mb-6">Initiative</h3>
                     <ul className="space-y-3 font-semibold text-sm">
-                        <li><a href="#mission" onClick={(e) => smoothScroll(e, 'mission')} className="hover:underline">About OSD</a></li>
+                        <li><a href="#mission" onClick={(e) => smoothScroll(e, 'mission')} className="hover:underline">About Organize SD</a></li>
                         <li><a href="#" className="hover:underline">Compliance</a></li>
                         <li><a href="#" className="hover:underline">Pressroom</a></li>
                         <li><a href="#contact" onClick={(e) => smoothScroll(e, 'contact')} className="hover:underline">Contact Us</a></li>
@@ -53,10 +53,9 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="max-w-4xl mx-auto border-2 border-white/30 p-6 text-center space-y-4 text-xs font-bold leading-relaxed">
-            <div className="uppercase tracking-widest">PAID FOR BY ORGANIZE SD (OSD) — WWW.ORGANIZESD.COM</div>
+            <div className="uppercase tracking-widest">PAID FOR BY ORGANIZE SD </div>
             <div className="text-gray-400">Organize SD is a Section 527 political organization.</div>
-            <div className="text-gray-400">Not authorized by any candidate or candidate’s committee. Contributions are not tax-deductible.</div>
-            <div className="text-gray-400">OSD follows strict independence standards to avoid coordination with candidates or committees.</div>
+            <div className="text-gray-400">Not authorized by any candidate or candidate’s committee. Contributions are not tax-deductible. <br/> Organize SD follows strict independence standards to avoid coordination with candidates or committees.</div>
         </div>
 
         <div className="mt-12 text-center text-[10px] text-gray-500">
