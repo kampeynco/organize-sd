@@ -38,7 +38,10 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
                 <div>
                     <h3 className="font-bold uppercase tracking-widest text-teal-400 mb-6">Initiative</h3>
                     <ul className="space-y-3 font-semibold text-sm">
-                        <li><a href="#mission" onClick={(e) => smoothScroll(e, 'mission')} className="hover:underline">About Organize SD</a></li>
+                        <li><a href="#who-we-are" onClick={(e) => smoothScroll(e, 'who-we-are')} className="hover:underline">Who We Are</a></li>
+                        <li><a href="#mission" onClick={(e) => smoothScroll(e, 'mission')} className="hover:underline">Mission</a></li>
+                        <li><a href="#training" onClick={(e) => smoothScroll(e, 'training')} className="hover:underline">Training</a></li>
+                        <li><a href="#schedule" onClick={(e) => smoothScroll(e, 'schedule')} className="hover:underline">Schedule</a></li>
                         <li><a href="#" onClick={handleContact} className="hover:underline">Contact Us</a></li>
                     </ul>
                 </div>

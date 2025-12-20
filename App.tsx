@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { WhoAreWe } from './components/WhoAreWe';
@@ -12,9 +12,20 @@ import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { StickyOptIn } from './components/StickyOptIn';
 import { ContactDialog } from './components/ContactDialog';
+import { DonateDialog } from './components/DonateDialog';
 
 const App: React.FC = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isDonateDialogOpen, setIsDonateDialogOpen] = useState(false);
+
+  useEffect(() => {
+    // Show donate dialog after 7 seconds
+    const timer = setTimeout(() => {
+      setIsDonateDialogOpen(true);
+    }, 7000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -31,7 +42,10 @@ const App: React.FC = () => {
       <Footer onContactClick={() => setIsContactOpen(true)} />
       <ScrollToTop />
       <StickyOptIn />
+      
+      {/* Modals */}
       <ContactDialog isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      <DonateDialog isOpen={isDonateDialogOpen} onClose={() => setIsDonateDialogOpen(false)} />
     </div>
   );
 };
