@@ -58,10 +58,10 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick, onPrivacyClick, 
                 <div>
                     <h3 className="font-bold uppercase tracking-widest text-teal-400 mb-6">Connect With Us</h3>
                     <div className="flex justify-center md:justify-start gap-6 text-2xl">
-                        <a href="#" className="hover:text-teal-400 transition-colors" aria-label="X (Twitter)"><i className="fab fa-x-twitter"></i></a>
-                        <a href="#" className="hover:text-teal-400 transition-colors" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-                        <a href="#" className="hover:text-teal-400 transition-colors" aria-label="Facebook"><i className="fab fa-facebook"></i></a>
-                        <a href="#" className="hover:text-teal-400 transition-colors" aria-label="TikTok"><i className="fab fa-tiktok"></i></a>
+                        <a href="#" className="hover:text-teal-400 transition-colors" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer"><i className="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/organize_sd" className="hover:text-teal-400 transition-colors" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61585651581500" className="hover:text-teal-400 transition-colors" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook"></i></a>
+                        <a href="https://www.tiktok.com/@organizesd" className="hover:text-teal-400 transition-colors" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i className="fab fa-tiktok"></i></a>
                     </div>
                 </div>
             </div>
