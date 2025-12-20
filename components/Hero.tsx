@@ -49,9 +49,9 @@ export const Hero: React.FC = () => {
               />
               <button 
                 type="submit"
-                className="bg-orange-400 hover:bg-orange-300 text-[#311b92] font-black text-xl px-8 py-5 rounded-lg transition-all hover:scale-105 shadow-2xl active:scale-95 whitespace-nowrap"
+                className="bg-orange-400 hover:bg-orange-300 text-[#311b92] font-black text-xl px-8 py-5 rounded-lg transition-all hover:scale-105 shadow-2xl active:scale-95 whitespace-nowrap uppercase"
               >
-                Become an Organizer
+                I'M IN
               </button>
             </form>
             <p className="text-xs text-white/50 mt-4 uppercase tracking-widest font-bold">

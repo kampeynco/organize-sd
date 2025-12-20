@@ -37,10 +37,18 @@ export const Navbar: React.FC = () => {
         </div>
 
         <div className="hidden md:flex items-center space-x-6 text-white text-sm font-bold uppercase tracking-wider">
-          <a href="#mission" onClick={(e) => smoothScroll(e, 'mission')} className="hover:text-teal-400 transition-colors">Our Mission</a>
-          <a href="#training" onClick={(e) => smoothScroll(e, 'training')} className="hover:text-teal-400 transition-colors">Our Training</a>
+          <a href="#who-we-are" onClick={(e) => smoothScroll(e, 'who-we-are')} className="hover:text-teal-400 transition-colors">Who We Are</a>
+          <a href="#mission" onClick={(e) => smoothScroll(e, 'mission')} className="hover:text-teal-400 transition-colors">Mission</a>
+          <a href="#training" onClick={(e) => smoothScroll(e, 'training')} className="hover:text-teal-400 transition-colors">Training</a>
           <a href="#schedule" onClick={(e) => smoothScroll(e, 'schedule')} className="hover:text-teal-400 transition-colors">Schedule</a>
           <div className="flex gap-2 ml-4">
+            <a 
+                href="#training" 
+                onClick={(e) => smoothScroll(e, 'training')}
+                className="bg-teal-400 hover:bg-teal-300 text-[#311b92] px-6 py-2 rounded-sm text-xs font-bold transition-colors inline-block text-center"
+            >
+                APPLY
+            </a>
             <a 
                 href="#donate" 
                 onClick={(e) => smoothScroll(e, 'donate')}
@@ -51,8 +59,7 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
 
-        <div className="md:hidden flex items-center gap-3">
-            <span className="text-white text-xs font-bold uppercase">🇺🇸 Español</span>
+        <div className="md:hidden flex items-center">
             <button className="text-white text-2xl p-2"><i className="fas fa-bars"></i></button>
         </div>
       </div>

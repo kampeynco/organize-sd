@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 
 const StoryBlock: React.FC<{ 
     title: string; 
@@ -27,12 +27,20 @@ const StoryBlock: React.FC<{
 );
 
 export const Features: React.FC = () => {
+  const [showAll, setShowAll] = useState(false);
+
   const scheduleItems = [
-    { date: "Jan 30 - Feb 1, 2026", location: "Sioux Falls / Virtual", topic: "Inaugural Cohort: Sioux Falls", days: "Friday - Sunday" },
-    { date: "Mar 27 - 29, 2026", location: "Rapid City / Virtual", topic: "Second Cohort: Rapid City", days: "Friday - Sunday" },
-    { date: "May 29 - 31, 2026", location: "Vermillion / Virtual", topic: "Third Cohort: Vermillion", days: "Friday - Sunday" },
-    { date: "Jul 24 - 26, 2026", location: "Aberdeen / Virtual", topic: "Last Cohort: Aberdeen", days: "Friday - Sunday" },
+    { date: "Jan 23 - 25, 2026", location: "Rapid City", topic: "Inaugural Cohort", days: "Friday - Sunday" },
+    { date: "Feb 20 - 22, 2026", location: "Sioux Falls", topic: "Second Cohort", days: "Friday - Sunday" },
+    { date: "Mar 27 - 29, 2026", location: "TBA", topic: "Third Cohort", days: "Friday - Sunday" },
+    { date: "Apr 17 - 19, 2026", location: "TBA", topic: "Fourth Cohort", days: "Friday - Sunday" },
+    { date: "May 29 - 31, 2026", location: "TBA", topic: "Fifth Cohort", days: "Friday - Sunday" },
+    { date: "Jun 19 - 21, 2026", location: "TBA", topic: "Sixth Cohort", days: "Friday - Sunday" },
+    { date: "Jul 24 - 26, 2026", location: "Rapid City", topic: "Seventh Cohort", days: "Friday - Sunday" },
+    { date: "Aug 7 - 9, 2026", location: "Sioux Falls", topic: "Eighth Cohort", days: "Friday - Sunday" },
   ];
+
+  const visibleItems = showAll ? scheduleItems : scheduleItems.slice(0, 4);
 
   return (
     <section id="training" className="py-24 bg-white scroll-mt-20">
@@ -70,7 +78,10 @@ export const Features: React.FC = () => {
             <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
                 <div>
                     <h3 className="text-3xl font-black text-[#311b92] uppercase italic tracking-tighter">Upcoming Training Schedule</h3>
-                    <p className="text-gray-600 font-medium italic">Intensive 3-day workshops (Friday, Saturday, & Sunday) held quarterly throughout the 2026 cycle.</p>
+                    <p className="text-gray-600 font-medium italic">Intensive 3-day workshops (Friday, Saturday, & Sunday) held throughout the 2026 cycle.</p>
+                    <p className="text-rose-600 font-bold text-xs uppercase tracking-widest mt-2">
+                        * Dates are subject to change based on cohort size accommodations and venue availability.
+                    </p>
                 </div>
                 <button className="bg-orange-400 text-[#311b92] px-8 py-3 font-black rounded uppercase tracking-widest hover:bg-orange-300 transition-all shadow-lg">
                     Join Pipeline
@@ -78,19 +89,19 @@ export const Features: React.FC = () => {
             </div>
 
             <div className="space-y-4">
-                {scheduleItems.map((item, idx) => (
+                {visibleItems.map((item, idx) => (
                     <div key={idx} className="flex flex-col md:flex-row md:items-center justify-between p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border-l-8 border-teal-400">
                         <div className="flex gap-6 items-center">
                             <div className="hidden md:block text-[#311b92] font-black text-lg w-44 leading-tight">
-                                {item.date}
+                                {item.date}<span className="text-rose-600 ml-0.5 text-xs align-top">*</span>
                                 <div className="text-[10px] text-teal-600 uppercase tracking-tighter font-bold">{item.days}</div>
                             </div>
                             <div>
-                                <h4 className="font-bold text-lg text-gray-900 leading-tight">{item.topic}</h4>
+                                <h4 className="font-bold text-xl text-gray-900 leading-tight uppercase tracking-tight">{item.topic}</h4>
                                 <div className="flex items-center gap-2 text-sm text-gray-500 font-semibold uppercase tracking-tighter mt-1">
                                     <i className="fas fa-map-marker-alt text-rose-500"></i>
                                     {item.location}
-                                    <span className="md:hidden ml-2">• {item.date}</span>
+                                    <span className="md:hidden ml-2">• {item.date}<span className="text-rose-600 ml-0.5 text-[10px] align-top">*</span></span>
                                 </div>
                             </div>
                         </div>
@@ -99,6 +110,16 @@ export const Features: React.FC = () => {
                         </button>
                     </div>
                 ))}
+            </div>
+
+            <div className="mt-8 text-center">
+                <button 
+                  onClick={() => setShowAll(!showAll)}
+                  className="inline-flex items-center gap-2 text-[#311b92] font-black uppercase tracking-widest hover:text-teal-600 transition-colors"
+                >
+                  {showAll ? 'Show Less' : 'See More Dates'} 
+                  <i className={`fas fa-chevron-${showAll ? 'up' : 'down'} transition-transform`}></i>
+                </button>
             </div>
         </div>
       </div>

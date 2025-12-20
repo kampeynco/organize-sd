@@ -72,7 +72,7 @@ export const StickyOptIn: React.FC = () => {
             type="submit"
             className="w-full md:w-auto bg-orange-400 hover:bg-orange-300 text-[#311b92] font-black uppercase text-sm px-8 py-2 rounded transition-all shadow-md active:scale-95 whitespace-nowrap"
           >
-            Recruit Me
+            I'M IN
           </button>
         </form>
       </div>
