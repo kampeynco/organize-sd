@@ -18,11 +18,6 @@ export const Footer: React.FC = () => {
                 <h2 className="text-3xl font-black tracking-widest uppercase">ORGANIZE SD</h2>
             </div>
             
-            <div className="flex gap-6 text-3xl mb-12">
-                <a href="#" className="hover:text-teal-400"><i className="fab fa-tiktok"></i></a>
-                <a href="#" className="hover:text-teal-400"><i className="fab fa-instagram"></i></a>
-                <a href="#" className="hover:text-teal-400"><i className="fab fa-facebook"></i></a>
-            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-5xl text-center md:text-left border-t border-white/10 pt-12">
                 <div>
@@ -41,6 +36,11 @@ export const Footer: React.FC = () => {
                     </ul>
                 </div>
             </div>
+           <div className="flex gap-6 text-3xl mb-12">
+              <a href="#" className="hover:text-teal-400"><i className="fab fa-tiktok"></i></a>
+              <a href="#" className="hover:text-teal-400"><i className="fab fa-instagram"></i></a>
+              <a href="#" className="hover:text-teal-400"><i className="fab fa-facebook"></i></a>
+          </div>
         </div>
 
         <div className="max-w-4xl mx-auto border-2 border-white/30 p-6 text-center space-y-4 text-xs font-bold leading-relaxed">
