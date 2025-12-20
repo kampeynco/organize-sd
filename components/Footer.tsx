@@ -25,7 +25,6 @@ export const Footer: React.FC = () => {
                     <ul className="space-y-3 font-semibold text-sm">
                         <li><a href="#training" onClick={(e) => smoothScroll(e, 'training')} className="hover:underline">Apply for Training</a></li>
                         <li><a href="#donate" onClick={(e) => smoothScroll(e, 'donate')} className="hover:underline">Donate</a></li>
-                        <li><a href="#contact" onClick={(e) => smoothScroll(e, 'contact')} className="hover:underline">Become a Trainer</a></li>
                     </ul>
                 </div>
                 <div>
