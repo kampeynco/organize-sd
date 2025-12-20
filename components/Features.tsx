@@ -52,7 +52,7 @@ export const Features: React.FC = () => {
         
         <StoryBlock 
             title="Grassroots Fundamentals"
-            text="We run live and virtual trainings on field, volunteer, and community organizing. We teach operatives how to build sustainable programs that last—not just one-off events."
+            text="We run in-person trainings on field, volunteer, and community organizing. We teach operatives how to build sustainable programs that last; not just one-off events."
             img="https://images.unsplash.com/photo-1622675363311-3e1904dc1885?q=80&w=800&auto=format&fit=crop"
             cta="See training schedule"
             ctaLink="#schedule"

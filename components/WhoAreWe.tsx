@@ -13,7 +13,7 @@ export const WhoAreWe: React.FC = () => {
                 Who <br />Are We?
               </h2>
               <p className="text-xl md:text-2xl font-bold text-gray-800 leading-tight">
-                A powerhouse collective of former Obama campaign directors and battle-tested South Dakota organizers.
+                A powerhouse collective of former Obama organizers and battle-tested South Dakota operatives.
               </p>
             </div>
             <div className="mt-12 bg-[#311b92] p-8 rounded-3xl shadow-2xl text-white transform hover:rotate-1 transition-transform cursor-default">
@@ -47,7 +47,7 @@ export const WhoAreWe: React.FC = () => {
             </div>
 
             <p className="text-gray-700 text-lg leading-relaxed">
-              Now, we are focused on 2026. We are here to train the next generation of South Dakota leaders to build permanent infrastructure that wins—neighborhood by neighborhood, town by town.
+              Now, we are focused on 2026. We are here to train the next generation of South Dakota leaders to build permanent infrastructure that wins; neighborhood by neighborhood, town by town.
             </p>
             
             <div className="pt-4">
