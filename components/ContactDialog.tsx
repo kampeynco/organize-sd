@@ -31,7 +31,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ isOpen, onClose })
 
         <div className="p-8 md:p-12">
           <h2 className="text-3xl md:text-4xl font-black text-[#311b92] mb-2 uppercase italic tracking-tighter">Contact Our Team</h2>
-          <p className="text-gray-600 font-medium mb-8">Have a specific question about OSD? Let's connect.</p>
+          <p className="text-gray-600 font-medium mb-8">Have a specific question about Organize SD? Let's connect.</p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">

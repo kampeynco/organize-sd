@@ -3,11 +3,17 @@ import React, { useState, useEffect } from 'react';
 
 export const StickyOptIn: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
   const [email, setEmail] = useState('');
   const [zipcode, setZipcode] = useState('');
 
   useEffect(() => {
     const toggleVisibility = () => {
+      if (isDismissed) {
+        setIsVisible(false);
+        return;
+      }
+
       const aboutSection = document.getElementById('about');
       if (aboutSection) {
         const rect = aboutSection.getBoundingClientRect();
@@ -29,7 +35,7 @@ export const StickyOptIn: React.FC = () => {
 
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
-  }, []);
+  }, [isDismissed]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,11 +43,25 @@ export const StickyOptIn: React.FC = () => {
     alert(`Thanks for joining! We'll be in touch at ${email}.`);
     setEmail('');
     setZipcode('');
+    setIsDismissed(true);
+  };
+
+  const handleDismiss = () => {
+    setIsDismissed(true);
+    setIsVisible(false);
   };
 
   return (
     <div className={`fixed bottom-0 left-0 w-full bg-[#311b92] border-t-4 border-teal-400 p-4 z-40 shadow-[0_-10px_30px_rgba(0,0,0,0.3)] transition-transform duration-500 transform ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}>
-      <div className="container mx-auto max-w-6xl">
+      <button 
+        onClick={handleDismiss}
+        className="absolute -top-12 left-6 bg-[#311b92] text-white w-8 h-8 rounded-full border-2 border-teal-400 flex items-center justify-center hover:bg-rose-500 hover:border-rose-500 transition-colors shadow-lg"
+        aria-label="Dismiss"
+      >
+        <i className="fas fa-times text-xs"></i>
+      </button>
+
+      <div className="container mx-auto max-w-6xl relative">
         <form onSubmit={handleSubmit} className="flex flex-col md:flex-row items-center gap-4">
           <div className="hidden lg:block text-white font-black uppercase italic text-lg whitespace-nowrap mr-4">
             Join the team <i className="fas fa-arrow-right text-teal-400 ml-2"></i>

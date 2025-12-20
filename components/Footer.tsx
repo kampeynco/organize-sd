@@ -3,15 +3,20 @@ import React from 'react';
 
 interface FooterProps {
   onContactClick: () => void;
+  onPrivacyClick: () => void;
+  onHomeClick: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
+export const Footer: React.FC<FooterProps> = ({ onContactClick, onPrivacyClick, onHomeClick }) => {
   const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    onHomeClick();
+    setTimeout(() => {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 10);
   };
 
   const handleContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -19,12 +24,17 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
     onContactClick();
   };
 
+  const handlePrivacy = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    onPrivacyClick();
+  };
+
   return (
     <footer className="bg-[#311b92] text-white pt-20 pb-10">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center mb-12">
             <div className="text-center mb-8">
-                <h2 className="text-3xl font-black tracking-widest uppercase">ORGANIZE SD</h2>
+                <h2 className="text-3xl font-black tracking-widest uppercase cursor-pointer" onClick={() => { onHomeClick(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>ORGANIZE SD</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-5xl text-center md:text-left border-t border-white/10 pt-12">
@@ -64,7 +74,7 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
         </div>
 
         <div className="mt-12 text-center text-[10px] text-gray-500">
-            <p>Copyright 2024 Organize SD (OSD) Inc. All rights reserved. <a href="#" className="underline">Privacy Policy</a></p>
+            <p>Copyright 2025 Organize SD Inc. All rights reserved. <a href="#" onClick={handlePrivacy} className="underline">Privacy Policy</a></p>
         </div>
       </div>
     </footer>

@@ -1,7 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 
-export const Navbar: React.FC = () => {
+interface NavbarProps {
+  onHomeClick: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ onHomeClick }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -14,12 +18,17 @@ export const Navbar: React.FC = () => {
 
   const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    } else if (targetId === 'top') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    onHomeClick();
+    
+    // Use a small timeout to ensure content is rendered before scrolling
+    setTimeout(() => {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      } else if (targetId === 'top') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 10);
   };
 
   return (
@@ -29,7 +38,7 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center">
           <a 
             href="#" 
-            onClick={(e) => smoothScroll(e, 'top')} 
+            onClick={(e) => { e.preventDefault(); onHomeClick(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
             className="text-white font-black tracking-tighter text-xl md:text-2xl cursor-pointer"
           >
             ORGANIZE SD

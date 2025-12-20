@@ -22,7 +22,7 @@ export const WhoAreWe: React.FC = () => {
               </p>
               <div className="mt-4 flex items-center gap-3">
                 <div className="w-10 h-1 bg-teal-400"></div>
-                <span className="uppercase tracking-widest text-xs font-black text-teal-400">The OSD Collective</span>
+                <span className="uppercase tracking-widest text-xs font-black text-teal-400">The Organize SD Collective</span>
               </div>
             </div>
           </div>

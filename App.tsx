@@ -13,35 +13,53 @@ import { ScrollToTop } from './components/ScrollToTop';
 import { StickyOptIn } from './components/StickyOptIn';
 import { ContactDialog } from './components/ContactDialog';
 import { DonateDialog } from './components/DonateDialog';
+import { PrivacyPage } from './components/PrivacyPage';
 
 const App: React.FC = () => {
+  const [view, setView] = useState<'home' | 'privacy'>('home');
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isDonateDialogOpen, setIsDonateDialogOpen] = useState(false);
 
   useEffect(() => {
-    // Show donate dialog after 7 seconds
-    const timer = setTimeout(() => {
-      setIsDonateDialogOpen(true);
-    }, 7000);
+    // Show donate dialog after 7 seconds, only on home view
+    if (view === 'home') {
+      const timer = setTimeout(() => {
+        setIsDonateDialogOpen(true);
+      }, 7000);
+      return () => clearTimeout(timer);
+    }
+  }, [view]);
 
-    return () => clearTimeout(timer);
-  }, []);
+  useEffect(() => {
+    // Scroll to top when view changes
+    window.scrollTo(0, 0);
+  }, [view]);
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main>
-        <Hero />
-        <WhoAreWe />
-        <MissionStatement />
-        <Features />
-        <AboutSection />
-        <DonationGrid />
-        <ContactSection />
+      <Navbar onHomeClick={() => setView('home')} />
+      <main className="flex-grow">
+        {view === 'home' ? (
+          <>
+            <Hero />
+            <WhoAreWe />
+            <MissionStatement />
+            <Features />
+            <AboutSection />
+            <DonationGrid />
+            <ContactSection />
+            <StickyOptIn />
+          </>
+        ) : (
+          <PrivacyPage onBack={() => setView('home')} />
+        )}
       </main>
-      <Footer onContactClick={() => setIsContactOpen(true)} />
+      <Footer 
+        onContactClick={() => setIsContactOpen(true)} 
+        onPrivacyClick={() => setView('privacy')}
+        onHomeClick={() => setView('home')}
+      />
       <ScrollToTop />
-      <StickyOptIn />
       
       {/* Modals */}
       <ContactDialog isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
