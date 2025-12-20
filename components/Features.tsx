@@ -30,8 +30,8 @@ export const Features: React.FC = () => {
   const scheduleItems = [
     { date: "Jan 30 - Feb 1, 2026", location: "Sioux Falls / Virtual", topic: "Inaugural Cohort: Sioux Falls", days: "Friday - Sunday" },
     { date: "Mar 27 - 29, 2026", location: "Rapid City / Virtual", topic: "2nd Cohort: Rapid City", days: "Friday - Sunday" },
-    { date: "May 29 - 31, 2026", location: "Aberdeen / Virtual", topic: "3rd Cohort: Vermillion", days: "Friday - Sunday" },
-    { date: "Jul 24 - 26, 2026", location: "Sioux Falls / Virtual", topic: "Last Cohort: Aberdeen", days: "Friday - Sunday" },
+    { date: "May 29 - 31, 2026", location: "Vermillion / Virtual", topic: "3rd Cohort: Vermillion", days: "Friday - Sunday" },
+    { date: "Jul 24 - 26, 2026", location: "Aberdeen / Virtual", topic: "Last Cohort: Aberdeen", days: "Friday - Sunday" },
   ];
 
   return (
