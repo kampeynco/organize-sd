@@ -17,15 +17,16 @@ export const StickyOptIn: React.FC = () => {
       const aboutSection = document.getElementById('about');
       if (aboutSection) {
         const rect = aboutSection.getBoundingClientRect();
-        // Becomes visible once the bottom of the "About" section is above the top of the viewport
-        if (rect.bottom < 0) {
+        // Becomes visible once the bottom of the "About" (Who This Is For) section enters the viewport.
+        // This ensures the user has scrolled through the initial engagement content and the section is fully visible.
+        if (rect.bottom < window.innerHeight) {
           setIsVisible(true);
         } else {
           setIsVisible(false);
         }
       } else {
         // Fallback if section not found
-        if (window.pageYOffset > 1500) {
+        if (window.pageYOffset > 1000) {
           setIsVisible(true);
         } else {
           setIsVisible(false);
@@ -34,6 +35,8 @@ export const StickyOptIn: React.FC = () => {
     };
 
     window.addEventListener('scroll', toggleVisibility);
+    // Trigger check immediately in case the page is already scrolled
+    toggleVisibility();
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, [isDismissed]);
 
