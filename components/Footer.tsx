@@ -35,12 +35,12 @@ export const Footer: React.FC = () => {
                         <li><a href="#contact" onClick={(e) => smoothScroll(e, 'contact')} className="hover:underline">Contact Us</a></li>
                     </ul>
                 </div>
+                <div className="flex gap-6 text-3xl mb-12">
+                  <a href="#" className="hover:text-teal-400"><i className="fab fa-tiktok"></i></a>
+                  <a href="#" className="hover:text-teal-400"><i className="fab fa-instagram"></i></a>
+                  <a href="#" className="hover:text-teal-400"><i className="fab fa-facebook"></i></a>
+                </div>
             </div>
-           <div className="flex gap-6 text-3xl mb-12">
-              <a href="#" className="hover:text-teal-400"><i className="fab fa-tiktok"></i></a>
-              <a href="#" className="hover:text-teal-400"><i className="fab fa-instagram"></i></a>
-              <a href="#" className="hover:text-teal-400"><i className="fab fa-facebook"></i></a>
-          </div>
         </div>
 
         <div className="max-w-4xl mx-auto border-2 border-white/30 p-6 text-center space-y-4 text-xs font-bold leading-relaxed">
