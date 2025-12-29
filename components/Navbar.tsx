@@ -67,8 +67,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick }) => {
                 APPLY
             </a>
             <a 
-                href="#donate" 
-                onClick={(e) => smoothScroll(e, 'donate')}
+                href="https://secure.actblue.com/donate/organize-sd?refcode=website&amount=100" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-rose-500 hover:bg-rose-400 px-6 py-2 rounded-sm text-xs font-bold transition-colors inline-block text-center"
             >
                 DONATE
@@ -104,8 +105,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick }) => {
                 APPLY
             </a>
             <a 
-                href="#donate" 
-                onClick={(e) => smoothScroll(e, 'donate')}
+                href="https://secure.actblue.com/donate/organize-sd?refcode=website&amount=100" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-rose-500 hover:bg-rose-400 text-white px-6 py-3 rounded-sm text-center"
             >
                 DONATE

@@ -54,8 +54,8 @@ export const Hero: React.FC = () => {
                 I'M IN
               </button>
             </form>
-            <p className="text-xs text-white/50 mt-4 uppercase tracking-widest font-bold">
-              Join the professional grassroots network of South Dakota.
+            <p className="text-xs md:text-sm text-white/70 mt-3 font-medium">
+              <span className="font-bold">ZIP helps us route you to the nearest cohort and local updates.</span> No spam.
             </p>
           </div>
         </div>

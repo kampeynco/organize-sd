@@ -30,14 +30,14 @@ export const Features: React.FC = () => {
   const [showAll, setShowAll] = useState(false);
 
   const scheduleItems = [
-    { date: "Jan 23 - 25, 2026", location: "Rapid City", topic: "Inaugural Cohort", days: "Friday - Sunday" },
-    { date: "Feb 20 - 22, 2026", location: "Sioux Falls", topic: "Second Cohort", days: "Friday - Sunday" },
-    { date: "Mar 27 - 29, 2026", location: "TBA", topic: "Third Cohort", days: "Friday - Sunday" },
-    { date: "Apr 17 - 19, 2026", location: "TBA", topic: "Fourth Cohort", days: "Friday - Sunday" },
-    { date: "May 29 - 31, 2026", location: "TBA", topic: "Fifth Cohort", days: "Friday - Sunday" },
-    { date: "Jun 19 - 21, 2026", location: "TBA", topic: "Sixth Cohort", days: "Friday - Sunday" },
-    { date: "Jul 24 - 26, 2026", location: "Rapid City", topic: "Seventh Cohort", days: "Friday - Sunday" },
-    { date: "Aug 7 - 9, 2026", location: "Sioux Falls", topic: "Eighth Cohort", days: "Friday - Sunday" },
+    { date: "Jan 23 - 25, 2026", location: "Rapid City", topic: "Inaugural Cohort" },
+    { date: "Feb 20 - 22, 2026", location: "Sioux Falls", topic: "Second Cohort" },
+    { date: "Mar 27 - 29, 2026", location: "TBA", topic: "Third Cohort" },
+    { date: "Apr 17 - 19, 2026", location: "TBA", topic: "Fourth Cohort" },
+    { date: "May 29 - 31, 2026", location: "TBA", topic: "Fifth Cohort" },
+    { date: "Jun 19 - 21, 2026", location: "TBA", topic: "Sixth Cohort" },
+    { date: "Jul 24 - 26, 2026", location: "Rapid City", topic: "Seventh Cohort" },
+    { date: "Aug 7 - 9, 2026", location: "Sioux Falls", topic: "Eighth Cohort" },
   ];
 
   const visibleItems = showAll ? scheduleItems : scheduleItems.slice(0, 4);
@@ -94,14 +94,21 @@ export const Features: React.FC = () => {
                         <div className="flex gap-6 items-center">
                             <div className="hidden md:block text-[#311b92] font-black text-lg w-44 leading-tight">
                                 {item.date}<span className="text-rose-600 ml-0.5 text-xs align-top">*</span>
-                                <div className="text-[10px] text-teal-600 uppercase tracking-tighter font-bold">{item.days}</div>
                             </div>
                             <div>
                                 <h4 className="font-bold text-xl text-gray-900 leading-tight uppercase tracking-tight">{item.topic}</h4>
-                                <div className="flex items-center gap-2 text-sm text-gray-500 font-semibold uppercase tracking-tighter mt-1">
-                                    <i className="fas fa-map-marker-alt text-rose-500"></i>
-                                    {item.location}
-                                    <span className="md:hidden ml-2">• {item.date}<span className="text-rose-600 ml-0.5 text-[10px] align-top">*</span></span>
+                                <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 font-bold uppercase tracking-tighter mt-1">
+                                    <span className="text-[#311b92]">15–20 trainees</span>
+                                    <span className="text-gray-300">•</span>
+                                    <span className="text-[#311b92]">Fri–Sun</span>
+                                    <span className="text-gray-300">•</span>
+                                    <span className="text-rose-500 flex items-center gap-1">
+                                        <i className="fas fa-map-marker-alt"></i> {item.location}
+                                    </span>
+                                </div>
+                                {/* Mobile-only date display since it's hidden in the left column on mobile */}
+                                <div className="md:hidden text-xs font-bold text-gray-400 mt-1 uppercase tracking-widest">
+                                    {item.date}<span className="text-rose-600 ml-0.5">*</span>
                                 </div>
                             </div>
                         </div>

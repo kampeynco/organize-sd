@@ -42,7 +42,16 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick, onPrivacyClick, 
                     <h3 className="font-bold uppercase tracking-widest text-teal-400 mb-6">Get Involved</h3>
                     <ul className="space-y-3 font-semibold text-sm">
                         <li><a href="#training" onClick={(e) => smoothScroll(e, 'training')} className="hover:underline">Apply for Training</a></li>
-                        <li><a href="#donate" onClick={(e) => smoothScroll(e, 'donate')} className="hover:underline">Donate</a></li>
+                        <li className="pt-2">
+                            <a 
+                                href="https://secure.actblue.com/donate/organize-sd?refcode=webfoot&amount=100" 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-rose-500 hover:bg-rose-400 text-white px-6 py-3 rounded-sm text-xs font-bold transition-colors inline-block text-center uppercase tracking-widest"
+                            >
+                                Donate
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div>

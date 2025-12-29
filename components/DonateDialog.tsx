@@ -19,9 +19,19 @@ export const DonateDialog: React.FC<DonateDialogProps> = ({ isOpen, onClose }) =
     }
   }, [isOpen]);
 
+  const handleDonate = (amountStr: string) => {
+    // Remove '$' and spaces to get raw number
+    const amount = amountStr.replace(/[^0-9]/g, '');
+    let url = 'https://secure.actblue.com/donate/organize-sd?refcode=webpop';
+    if (amount) {
+        url += `&amount=${amount}`;
+    }
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   if (!isOpen) return null;
 
-  const amounts = ['$ 10', '$ 25', '$ 50', '$ 100', '$ 250'];
+  const amounts = ['$ 10', '$ 25', '$ 50', '$ 100', '$ 250', '$ 500'];
 
   return (
     <div 
@@ -42,27 +52,31 @@ export const DonateDialog: React.FC<DonateDialogProps> = ({ isOpen, onClose }) =
         </button>
 
         <div className="p-6 md:p-12 flex flex-col items-center text-center text-white">
-          <h2 className="text-3xl md:text-6xl font-black mb-4 md:mb-6 tracking-tight leading-tight pt-4 md:pt-0">
+          <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tight leading-tight pt-4 md:pt-0">
             Stand with Organize SD!
           </h2>
           
-          <p className="text-sm md:text-xl font-medium mb-6 md:mb-10 leading-relaxed max-w-xl opacity-90">
-            As we fight to build grassroots power and develop the next generation of organizers. 
-            It's going to take all of us getting involved to win in South Dakota and build a permanent 
-            Democratic infrastructure for 2026.
-          </p>
+          <div className="mb-8 space-y-3 max-w-lg mx-auto">
+            <div className="text-xs md:text-sm font-bold uppercase tracking-wide opacity-90 space-y-1">
+              <p><span className="text-white border-b border-white/40">$25</span> helps cover training materials</p>
+              <p><span className="text-white border-b border-white/40">$100</span> helps cover travel support</p>
+              <p><span className="text-white border-b border-white/40">$500</span> helps sponsor a trainee weekend</p>
+            </div>
+          </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 md:gap-4 w-full max-w-lg mb-6 md:mb-8">
             {amounts.map((amount) => (
               <button 
                 key={amount}
+                onClick={() => handleDonate(amount)}
                 className="bg-[#1a233a] hover:bg-[#252f4a] text-white py-4 md:py-6 rounded-md font-black text-2xl md:text-4xl transition-all active:scale-95 shadow-lg"
               >
                 {amount}
               </button>
             ))}
             <button 
-              className="border-2 border-white hover:bg-white hover:text-[#e52d27] text-white py-4 md:py-6 rounded-md font-black text-2xl md:text-4xl transition-all active:scale-95 shadow-lg"
+              onClick={() => handleDonate('other')}
+              className="col-span-2 border-2 border-white hover:bg-white hover:text-[#e52d27] text-white py-4 md:py-6 rounded-md font-black text-2xl md:text-4xl transition-all active:scale-95 shadow-lg"
             >
               Other
             </button>
