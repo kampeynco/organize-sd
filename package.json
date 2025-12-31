@@ -1,4 +1,3 @@
-
 {
   "name": "organize-sd-landing",
   "version": "1.0.0",
@@ -7,7 +6,8 @@
     "build": "remix vite:build"
   },
   "devDependencies": {
-    "esbuild": "^0.25.0",
-    "@remix-run/dev": "^2.9.1"
+    "@remix-run/dev": "^2.9.1",
+    "@vitejs/plugin-react": "^5.1.2",
+    "esbuild": "^0.25.0"
   }
 }
