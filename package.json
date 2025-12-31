@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "mkdir -p dist && esbuild index.tsx --bundle --format=esm --outfile=dist/index.js --external:react --external:react-dom && cp index.html dist/"
+    "build": "remix vite:build"
   },
   "devDependencies": {
     "esbuild": "^0.25.0"
