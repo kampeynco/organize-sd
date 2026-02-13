@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 
 interface NavbarProps {
   onHomeClick: () => void;
+  onApplyClick: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onHomeClick }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -21,14 +22,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick }) => {
     e.preventDefault();
     setIsMenuOpen(false); // Close mobile menu on click
     onHomeClick();
-    
+
     // Use a small timeout to ensure content is rendered before scrolling
     setTimeout(() => {
       const element = document.getElementById(targetId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       } else if (targetId === 'top') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }, 10);
   };
@@ -38,14 +39,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick }) => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Branding section */}
         <div className="flex items-center">
-          <a 
-            href="#" 
-            onClick={(e) => { 
-              e.preventDefault(); 
-              onHomeClick(); 
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              onHomeClick();
               setIsMenuOpen(false);
-              window.scrollTo({ top: 0, behavior: 'smooth' }); 
-            }} 
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="text-white font-black tracking-tighter text-xl md:text-2xl cursor-pointer"
           >
             ORGANIZE SD
@@ -59,33 +60,32 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick }) => {
           <a href="#training" onClick={(e) => smoothScroll(e, 'training')} className="hover:text-teal-400 transition-colors">Training</a>
           <a href="#schedule" onClick={(e) => smoothScroll(e, 'schedule')} className="hover:text-teal-400 transition-colors">Schedule</a>
           <div className="flex gap-2 ml-4">
-            <a 
-                href="#training" 
-                onClick={(e) => smoothScroll(e, 'training')}
-                className="bg-teal-400 hover:bg-teal-300 text-[#311b92] px-6 py-2 rounded-sm text-xs font-bold transition-colors inline-block text-center"
+            <button
+              onClick={() => { setIsMenuOpen(false); onApplyClick(); }}
+              className="bg-teal-400 hover:bg-teal-300 text-[#311b92] px-6 py-2 rounded-sm text-xs font-bold transition-colors inline-block text-center"
             >
-                APPLY
-            </a>
-            <a 
-                href="https://secure.actblue.com/donate/organize-sd?refcode=website&amount=100" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-rose-500 hover:bg-rose-400 px-6 py-2 rounded-sm text-xs font-bold transition-colors inline-block text-center"
+              APPLY
+            </button>
+            <a
+              href="https://secure.actblue.com/donate/organize-sd?refcode=website&amount=100"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-rose-500 hover:bg-rose-400 px-6 py-2 rounded-sm text-xs font-bold transition-colors inline-block text-center"
             >
-                DONATE
+              DONATE
             </a>
           </div>
         </div>
 
         {/* Mobile Hamburger Button */}
         <div className="md:hidden flex items-center">
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white text-2xl p-2 focus:outline-none"
-              aria-label="Toggle Menu"
-            >
-              <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
-            </button>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-white text-2xl p-2 focus:outline-none"
+            aria-label="Toggle Menu"
+          >
+            <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+          </button>
         </div>
       </div>
 
@@ -97,20 +97,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick }) => {
           <a href="#training" onClick={(e) => smoothScroll(e, 'training')} className="hover:text-teal-400 transition-colors py-2 border-b border-white/5">Training</a>
           <a href="#schedule" onClick={(e) => smoothScroll(e, 'schedule')} className="hover:text-teal-400 transition-colors py-2 border-b border-white/5">Schedule</a>
           <div className="grid grid-cols-2 gap-4 pt-4">
-            <a 
-                href="#training" 
-                onClick={(e) => smoothScroll(e, 'training')}
-                className="bg-teal-400 hover:bg-teal-300 text-[#311b92] px-6 py-3 rounded-sm text-center"
+            <button
+              onClick={() => { setIsMenuOpen(false); onApplyClick(); }}
+              className="bg-teal-400 hover:bg-teal-300 text-[#311b92] px-6 py-3 rounded-sm text-center"
             >
-                APPLY
-            </a>
-            <a 
-                href="https://secure.actblue.com/donate/organize-sd?refcode=website&amount=100" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-rose-500 hover:bg-rose-400 text-white px-6 py-3 rounded-sm text-center"
+              APPLY
+            </button>
+            <a
+              href="https://secure.actblue.com/donate/organize-sd?refcode=website&amount=100"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-rose-500 hover:bg-rose-400 text-white px-6 py-3 rounded-sm text-center"
             >
-                DONATE
+              DONATE
             </a>
           </div>
         </div>

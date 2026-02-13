@@ -14,9 +14,10 @@ import { StickyOptIn } from './components/StickyOptIn';
 import { ContactDialog } from './components/ContactDialog';
 import { DonateDialog } from './components/DonateDialog';
 import { PrivacyPage } from './components/PrivacyPage';
+import { ApplyForm } from './components/ApplyForm';
 
 const App: React.FC = () => {
-  const [view, setView] = useState<'home' | 'privacy'>('home');
+  const [view, setView] = useState<'home' | 'privacy' | 'apply'>('home');
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isDonateDialogOpen, setIsDonateDialogOpen] = useState(false);
 
@@ -37,7 +38,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar onHomeClick={() => setView('home')} />
+      {view !== 'apply' && <Navbar onHomeClick={() => setView('home')} onApplyClick={() => setView('apply')} />}
       <main className="flex-grow">
         {view === 'home' ? (
           <>
@@ -50,20 +51,24 @@ const App: React.FC = () => {
             <ContactSection />
             <StickyOptIn />
           </>
+        ) : view === 'apply' ? (
+          <ApplyForm onBack={() => setView('home')} />
         ) : (
           <PrivacyPage onBack={() => setView('home')} />
         )}
       </main>
-      <Footer 
-        onContactClick={() => setIsContactOpen(true)} 
-        onPrivacyClick={() => setView('privacy')}
-        onHomeClick={() => setView('home')}
-      />
-      <ScrollToTop />
-      
+      {view !== 'apply' && (
+        <Footer
+          onContactClick={() => setIsContactOpen(true)}
+          onPrivacyClick={() => setView('privacy')}
+          onHomeClick={() => setView('home')}
+        />
+      )}
+      {view !== 'apply' && <ScrollToTop />}
+
       {/* Modals */}
       <ContactDialog isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
-      <DonateDialog isOpen={isDonateDialogOpen} onClose={() => setIsDonateDialogOpen(false)} />
+      {view !== 'apply' && <DonateDialog isOpen={isDonateDialogOpen} onClose={() => setIsDonateDialogOpen(false)} />}
     </div>
   );
 };
