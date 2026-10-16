@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Logo } from './Logo';
 
 interface FooterProps {
   onContactClick: () => void;
@@ -27,9 +28,10 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick, onPrivacyClick, 
             <a
               href="/"
               onClick={(e) => smoothScroll(e, 'top')}
-              className="font-display font-black uppercase text-5xl leading-none"
+              className="inline-block"
+              aria-label="Organize SD home"
             >
-              Organize SD
+              <Logo sizes="160px" className="h-24" />
             </a>
             <p className="mt-4 max-w-sm text-white/70 leading-relaxed">
               Training South Dakotans to build and run grassroots organizing programs that win.

@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Logo } from './Logo';
 
 interface NavbarProps {
   onHomeClick: () => void;
@@ -52,11 +53,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => 
         <a
           href="/"
           onClick={(e) => smoothScroll(e, 'top')}
-          className="flex items-center gap-2 text-white"
+          className="flex items-center"
           aria-label="Organize SD home"
         >
-          <span className="grid place-items-center w-9 h-9 rounded-full bg-signal text-brand-ink font-display font-black text-lg leading-none">SD</span>
-          <span className="font-display font-black text-2xl tracking-wide uppercase">Organize SD</span>
+          <Logo
+            priority
+            sizes="(min-width: 768px) 124px, 96px"
+            className={`transition-[height] duration-300 ${scrolled || isMenuOpen ? 'h-12 md:h-14' : 'h-14 md:h-[4.5rem]'}`}
+          />
         </a>
 
         {/* Desktop */}

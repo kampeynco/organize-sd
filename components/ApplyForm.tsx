@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { Logo } from './Logo';
 
 /* ─── Types ─── */
 type QuestionType = 'text' | 'textarea' | 'yesno' | 'scale' | 'multichoice';
@@ -428,9 +429,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
             <span className="hidden sm:inline">Close</span>
           </button>
 
-          <span className="text-white font-black tracking-tighter text-sm md:text-base">
-            ORGANIZE SD
-          </span>
+          <Logo priority sizes="80px" className="h-10 md:h-12" />
 
           <span className="text-white/40 text-sm font-bold tabular-nums">
             {currentStep + 1} / {totalSteps}
