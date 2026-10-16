@@ -8,7 +8,7 @@ interface LogoProps {
   priority?: boolean;
 }
 
-/** Organize SD logo (South Dakota outline + megaphone), generated from assets/logo-4K.png */
+/** Organize SD logo (South Dakota outline + megaphone), generated from assets/logo-white-4K.png */
 export const Logo: React.FC<LogoProps> = ({ className = '', sizes = '160px', priority = false }) => (
   <img
     src="/brand/logo-320.webp"
