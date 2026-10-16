@@ -1,10 +1,11 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { WhoAreWe } from './components/WhoAreWe';
 import { MissionStatement } from './components/MissionStatement';
 import { Features } from './components/Features';
+import { HowItWorks } from './components/HowItWorks';
 import { AboutSection } from './components/AboutSection';
 import { DonationGrid } from './components/DonationGrid';
 import { ContactSection } from './components/ContactSection';
@@ -16,19 +17,76 @@ import { DonateDialog } from './components/DonateDialog';
 import { PrivacyPage } from './components/PrivacyPage';
 import { ApplyForm } from './components/ApplyForm';
 
+/* ─── Lightweight History-based Router ─── */
+type AppView = 'home' | 'privacy' | 'apply';
+
+const pathToView = (pathname: string): AppView => {
+  switch (pathname) {
+    case '/apply': return 'apply';
+    case '/privacy': return 'privacy';
+    default: return 'home';
+  }
+};
+
+const viewToPath = (view: AppView): string => {
+  switch (view) {
+    case 'apply': return '/apply';
+    case 'privacy': return '/privacy';
+    default: return '/';
+  }
+};
+
 const App: React.FC = () => {
-  const [view, setView] = useState<'home' | 'privacy' | 'apply'>('home');
+  const [view, setViewState] = useState<AppView>(() => pathToView(window.location.pathname));
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isDonateDialogOpen, setIsDonateDialogOpen] = useState(false);
 
-  useEffect(() => {
-    // Show donate dialog after 7 seconds, only on home view
-    if (view === 'home') {
-      const timer = setTimeout(() => {
-        setIsDonateDialogOpen(true);
-      }, 7000);
-      return () => clearTimeout(timer);
+  /** Navigate to a view and update the URL */
+  const navigateTo = useCallback((target: AppView) => {
+    const path = viewToPath(target);
+    if (window.location.pathname !== path) {
+      window.history.pushState({ view: target }, '', path);
     }
+    setViewState(target);
+  }, []);
+
+  /** Handle browser back/forward buttons */
+  useEffect(() => {
+    const handlePopState = () => {
+      setViewState(pathToView(window.location.pathname));
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const closeDonateDialog = useCallback(() => setIsDonateDialogOpen(false), []);
+  const closeContact = useCallback(() => setIsContactOpen(false), []);
+
+  useEffect(() => {
+    // Show the donate dialog once per session, after the reader has seen the mission and program
+    // (60% of the page scrolled) or spent 45 seconds on the home view
+    if (view !== 'home') return;
+    try { if (sessionStorage.getItem('osd-donate-shown') === '1') return; } catch { /* storage unavailable */ }
+
+    let shown = false;
+    const show = () => {
+      if (shown) return;
+      shown = true;
+      try { sessionStorage.setItem('osd-donate-shown', '1'); } catch { /* storage unavailable */ }
+      setIsDonateDialogOpen(true);
+      cleanup();
+    };
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0 && window.scrollY / max > 0.6) show();
+    };
+    const timer = setTimeout(show, 45000);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    const cleanup = () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll);
+    };
+    return cleanup;
   }, [view]);
 
   useEffect(() => {
@@ -38,37 +96,39 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {view !== 'apply' && <Navbar onHomeClick={() => setView('home')} onApplyClick={() => setView('apply')} />}
+      {view !== 'apply' && <Navbar onHomeClick={() => navigateTo('home')} onApplyClick={() => navigateTo('apply')} />}
       <main className="flex-grow">
         {view === 'home' ? (
           <>
-            <Hero />
-            <WhoAreWe />
+            <Hero onApplyClick={() => navigateTo('apply')} />
             <MissionStatement />
             <Features />
             <AboutSection />
+            <HowItWorks onApplyClick={() => navigateTo('apply')} />
+            <WhoAreWe />
             <DonationGrid />
             <ContactSection />
             <StickyOptIn />
           </>
         ) : view === 'apply' ? (
-          <ApplyForm onBack={() => setView('home')} />
+          <ApplyForm onBack={() => navigateTo('home')} />
         ) : (
-          <PrivacyPage onBack={() => setView('home')} />
+          <PrivacyPage onBack={() => navigateTo('home')} />
         )}
       </main>
       {view !== 'apply' && (
         <Footer
           onContactClick={() => setIsContactOpen(true)}
-          onPrivacyClick={() => setView('privacy')}
-          onHomeClick={() => setView('home')}
+          onPrivacyClick={() => navigateTo('privacy')}
+          onHomeClick={() => navigateTo('home')}
+          onApplyClick={() => navigateTo('apply')}
         />
       )}
       {view !== 'apply' && <ScrollToTop />}
 
       {/* Modals */}
-      <ContactDialog isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
-      {view !== 'apply' && <DonateDialog isOpen={isDonateDialogOpen} onClose={() => setIsDonateDialogOpen(false)} />}
+      <ContactDialog isOpen={isContactOpen} onClose={closeContact} />
+      {view !== 'apply' && <DonateDialog isOpen={isDonateDialogOpen} onClose={closeDonateDialog} />}
     </div>
   );
 };

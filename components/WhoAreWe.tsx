@@ -3,62 +3,46 @@ import React from 'react';
 
 export const WhoAreWe: React.FC = () => {
   return (
-    <section id="who-we-are" className="py-24 bg-white scroll-mt-20 overflow-hidden">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
-          <div className="lg:w-1/2 relative">
-            <div className="absolute -top-10 -left-10 w-32 h-32 bg-teal-400/20 rounded-full blur-3xl"></div>
-            <div className="relative z-10 border-l-8 border-rose-500 pl-8 space-y-6">
-              <h2 className="text-4xl md:text-6xl font-black text-[#311b92] uppercase italic tracking-tighter leading-none">
-                Who <br />Are We?
-              </h2>
-              <p className="text-xl md:text-2xl font-bold text-gray-800 leading-tight">
-                A powerhouse collective of former Obama organizers and battle-tested South Dakota operatives.
-              </p>
-            </div>
-            <div className="mt-12 bg-[#311b92] p-8 rounded-3xl shadow-2xl text-white transform hover:rotate-1 transition-transform cursor-default">
-              <p className="text-lg font-medium leading-relaxed italic">
-                "We aren't just consultants; we're the people who were on the ground in 2008 and 2012. We're bringing that same relentless community organizing framework to South Dakota."
-              </p>
-              <div className="mt-4 flex items-center gap-3">
-                <div className="w-10 h-1 bg-teal-400"></div>
-                <span className="uppercase tracking-widest text-xs font-black text-teal-400">The Organize SD Collective</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:w-1/2 space-y-8">
-            <div className="space-y-4">
-              <h3 className="text-2xl font-black text-[#311b92] uppercase tracking-wide">Our DNA</h3>
-              <p className="text-gray-700 text-lg leading-relaxed">
-                We believe that power comes from the bottom up. Our team is composed of the same operatives who helped implement the community organizing framework that flipped battleground states twice for President Obama. 
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 bg-gray-50 rounded-2xl border-b-4 border-teal-400">
-                <h4 className="font-black text-[#311b92] uppercase text-sm tracking-widest mb-2">Proven Frameworks</h4>
-                <p className="text-sm text-gray-600">Scaling voter contact through structured volunteer hierarchies and Snowflake models.</p>
-              </div>
-              <div className="p-6 bg-gray-50 rounded-2xl border-b-4 border-rose-500">
-                <h4 className="font-black text-[#311b92] uppercase text-sm tracking-widest mb-2">Local Expertise</h4>
-                <p className="text-sm text-gray-600">Deep roots in SD communities, ensuring national best practices work for the 605.</p>
-              </div>
-            </div>
-
-            <p className="text-gray-700 text-lg leading-relaxed">
-              Now, we are focused on 2026. We are here to train the next generation of South Dakota leaders to build permanent infrastructure that wins; neighborhood by neighborhood, town by town.
+    <section id="who-we-are" className="bg-white py-24 md:py-32 scroll-mt-20 overflow-hidden">
+      <div className="container mx-auto px-5 max-w-6xl">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="lg:col-span-5">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-brand">Who we are</p>
+            <h2 className="mt-4 font-display font-black uppercase text-brand-ink text-5xl md:text-6xl leading-[0.9]">
+              Organizers who've done it before
+            </h2>
+            <p className="mt-6 text-lg text-brand-ink/75 leading-relaxed">
+              A collective of former Obama organizers and battle-tested South Dakota operatives. We helped build the
+              community organizing framework that won battleground states twice, and we're bringing it home.
             </p>
-            
-            <div className="pt-4">
-              <a 
-                href="#training" 
-                className="inline-flex items-center gap-2 text-[#311b92] font-black uppercase tracking-widest hover:text-teal-600 transition-colors group"
-              >
-                Join our training pipeline <i className="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
-              </a>
+
+            <div className="mt-8 grid sm:grid-cols-2 gap-4">
+              <div className="rounded-2xl bg-paper p-6">
+                <h3 className="font-bold text-brand-ink">Proven frameworks</h3>
+                <p className="mt-1.5 text-sm text-brand-ink/70 leading-relaxed">Scaling voter contact through structured volunteer teams and the Snowflake model.</p>
+              </div>
+              <div className="rounded-2xl bg-paper p-6">
+                <h3 className="font-bold text-brand-ink">Local expertise</h3>
+                <p className="mt-1.5 text-sm text-brand-ink/70 leading-relaxed">Deep roots in SD communities, so national best practices work for the 605.</p>
+              </div>
             </div>
           </div>
+
+          <figure className="lg:col-span-7 relative rounded-[2rem] bg-brand text-white p-10 md:p-14 grain isolate overflow-hidden">
+            <i className="fas fa-quote-left absolute -top-4 right-8 text-[10rem] text-white/[0.06]" aria-hidden="true"></i>
+            <blockquote className="font-display font-extrabold text-3xl md:text-[2.75rem] leading-[1.05]">
+              “We aren't just consultants. We're the people who were on the ground in 2008 and 2012, and we're bringing
+              that same relentless organizing framework to South Dakota.”
+            </blockquote>
+            <figcaption className="mt-8 flex items-center gap-3 text-sm font-bold uppercase tracking-[0.15em] text-mint">
+              <span className="w-10 h-0.5 bg-mint" aria-hidden="true"></span>
+              The Organize SD collective
+            </figcaption>
+            <p className="mt-10 pt-8 border-t border-white/15 text-white/80 leading-relaxed">
+              Now we're focused on 2026: training the next generation of South Dakota leaders to build permanent
+              infrastructure that wins, neighborhood by neighborhood, town by town.
+            </p>
+          </figure>
         </div>
       </div>
     </section>

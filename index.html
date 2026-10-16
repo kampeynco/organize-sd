@@ -1,33 +1,76 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organize SD | Train. Organize. Win. South Dakota.</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Organize SD trains South Dakotans to build and run grassroots organizing programs: volunteer recruitment, voter contact, and turnout for 2026 and beyond.">
+    <meta name="theme-color" content="#311b92">
+    <meta property="og:title" content="Organize SD | Train. Organize. Win.">
+    <meta property="og:description" content="Hands-on organizer training for South Dakota. Apply for the next weekend intensive.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: { DEFAULT: '#311b92', deep: '#1c0f5c', ink: '#120a3d' },
+              signal: { DEFAULT: '#ff8a3d', light: '#ffa765' },
+              mint: { DEFAULT: '#2dd4bf', light: '#99f6e4' },
+              paper: { DEFAULT: '#f7f4ec', dark: '#ece6d6' },
+            },
+            fontFamily: {
+              display: ['"Big Shoulders Display"', 'Impact', 'sans-serif'],
+              sans: ['"Public Sans"', 'system-ui', 'sans-serif'],
+            },
+            keyframes: {
+              rise: { '0%': { opacity: '0', transform: 'translateY(24px)' }, '100%': { opacity: '1', transform: 'none' } },
+              fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+              spinSlow: { to: { transform: 'rotate(360deg)' } },
+            },
+            animation: {
+              rise: 'rise .8s cubic-bezier(.2,.7,.2,1) both',
+              fadeIn: 'fadeIn .3s ease-out both',
+              spinSlow: 'spinSlow 28s linear infinite',
+            },
+          },
+        },
+      };
+    </script>
     <style>
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'Public Sans', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+        :focus-visible { outline: 3px solid #ff8a3d; outline-offset: 3px; }
+        /* Film grain overlay for dark sections */
+        .grain::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: .12;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+        .text-outline { -webkit-text-stroke: 2px currentColor; color: transparent; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
         }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom": "https://esm.sh/react-dom@^19.2.3",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
-  }
-}
-</script>
 </head>
-<body class="bg-gray-50">
+<body class="bg-paper text-brand-ink">
     <div id="root"></div>
-    <!-- Explicitly import the entry point. The build step converts index.tsx to index.js -->
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>

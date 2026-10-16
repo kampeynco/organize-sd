@@ -5,34 +5,21 @@ export const ScrollToTop: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    window.addEventListener('scroll', toggleVisibility);
+    const toggleVisibility = () => setIsVisible(window.scrollY > 600);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   return (
-    <div className={`fixed bottom-40 right-8 z-50 transition-all duration-500 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
-      <button
-        onClick={scrollToTop}
-        className="bg-teal-400 hover:bg-teal-300 text-[#311b92] w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 group"
-        aria-label="Scroll to top"
-      >
-        <i className="fas fa-arrow-up text-xl transition-transform group-hover:-translate-y-1"></i>
-      </button>
-    </div>
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      aria-label="Back to top"
+      tabIndex={isVisible ? 0 : -1}
+      className={`fixed bottom-24 right-4 md:right-6 z-40 w-12 h-12 rounded-full bg-white text-brand shadow-xl ring-1 ring-brand-ink/10 grid place-items-center transition-all duration-300 hover:bg-mint ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6 pointer-events-none'
+      }`}
+    >
+      <i className="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
   );
 };

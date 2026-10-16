@@ -6,24 +6,32 @@ interface NavbarProps {
   onApplyClick: () => void;
 }
 
+const DONATE_URL = 'https://secure.actblue.com/donate/organize-sd?refcode=website&amount=100';
+
+const NAV_LINKS = [
+  { id: 'mission', label: 'Mission' },
+  { id: 'training', label: 'Training' },
+  { id: 'how-it-works', label: 'How It Works' },
+  { id: 'who-we-are', label: 'Who We Are' },
+];
+
 export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    setIsMenuOpen(false); // Close mobile menu on click
+    setIsMenuOpen(false);
     onHomeClick();
 
-    // Use a small timeout to ensure content is rendered before scrolling
+    // Wait a tick so the home view is rendered before scrolling
     setTimeout(() => {
       const element = document.getElementById(targetId);
       if (element) {
@@ -35,85 +43,97 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => 
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || isMenuOpen ? 'bg-[#311b92] shadow-lg py-2' : 'bg-[#311b92]/90 backdrop-blur-sm py-4'}`}>
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Branding section */}
-        <div className="flex items-center">
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              onHomeClick();
-              setIsMenuOpen(false);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className="text-white font-black tracking-tighter text-xl md:text-2xl cursor-pointer"
-          >
-            ORGANIZE SD
-          </a>
-        </div>
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled || isMenuOpen ? 'bg-brand-deep/95 backdrop-blur-md shadow-lg shadow-brand-ink/20 py-3' : 'bg-transparent py-5'
+      }`}
+    >
+      <nav className="container mx-auto px-5 flex justify-between items-center" aria-label="Main">
+        <a
+          href="/"
+          onClick={(e) => smoothScroll(e, 'top')}
+          className="flex items-center gap-2 text-white"
+          aria-label="Organize SD home"
+        >
+          <span className="grid place-items-center w-9 h-9 rounded-full bg-signal text-brand-ink font-display font-black text-lg leading-none">SD</span>
+          <span className="font-display font-black text-2xl tracking-wide uppercase">Organize SD</span>
+        </a>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6 text-white text-sm font-bold uppercase tracking-wider">
-          <a href="#who-we-are" onClick={(e) => smoothScroll(e, 'who-we-are')} className="hover:text-teal-400 transition-colors">Who We Are</a>
-          <a href="#mission" onClick={(e) => smoothScroll(e, 'mission')} className="hover:text-teal-400 transition-colors">Mission</a>
-          <a href="#training" onClick={(e) => smoothScroll(e, 'training')} className="hover:text-teal-400 transition-colors">Training</a>
-          <a href="#schedule" onClick={(e) => smoothScroll(e, 'schedule')} className="hover:text-teal-400 transition-colors">Schedule</a>
-          <div className="flex gap-2 ml-4">
-            <button
-              onClick={() => { setIsMenuOpen(false); onApplyClick(); }}
-              className="bg-teal-400 hover:bg-teal-300 text-[#311b92] px-6 py-2 rounded-sm text-xs font-bold transition-colors inline-block text-center"
-            >
-              APPLY
-            </button>
+        {/* Desktop */}
+        <div className="hidden lg:flex items-center gap-8">
+          <ul className="flex items-center gap-7 text-[15px] font-semibold text-white/80">
+            {NAV_LINKS.map((link) => (
+              <li key={link.id}>
+                <a href={`#${link.id}`} onClick={(e) => smoothScroll(e, link.id)} className="hover:text-white transition-colors">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="flex items-center gap-3">
             <a
-              href="https://secure.actblue.com/donate/organize-sd?refcode=website&amount=100"
+              href={DONATE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-rose-500 hover:bg-rose-400 px-6 py-2 rounded-sm text-xs font-bold transition-colors inline-block text-center"
+              className="px-5 py-2.5 rounded-full text-sm font-bold text-white ring-1 ring-inset ring-white/40 hover:bg-white hover:text-brand transition-colors"
             >
-              DONATE
+              Donate
             </a>
+            <button
+              onClick={() => { setIsMenuOpen(false); onApplyClick(); }}
+              className="px-5 py-2.5 rounded-full text-sm font-bold bg-signal text-brand-ink hover:bg-signal-light transition-colors"
+            >
+              Apply now
+            </button>
           </div>
         </div>
 
-        {/* Mobile Hamburger Button */}
-        <div className="md:hidden flex items-center">
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white text-2xl p-2 focus:outline-none"
-            aria-label="Toggle Menu"
-          >
-            <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
-          </button>
-        </div>
-      </div>
+        {/* Mobile toggle */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="lg:hidden text-white w-11 h-11 grid place-items-center rounded-full hover:bg-white/10"
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
+        >
+          <i className={`fas ${isMenuOpen ? 'fa-xmark' : 'fa-bars'} text-xl`} aria-hidden="true"></i>
+        </button>
+      </nav>
 
-      {/* Mobile Menu Dropdown */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[500px] border-t border-white/10' : 'max-h-0'}`}>
-        <div className="bg-[#311b92] px-4 py-6 flex flex-col space-y-4 text-white text-sm font-bold uppercase tracking-wider">
-          <a href="#who-we-are" onClick={(e) => smoothScroll(e, 'who-we-are')} className="hover:text-teal-400 transition-colors py-2 border-b border-white/5">Who We Are</a>
-          <a href="#mission" onClick={(e) => smoothScroll(e, 'mission')} className="hover:text-teal-400 transition-colors py-2 border-b border-white/5">Mission</a>
-          <a href="#training" onClick={(e) => smoothScroll(e, 'training')} className="hover:text-teal-400 transition-colors py-2 border-b border-white/5">Training</a>
-          <a href="#schedule" onClick={(e) => smoothScroll(e, 'schedule')} className="hover:text-teal-400 transition-colors py-2 border-b border-white/5">Schedule</a>
-          <div className="grid grid-cols-2 gap-4 pt-4">
-            <button
-              onClick={() => { setIsMenuOpen(false); onApplyClick(); }}
-              className="bg-teal-400 hover:bg-teal-300 text-[#311b92] px-6 py-3 rounded-sm text-center"
-            >
-              APPLY
-            </button>
+      {/* Mobile menu */}
+      <div
+        id="mobile-menu"
+        className={`lg:hidden overflow-hidden transition-[max-height] duration-300 ease-out ${isMenuOpen ? 'max-h-[480px]' : 'max-h-0'}`}
+      >
+        <div className="container mx-auto px-5 pt-4 pb-6 flex flex-col text-white">
+          {NAV_LINKS.map((link) => (
             <a
-              href="https://secure.actblue.com/donate/organize-sd?refcode=website&amount=100"
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={(e) => smoothScroll(e, link.id)}
+              className="py-3 text-lg font-semibold border-b border-white/10 hover:text-signal transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+          <div className="grid grid-cols-2 gap-3 pt-5">
+            <a
+              href={DONATE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-rose-500 hover:bg-rose-400 text-white px-6 py-3 rounded-sm text-center"
+              className="py-3 rounded-full text-center font-bold ring-1 ring-inset ring-white/40"
             >
-              DONATE
+              Donate
             </a>
+            <button
+              onClick={() => { setIsMenuOpen(false); onApplyClick(); }}
+              className="py-3 rounded-full font-bold bg-signal text-brand-ink"
+            >
+              Apply now
+            </button>
           </div>
         </div>
       </div>
-    </nav>
+    </header>
   );
 };

@@ -1,62 +1,98 @@
 
 import React, { useState } from 'react';
+import { submitSignup } from '../lib/signup';
 
 export const ContactSection: React.FC = () => {
   const [email, setEmail] = useState('');
   const [zip, setZip] = useState('');
+  const [company, setCompany] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter signup:', { email, zip });
-    alert('You have been subscribed to the Organize SD newsletter!');
-    setEmail('');
-    setZip('');
+    setSending(true);
+    setError('');
+    try {
+      await submitSignup('newsletter', email, zip, company);
+      setSubmitted(true);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
-    <section id="newsletter" className="py-24 bg-teal-400 scroll-mt-20">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-6xl font-black text-[#311b92] mb-4 uppercase tracking-tighter italic">Stay in the Loop</h2>
-          <div className="w-24 h-2 bg-[#311b92] mx-auto"></div>
-          <p className="mt-6 text-[#311b92] text-xl font-bold">Get the latest updates on training cohorts, organizing toolkits, and 2026 strategy.</p>
-        </div>
+    <section id="newsletter" className="bg-paper py-24 scroll-mt-20">
+      <div className="container mx-auto px-5 max-w-6xl">
+        <div className="rounded-[2rem] bg-mint px-7 py-12 md:p-14 grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 className="font-display font-black uppercase text-brand-ink text-5xl md:text-6xl leading-[0.9]">Stay in the loop</h2>
+            <p className="mt-4 text-lg text-brand-ink/80 max-w-md">
+              Updates on training cohorts, organizing toolkits, and the 2026 strategy. Weekly at most.
+            </p>
+          </div>
 
-        <form onSubmit={handleSubmit} className="bg-[#311b92] p-8 md:p-12 rounded-3xl shadow-2xl flex flex-col md:flex-row gap-4 items-end">
-          <div className="flex-grow w-full space-y-2">
-            <label className="text-xs font-black uppercase tracking-widest text-teal-400 ml-1">Email Address</label>
-            <input 
-              required
-              type="email" 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="organize@example.com"
-              className="w-full p-4 bg-white/10 border-2 border-white/20 text-white rounded-xl focus:border-orange-400 focus:outline-none transition-colors placeholder-white/30" 
-            />
-          </div>
-          <div className="w-full md:w-32 space-y-2">
-            <label className="text-xs font-black uppercase tracking-widest text-teal-400 ml-1">Zip</label>
-            <input 
-              required
-              type="text" 
-              pattern="[0-9]*"
-              maxLength={5}
-              value={zip}
-              onChange={(e) => setZip(e.target.value)}
-              placeholder="57104"
-              className="w-full p-4 bg-white/10 border-2 border-white/20 text-white rounded-xl focus:border-orange-400 focus:outline-none transition-colors placeholder-white/30" 
-            />
-          </div>
-          <button 
-            type="submit"
-            className="w-full md:w-auto bg-orange-400 hover:bg-orange-300 text-[#311b92] font-black uppercase px-8 py-5 rounded-xl text-lg transition-all shadow-xl active:scale-95 whitespace-nowrap"
-          >
-            I'm in
-          </button>
-        </form>
-        <p className="text-center mt-6 text-[#311b92]/70 text-sm font-bold uppercase tracking-widest">
-            Weekly updates. No spam. Just power.
-        </p>
+          {submitted ? (
+            <p role="status" className="rounded-2xl bg-white p-8 text-lg font-semibold text-brand-ink">
+              <i className="fas fa-check-circle text-brand mr-2" aria-hidden="true"></i>
+              Thanks! You're subscribed at {email}.
+            </p>
+          ) : (
+            <form onSubmit={handleSubmit} className="grid sm:grid-cols-[1fr_7rem] gap-3">
+              <div>
+                <label htmlFor="news-email" className="block text-sm font-bold text-brand-ink mb-1.5">Email</label>
+                <input
+                  id="news-email"
+                  required
+                  type="email"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  className="w-full rounded-xl bg-white px-4 py-3.5 text-brand-ink placeholder:text-brand-ink/40 ring-1 ring-brand-ink/10 focus:ring-2 focus:ring-brand focus:outline-none"
+                />
+              </div>
+              <div>
+                <label htmlFor="news-zip" className="block text-sm font-bold text-brand-ink mb-1.5">ZIP</label>
+                <input
+                  id="news-zip"
+                  required
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="postal-code"
+                  pattern="[0-9]{5}"
+                  maxLength={5}
+                  value={zip}
+                  onChange={(e) => setZip(e.target.value.replace(/\D/g, ''))}
+                  placeholder="57104"
+                  className="w-full rounded-xl bg-white px-4 py-3.5 text-brand-ink placeholder:text-brand-ink/40 ring-1 ring-brand-ink/10 focus:ring-2 focus:ring-brand focus:outline-none"
+                />
+              </div>
+              <input
+                type="text"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                className="absolute -left-[9999px] w-px h-px opacity-0"
+              />
+              {error && <p role="alert" className="sm:col-span-2 text-sm font-semibold text-red-800">{error}</p>}
+              <button
+                type="submit"
+                disabled={sending}
+                className="sm:col-span-2 rounded-xl bg-brand-ink py-4 font-bold text-white hover:bg-brand transition-colors disabled:opacity-60 disabled:cursor-wait"
+              >
+                {sending ? 'Signing you up…' : 'Sign me up'}
+              </button>
+              <p className="sm:col-span-2 text-sm text-brand-ink/70">No spam. Unsubscribe anytime.</p>
+            </form>
+          )}
+        </div>
       </div>
     </section>
   );

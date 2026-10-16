@@ -1,28 +1,46 @@
 
 import React from "react";
 
+const OUTCOMES = [
+  { stat: "01", title: "More trained organizers", text: "Operatives placed on campaigns and community programs across the state." },
+  { stat: "02", title: "Stronger volunteer programs", text: "Leadership pipelines that keep growing after the training weekend ends." },
+  { stat: "03", title: "Better voter contact", text: "Higher-quality conversations, and more of them, up and down the ballot." },
+];
+
 export const MissionStatement: React.FC = () => {
   return (
-    <section id="mission" className="bg-[#4a148c] py-20 text-white">
-      <div className="container mx-auto px-4 max-w-5xl">
-        {/* pre-headline */}
-        <p className="text-sm md:text-base font-bold tracking-widest uppercase opacity-80 mb-4">
-          Our mission
-        </p>
+    <section id="mission" className="bg-paper py-24 md:py-32 scroll-mt-20">
+      <div className="container mx-auto px-5 max-w-6xl">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
+          <div className="lg:col-span-4">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-brand">Our mission</p>
+            <div className="mt-4 h-1 w-14 bg-signal" aria-hidden="true"></div>
+          </div>
 
-        {/* headline */}
-        <h2 className="text-3xl md:text-5xl font-black mb-8 leading-tight">
-          Training a new generation of South Dakota organizers.
-        </h2>
+          <div className="lg:col-span-8">
+            <h2 className="font-display font-black uppercase text-brand-ink text-5xl md:text-7xl leading-[0.9] tracking-tight">
+              Training a new generation of South Dakota organizers.
+            </h2>
+            <p className="mt-8 text-lg md:text-xl leading-relaxed text-brand-ink/75 max-w-3xl">
+              Organize SD is a South Dakota-based training initiative. We develop high-skill grassroots operatives who can
+              build and run effective organizing programs for federal, state, and local races, then stay to
+              lead in their own communities.
+            </p>
+          </div>
+        </div>
 
-        {/* description */}
-        <div className="text-lg md:text-xl font-medium opacity-80 leading-relaxed space-y-6">
-          <p>
-            Organize SD is a South Dakota-based training initiative that strengthens the Democratic ecosystem by developing high-skill grassroots operatives who can build and run effective organizing programs across federal, state, and local races.
-          </p>
-          <p className="border-l-4 border-teal-400 pl-6 italic">
-            "We train local operatives and leaders to scale voter contact, volunteer power, and turnout using movement-building best practices."
-          </p>
+        {/* Goals */}
+        <div className="mt-20">
+          <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-brand-ink/60">What success looks like by November 2026</h3>
+          <ol className="mt-6 grid md:grid-cols-3 gap-px bg-brand-ink/10 rounded-3xl overflow-hidden ring-1 ring-brand-ink/10">
+            {OUTCOMES.map((o) => (
+              <li key={o.stat} className="bg-white p-8 md:p-10">
+                <span className="font-display font-black text-6xl text-signal leading-none" aria-hidden="true">{o.stat}</span>
+                <p className="mt-6 text-xl font-bold text-brand-ink">{o.title}</p>
+                <p className="mt-2 text-brand-ink/70 leading-relaxed">{o.text}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

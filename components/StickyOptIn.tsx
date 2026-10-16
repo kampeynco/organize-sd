@@ -1,103 +1,119 @@
 
 import React, { useState, useEffect } from 'react';
+import { submitSignup } from '../lib/signup';
+
+const DISMISS_KEY = 'osd-optin-dismissed';
+
+const wasDismissed = () => {
+  try { return sessionStorage.getItem(DISMISS_KEY) === '1'; } catch { return false; }
+};
 
 export const StickyOptIn: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isDismissed, setIsDismissed] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(wasDismissed);
   const [email, setEmail] = useState('');
   const [zipcode, setZipcode] = useState('');
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (isDismissed) {
-        setIsVisible(false);
-        return;
-      }
+    if (isDismissed) {
+      setIsVisible(false);
+      return;
+    }
 
-      const aboutSection = document.getElementById('about');
-      if (aboutSection) {
-        const rect = aboutSection.getBoundingClientRect();
-        // Becomes visible once the bottom of the "About" (Who This Is For) section enters the viewport.
-        // This ensures the user has scrolled through the initial engagement content and the section is fully visible.
-        if (rect.bottom < window.innerHeight) {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
-      } else {
-        // Fallback if section not found
-        if (window.pageYOffset > 1000) {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
-      }
+    // Show after the reader has passed the training section, hide while another signup form is on screen
+    const toggleVisibility = () => {
+      const training = document.getElementById('training');
+      const newsletter = document.getElementById('newsletter');
+      const pastTraining = training ? training.getBoundingClientRect().bottom < 0 : window.scrollY > 1200;
+      const newsletterInView = newsletter
+        ? newsletter.getBoundingClientRect().top < window.innerHeight && newsletter.getBoundingClientRect().bottom > 0
+        : false;
+      setIsVisible(pastTraining && !newsletterInView);
     };
 
-    window.addEventListener('scroll', toggleVisibility);
-    // Trigger check immediately in case the page is already scrolled
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     toggleVisibility();
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, [isDismissed]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Sticky form submitted:', { email, zipcode });
-    alert(`Thanks for joining! We'll be in touch at ${email}.`);
-    setEmail('');
-    setZipcode('');
+  const dismiss = () => {
+    try { sessionStorage.setItem(DISMISS_KEY, '1'); } catch { /* storage unavailable */ }
     setIsDismissed(true);
   };
 
-  const handleDismiss = () => {
-    setIsDismissed(true);
-    setIsVisible(false);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSending(true);
+    setError('');
+    try {
+      await submitSignup('sticky', email, zipcode);
+      dismiss();
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
-    <div className={`fixed bottom-0 left-0 w-full bg-[#311b92] border-t-4 border-teal-400 p-4 z-40 shadow-[0_-10px_30px_rgba(0,0,0,0.3)] transition-transform duration-500 transform ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}>
-      <button 
-        onClick={handleDismiss}
-        className="absolute -top-12 left-6 bg-[#311b92] text-white w-8 h-8 rounded-full border-2 border-teal-400 flex items-center justify-center hover:bg-rose-500 hover:border-rose-500 transition-colors shadow-lg"
-        aria-label="Dismiss"
-      >
-        <i className="fas fa-times text-xs"></i>
-      </button>
+    <div
+      className={`fixed bottom-4 inset-x-4 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[min(56rem,calc(100%-2rem))] z-40 transition-all duration-500 ${
+        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-[150%] opacity-0 pointer-events-none'
+      }`}
+      aria-hidden={!isVisible}
+    >
+      <div className="relative rounded-2xl bg-brand-ink/95 backdrop-blur-md text-white shadow-2xl shadow-brand-ink/40 ring-1 ring-white/10 p-3 pl-5 md:pl-6">
+        {/* Mobile: one tap to the full form */}
+        <div className="flex md:hidden items-center justify-between gap-3">
+          <p className="font-semibold text-sm">Get cohort updates</p>
+          <div className="flex items-center gap-1">
+            <a href="#newsletter" tabIndex={isVisible ? 0 : -1} className="rounded-xl bg-signal px-4 py-2.5 text-sm font-bold text-brand-ink">Sign up</a>
+            <button onClick={dismiss} tabIndex={isVisible ? 0 : -1} aria-label="Dismiss signup bar" className="w-10 h-10 grid place-items-center text-white/60 hover:text-white">
+              <i className="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
 
-      <div className="container mx-auto max-w-6xl relative">
-        <form onSubmit={handleSubmit} className="flex flex-col md:flex-row items-center gap-4">
-          <div className="hidden lg:block text-white font-black uppercase italic text-lg whitespace-nowrap mr-4">
-            Join the team <i className="fas fa-arrow-right text-teal-400 ml-2"></i>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row w-full gap-2">
-            <input
-              required
-              type="email"
-              placeholder="Email Address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-grow bg-white text-[#311b92] px-4 py-2 rounded font-bold text-sm focus:outline-none focus:ring-2 focus:ring-teal-400"
-            />
-            <input
-              required
-              type="text"
-              pattern="[0-9]*"
-              maxLength={5}
-              placeholder="Zip"
-              value={zipcode}
-              onChange={(e) => setZipcode(e.target.value)}
-              className="w-full sm:w-24 bg-white text-[#311b92] px-4 py-2 rounded font-bold text-sm focus:outline-none focus:ring-2 focus:ring-teal-400"
-            />
-          </div>
-          
-          <button 
-            type="submit"
-            className="w-full md:w-auto bg-orange-400 hover:bg-orange-300 text-[#311b92] font-black uppercase text-sm px-8 py-2 rounded transition-all shadow-md active:scale-95 whitespace-nowrap"
-          >
-            I'M IN
+        {/* Desktop: inline form */}
+        <form onSubmit={handleSubmit} className="hidden md:flex items-center gap-3">
+          <p className="font-display font-black uppercase text-xl whitespace-nowrap mr-2">Join the team</p>
+          <label htmlFor="sticky-email" className="sr-only">Email</label>
+          <input
+            id="sticky-email"
+            required
+            type="email"
+            autoComplete="email"
+            placeholder="Email address"
+            value={email}
+            tabIndex={isVisible ? 0 : -1}
+            onChange={(e) => setEmail(e.target.value)}
+            className="flex-1 min-w-0 rounded-xl bg-white/10 px-4 py-2.5 text-sm placeholder:text-white/50 ring-1 ring-inset ring-white/15 focus:ring-2 focus:ring-signal focus:outline-none"
+          />
+          <label htmlFor="sticky-zip" className="sr-only">ZIP code</label>
+          <input
+            id="sticky-zip"
+            required
+            type="text"
+            inputMode="numeric"
+            autoComplete="postal-code"
+            pattern="[0-9]{5}"
+            maxLength={5}
+            placeholder="ZIP"
+            value={zipcode}
+            tabIndex={isVisible ? 0 : -1}
+            onChange={(e) => setZipcode(e.target.value.replace(/\D/g, ''))}
+            className="w-24 rounded-xl bg-white/10 px-4 py-2.5 text-sm placeholder:text-white/50 ring-1 ring-inset ring-white/15 focus:ring-2 focus:ring-signal focus:outline-none"
+          />
+          <button type="submit" disabled={sending} tabIndex={isVisible ? 0 : -1} className="rounded-xl bg-signal px-5 py-2.5 text-sm font-bold text-brand-ink hover:bg-signal-light transition-colors whitespace-nowrap disabled:opacity-60 disabled:cursor-wait">
+            {sending ? 'Saving…' : "I'm in"}
+          </button>
+          <button type="button" onClick={dismiss} tabIndex={isVisible ? 0 : -1} aria-label="Dismiss signup bar" className="w-10 h-10 grid place-items-center text-white/60 hover:text-white">
+            <i className="fas fa-xmark" aria-hidden="true"></i>
           </button>
         </form>
+        {error && <p role="alert" className="hidden md:block mt-2 text-sm font-semibold text-signal-light">{error}</p>}
       </div>
     </div>
   );
