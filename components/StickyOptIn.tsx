@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { submitSignup } from '../lib/signup';
+import { Icon } from './Icon';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const DISMISS_KEY = 'osd-optin-dismissed';
 
@@ -71,7 +73,7 @@ export const StickyOptIn: React.FC = () => {
           <div className="flex items-center gap-1">
             <a href="#newsletter" tabIndex={isVisible ? 0 : -1} className="rounded-xl bg-signal px-4 py-2.5 text-sm font-bold text-brand-ink">Sign up</a>
             <button onClick={dismiss} tabIndex={isVisible ? 0 : -1} aria-label="Dismiss signup bar" className="w-10 h-10 grid place-items-center text-white/60 hover:text-white">
-              <i className="fas fa-xmark" aria-hidden="true"></i>
+              <Icon icon={faXmark} />
             </button>
           </div>
         </div>
@@ -110,7 +112,7 @@ export const StickyOptIn: React.FC = () => {
             {sending ? 'Saving…' : "I'm in"}
           </button>
           <button type="button" onClick={dismiss} tabIndex={isVisible ? 0 : -1} aria-label="Dismiss signup bar" className="w-10 h-10 grid place-items-center text-white/60 hover:text-white">
-            <i className="fas fa-xmark" aria-hidden="true"></i>
+            <Icon icon={faXmark} />
           </button>
         </form>
         {error && <p role="alert" className="hidden md:block mt-2 text-sm font-semibold text-signal-light">{error}</p>}

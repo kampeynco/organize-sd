@@ -1,10 +1,12 @@
 
 import React from 'react';
+import { Icon } from './Icon';
+import { faArrowTrendUp, faBullhorn, faMinus, faSeedling } from '@fortawesome/free-solid-svg-icons';
 
 const AUDIENCES = [
-  { icon: 'fa-seedling', title: 'First-time organizers', text: 'You care about your community and want to learn how to move people.' },
-  { icon: 'fa-arrow-trend-up', title: 'Rising field staff', text: 'You have some campaign experience and want to run a program, not just a shift.' },
-  { icon: 'fa-bullhorn', title: 'Volunteer leaders', text: 'You already lead people locally and want proven systems to grow your team.' },
+  { icon: faSeedling, title: 'First-time organizers', text: 'You care about your community and want to learn how to move people.' },
+  { icon: faArrowTrendUp, title: 'Rising field staff', text: 'You have some campaign experience and want to run a program, not just a shift.' },
+  { icon: faBullhorn, title: 'Volunteer leaders', text: 'You already lead people locally and want proven systems to grow your team.' },
 ];
 
 const NOT_US = [
@@ -28,7 +30,7 @@ export const AboutSection: React.FC = () => {
             {AUDIENCES.map((a) => (
               <li key={a.title} className="flex flex-col lg:flex-row gap-5 rounded-3xl bg-white p-7 ring-1 ring-brand-ink/5">
                 <span className="grid place-items-center w-12 h-12 rounded-2xl bg-brand text-mint shrink-0">
-                  <i className={`fas ${a.icon}`} aria-hidden="true"></i>
+                  <Icon icon={a.icon} />
                 </span>
                 <div>
                   <h3 className="text-lg font-bold text-brand-ink">{a.title}</h3>
@@ -44,7 +46,7 @@ export const AboutSection: React.FC = () => {
             <ul className="mt-6 space-y-4">
               {NOT_US.map((item) => (
                 <li key={item} className="flex gap-3 text-brand-ink/80 leading-relaxed">
-                  <i className="fas fa-minus mt-1.5 text-signal shrink-0" aria-hidden="true"></i>
+                  <Icon icon={faMinus} className="mt-1.5 text-signal shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}

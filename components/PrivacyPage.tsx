@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { Icon } from './Icon';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 interface PrivacyPageProps {
   onBack: () => void;
@@ -13,7 +15,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onBack }) => {
           onClick={onBack}
           className="mb-8 text-[#311b92] font-bold uppercase tracking-widest flex items-center gap-2 hover:text-teal-600 transition-colors"
         >
-          <i className="fas fa-arrow-left"></i> Back to Home
+          <Icon icon={faArrowLeft} /> Back to Home
         </button>
         
         <h1 className="text-4xl md:text-5xl font-black text-[#311b92] mb-8 uppercase italic tracking-tighter">

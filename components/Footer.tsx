@@ -1,6 +1,8 @@
 
 import React from 'react';
 import { Logo } from './Logo';
+import { Icon } from './Icon';
+import { faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
 
 interface FooterProps {
   onContactClick: () => void;
@@ -78,10 +80,10 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick, onPrivacyClick, 
             <h3 className="text-sm font-bold uppercase tracking-[0.15em] text-mint">Follow</h3>
             <div className="mt-5 flex gap-3">
               <a href="https://www.instagram.com/organizesouthdakota/" target="_blank" rel="noopener noreferrer" aria-label="Organize SD on Instagram" className="grid place-items-center w-11 h-11 rounded-full bg-white/10 hover:bg-white hover:text-brand-ink transition-colors">
-                <i className="fab fa-instagram text-lg" aria-hidden="true"></i>
+                <Icon icon={faInstagram} className="text-lg" />
               </a>
               <a href="https://www.tiktok.com/@organizesouthdakota" target="_blank" rel="noopener noreferrer" aria-label="Organize SD on TikTok" className="grid place-items-center w-11 h-11 rounded-full bg-white/10 hover:bg-white hover:text-brand-ink transition-colors">
-                <i className="fab fa-tiktok text-lg" aria-hidden="true"></i>
+                <Icon icon={faTiktok} className="text-lg" />
               </a>
             </div>
           </div>

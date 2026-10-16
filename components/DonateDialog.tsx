@@ -1,5 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
+import { Icon } from './Icon';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 interface DonateDialogProps {
   isOpen: boolean;
@@ -60,7 +62,7 @@ export const DonateDialog: React.FC<DonateDialogProps> = ({ isOpen, onClose }) =
           className="absolute top-4 right-4 w-11 h-11 grid place-items-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
           aria-label="Close"
         >
-          <i className="fas fa-xmark text-lg" aria-hidden="true"></i>
+          <Icon icon={faXmark} className="text-lg" />
         </button>
 
         <div className="p-7 sm:p-10">

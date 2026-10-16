@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Logo } from './Logo';
+import { Icon } from './Icon';
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 interface NavbarProps {
   onHomeClick: () => void;
@@ -100,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => 
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
         >
-          <i className={`fas ${isMenuOpen ? 'fa-xmark' : 'fa-bars'} text-xl`} aria-hidden="true"></i>
+          <Icon icon={isMenuOpen ? faXmark : faBars} className="text-xl" />
         </button>
       </nav>
 

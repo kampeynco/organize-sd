@@ -1,5 +1,7 @@
 
 import React, { useState } from 'react';
+import { Icon } from './Icon';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 interface HowItWorksProps {
     onApplyClick: () => void;
@@ -114,7 +116,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onApplyClick }) => {
                             onClick={onApplyClick}
                             className="self-start md:self-auto inline-flex items-center gap-2 rounded-full bg-signal px-7 py-3.5 font-bold text-brand-ink hover:bg-signal-light transition-colors"
                         >
-                            Apply now <i className="fas fa-arrow-right" aria-hidden="true"></i>
+                            Apply now <Icon icon={faArrowRight} />
                         </button>
                     </div>
 

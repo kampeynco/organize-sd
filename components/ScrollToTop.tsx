@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
+import { Icon } from './Icon';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 export const ScrollToTop: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,7 +21,7 @@ export const ScrollToTop: React.FC = () => {
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6 pointer-events-none'
       }`}
     >
-      <i className="fas fa-arrow-up" aria-hidden="true"></i>
+      <Icon icon={faArrowUp} />
     </button>
   );
 };

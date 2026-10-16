@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { Icon } from './Icon';
+import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 
 export const WhoAreWe: React.FC = () => {
   return (
@@ -29,7 +31,7 @@ export const WhoAreWe: React.FC = () => {
           </div>
 
           <figure className="lg:col-span-7 relative rounded-[2rem] bg-brand text-white p-10 md:p-14 grain isolate overflow-hidden">
-            <i className="fas fa-quote-left absolute -top-4 right-8 text-[10rem] text-white/[0.06]" aria-hidden="true"></i>
+            <Icon icon={faQuoteLeft} className="absolute -top-4 right-8 text-[10rem] text-white/[0.06]" />
             <blockquote className="font-display font-extrabold text-3xl md:text-[2.75rem] leading-[1.05]">
               “We're the people who were on the ground in 2008 and 2012, and we're bringing that same relentless
               organizing framework to South Dakota.”

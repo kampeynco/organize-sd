@@ -1,15 +1,17 @@
 
 import React, { useState } from 'react';
 import { submitSignup } from '../lib/signup';
+import { Icon } from './Icon';
+import { faArrowRight, faCalendarDays, faCheck, faFlagUsa, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
 
 interface HeroProps {
   onApplyClick: () => void;
 }
 
 const PROOF_POINTS = [
-  { icon: 'fa-calendar-days', text: '3-day weekend intensive' },
-  { icon: 'fa-flag-usa', text: 'Led by Obama-era field organizers' },
-  { icon: 'fa-people-group', text: 'Statewide peer network' },
+  { icon: faCalendarDays, text: '3-day weekend intensive' },
+  { icon: faFlagUsa, text: 'Led by Obama-era field organizers' },
+  { icon: faPeopleGroup, text: 'Statewide peer network' },
 ];
 
 /** Circular "campaign button" badge with text running around the edge */
@@ -54,10 +56,11 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
 
   return (
     <section id="top" className="grain relative isolate overflow-hidden bg-brand text-white">
-      {/* Atmosphere: glow + oversized area code watermark */}
+      {/* Atmosphere: glow + oversized area code watermark. Glows are radial gradients, not blur filters,
+          so phones can paint the hero in one pass. */}
       <div className="absolute -z-10 inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-40 -left-40 w-[42rem] h-[42rem] rounded-full bg-mint/20 blur-[140px]"></div>
-        <div className="absolute bottom-[-12rem] right-[-8rem] w-[36rem] h-[36rem] rounded-full bg-signal/25 blur-[140px]"></div>
+        <div className="absolute -top-[27.5rem] -left-[27.5rem] w-[77rem] h-[77rem] bg-[radial-gradient(closest-side,rgb(45_212_191/0.2)_10%,transparent)]"></div>
+        <div className="absolute bottom-[-29.5rem] right-[-25.5rem] w-[71rem] h-[71rem] bg-[radial-gradient(closest-side,rgb(255_138_61/0.25),transparent)]"></div>
         <span className="text-outline absolute right-[-2rem] top-1/2 -translate-y-1/2 font-display font-black text-white/[0.07] text-[22rem] xl:text-[30rem] leading-none select-none hidden md:block">
           605
         </span>
@@ -66,30 +69,29 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
       <div className="container mx-auto px-5 pt-32 pb-20 md:pt-40 md:pb-28 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         {/* Message */}
         <div className="lg:col-span-7">
-          <p className="animate-rise inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-inset ring-white/20 px-4 py-1.5 text-sm font-semibold text-white/90">
+          <p className="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-inset ring-white/20 px-4 py-1.5 text-sm font-semibold text-white/90">
             <span className="w-2 h-2 rounded-full bg-mint" aria-hidden="true"></span>
             Organizer training for South Dakota
           </p>
 
           <h1 className="mt-6 font-display font-black uppercase leading-[0.82] tracking-tight text-[5.25rem] sm:text-[7.5rem] md:text-[9rem] xl:text-[10.5rem]">
-            {/* No entrance animation here: the headline is the largest paint, so it renders immediately */}
             <span className="block">Train.</span>
             <span className="block">Organize.</span>
             <span className="block text-signal">Win.</span>
           </h1>
 
-          <p className="animate-rise [animation-delay:40ms] mt-8 max-w-xl text-lg md:text-xl leading-relaxed text-white/85">
+          <p className="mt-8 max-w-xl text-lg md:text-xl leading-relaxed text-white/85">
             Organize SD trains South Dakotans to build and run grassroots field programs that recruit volunteers,
             reach voters, and win elections in 2028 and beyond.
           </p>
 
-          <div className="animate-rise [animation-delay:80ms] mt-9 flex flex-col sm:flex-row gap-3">
+          <div className="mt-9 flex flex-col sm:flex-row gap-3">
             <button
               onClick={onApplyClick}
               className="group inline-flex items-center justify-center gap-3 rounded-full bg-signal px-8 py-4 text-lg font-bold text-brand-ink shadow-xl shadow-brand-ink/30 hover:bg-signal-light transition-colors"
             >
               Apply for training
-              <i className="fas fa-arrow-right transition-transform group-hover:translate-x-1" aria-hidden="true"></i>
+              <Icon icon={faArrowRight} className="transition-transform group-hover:translate-x-1" />
             </button>
             <a
               href="#how-it-works"
@@ -99,10 +101,10 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
             </a>
           </div>
 
-          <ul className="animate-rise [animation-delay:120ms] mt-10 flex flex-col sm:flex-row flex-wrap gap-x-7 gap-y-3 text-sm font-medium text-white/75">
+          <ul className="mt-10 flex flex-col sm:flex-row flex-wrap gap-x-7 gap-y-3 text-sm font-medium text-white/75">
             {PROOF_POINTS.map((p) => (
               <li key={p.text} className="flex items-center gap-2.5">
-                <i className={`fas ${p.icon} text-mint`} aria-hidden="true"></i>
+                <Icon icon={p.icon} className="text-mint" />
                 {p.text}
               </li>
             ))}
@@ -110,7 +112,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
         </div>
 
         {/* Signup card */}
-        <div className="lg:col-span-5 lg:pl-6 animate-rise [animation-delay:140ms]">
+        <div className="lg:col-span-5 lg:pl-6">
           <div className="relative">
             <div className="absolute -top-12 -right-2 sm:-top-14 sm:-right-4 md:-right-8 z-10 rotate-6">
               <CampaignBadge />
@@ -119,7 +121,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
               {submitted ? (
                 <div className="py-6 text-center" role="status">
                   <div className="mx-auto w-14 h-14 rounded-full bg-mint/20 grid place-items-center">
-                    <i className="fas fa-check text-2xl text-brand" aria-hidden="true"></i>
+                    <Icon icon={faCheck} className="text-2xl text-brand" />
                   </div>
                   <h2 className="mt-5 font-display font-black uppercase text-3xl">You're on the list</h2>
                   <p className="mt-2 text-brand-ink/70">We'll email {email} when the next cohort near {zipcode} opens.</p>

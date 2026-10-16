@@ -1,5 +1,7 @@
 
 import React, { useState } from 'react';
+import { Icon } from './Icon';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 interface ContactDialogProps {
   isOpen: boolean;
@@ -26,7 +28,7 @@ export const ContactDialog: React.FC<ContactDialogProps> = ({ isOpen, onClose })
           onClick={onClose}
           className="absolute top-6 right-6 text-[#311b92] hover:text-rose-500 transition-colors text-2xl"
         >
-          <i className="fas fa-times"></i>
+          <Icon icon={faXmark} />
         </button>
 
         <div className="p-8 md:p-12">

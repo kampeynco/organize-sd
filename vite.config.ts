@@ -2,12 +2,18 @@ import path from 'path';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 
-/** Preload the hero's above-the-fold fonts so they download in parallel with the JS bundle */
+/**
+ * Preload every font weight the hero uses so they all arrive in one wave alongside the CSS.
+ * Otherwise weights are only discovered after the CSS parses, and text visibly swaps after first paint.
+ */
 const preloadHeroFonts = (): Plugin => ({
   name: 'preload-hero-fonts',
   apply: 'build',
   transformIndexHtml(_html, ctx) {
-    const patterns = [/big-shoulders-display-latin-900-normal.*\.woff2$/, /public-sans-latin-400-normal.*\.woff2$/];
+    const patterns = [
+      /big-shoulders-display-latin-(800|900)-normal.*\.woff2$/,
+      /public-sans-latin-(400|500|600|700)-normal.*\.woff2$/,
+    ];
     return Object.keys(ctx.bundle ?? {})
       .filter((file) => patterns.some((re) => re.test(file)))
       .map((file) => ({

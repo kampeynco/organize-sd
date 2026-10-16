@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Logo } from './Logo';
+import { Icon } from './Icon';
+import { faArrowLeft, faArrowUp, faCheck, faCircleInfo, faPaperPlane, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 /* ─── Types ─── */
 type QuestionType = 'text' | 'textarea' | 'yesno' | 'scale' | 'multichoice';
@@ -284,7 +286,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
               className="w-full bg-white/5 border-2 border-white/20 focus:border-teal-400 text-white text-lg md:text-xl p-5 rounded-xl outline-none transition-colors placeholder-white/30 caret-teal-400 resize-none"
             />
             <p className="text-white/40 text-xs mt-2 font-medium">
-              <i className="fas fa-info-circle mr-1"></i> Press Shift + Enter for new line
+              <Icon icon={faCircleInfo} className="mr-1" /> Press Shift + Enter for new line
             </p>
           </div>
         );
@@ -303,9 +305,9 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
                 }`}
               >
                 {opt === 'Yes' ? (
-                  <span><i className="fas fa-check mr-2"></i>{opt}</span>
+                  <span><Icon icon={faCheck} className="mr-2" />{opt}</span>
                 ) : (
-                  <span><i className="fas fa-times mr-2"></i>{opt}</span>
+                  <span><Icon icon={faXmark} className="mr-2" />{opt}</span>
                 )}
               </button>
             ))}
@@ -380,7 +382,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
       <div className="min-h-screen bg-[#311b92] flex items-center justify-center p-6">
         <div className="text-center text-white max-w-2xl mx-auto space-y-8 animate-fadeIn">
           <div className="w-24 h-24 bg-teal-400 rounded-full flex items-center justify-center mx-auto shadow-2xl shadow-teal-400/30">
-            <i className="fas fa-check text-[#311b92] text-4xl"></i>
+            <Icon icon={faCheck} className="text-[#311b92] text-4xl" />
           </div>
           <h1 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter">
             Application Sent!
@@ -392,7 +394,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
             onClick={onBack}
             className="bg-teal-400 hover:bg-teal-300 text-[#311b92] font-black text-lg px-10 py-4 rounded-xl uppercase tracking-widest transition-all hover:scale-105 shadow-xl"
           >
-            <i className="fas fa-arrow-left mr-3"></i>Back to Home
+            <Icon icon={faArrowLeft} className="mr-3" />Back to Home
           </button>
         </div>
       </div>
@@ -425,7 +427,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
             onClick={onBack}
             className="text-white/60 hover:text-white font-bold text-sm uppercase tracking-widest transition-colors flex items-center gap-2"
           >
-            <i className="fas fa-times"></i>
+            <Icon icon={faXmark} />
             <span className="hidden sm:inline">Close</span>
           </button>
 
@@ -482,7 +484,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
                 : 'text-white/60 hover:text-white hover:bg-white/5'
             }`}
           >
-            <i className="fas fa-arrow-up"></i>
+            <Icon icon={faArrowUp} />
             <span className="hidden sm:inline">Back</span>
           </button>
 
@@ -497,7 +499,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
               }`}
             >
               {currentStep === totalSteps - 1 ? 'Submit' : 'OK'}
-              <i className={`fas ${currentStep === totalSteps - 1 ? 'fa-paper-plane' : 'fa-check'} text-xs`}></i>
+              <Icon icon={currentStep === totalSteps - 1 ? faPaperPlane : faCheck} className="text-xs" />
             </button>
           )}
         </div>

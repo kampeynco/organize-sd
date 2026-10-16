@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
 import { submitSignup } from '../lib/signup';
+import { Icon } from './Icon';
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 export const ContactSection: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -37,7 +39,7 @@ export const ContactSection: React.FC = () => {
 
           {submitted ? (
             <p role="status" className="rounded-2xl bg-white p-8 text-lg font-semibold text-brand-ink">
-              <i className="fas fa-check-circle text-brand mr-2" aria-hidden="true"></i>
+              <Icon icon={faCircleCheck} className="text-brand mr-2" />
               Thanks! You're subscribed at {email}.
             </p>
           ) : (

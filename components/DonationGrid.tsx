@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { Icon } from './Icon';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 const donate = (amount?: number) => {
     let url = 'https://secure.actblue.com/donate/organize-sd?refcode=webgrid';
@@ -19,7 +21,7 @@ const AMOUNTS: { amount: number; impact?: string }[] = [
 export const DonationGrid: React.FC = () => {
     return (
         <section id="donate" className="grain relative isolate overflow-hidden bg-brand text-white py-24 md:py-32 scroll-mt-20">
-            <div className="absolute -z-10 top-0 right-0 w-[36rem] h-[36rem] rounded-full bg-signal/20 blur-[140px]" aria-hidden="true"></div>
+            <div className="absolute -z-10 -top-[17.5rem] -right-[17.5rem] w-[71rem] h-[71rem] bg-[radial-gradient(closest-side,rgb(255_138_61/0.2),transparent)]" aria-hidden="true"></div>
             <div className="container mx-auto px-5 max-w-6xl grid lg:grid-cols-12 gap-12 items-center">
                 <div className="lg:col-span-5">
                     <p className="text-sm font-bold uppercase tracking-[0.2em] text-mint">Support the training</p>
@@ -53,7 +55,7 @@ export const DonationGrid: React.FC = () => {
                         onClick={() => donate()}
                         className="mt-3 w-full rounded-2xl bg-white py-5 font-bold text-lg text-brand hover:bg-paper transition-colors"
                     >
-                        Give another amount <i className="fas fa-arrow-up-right-from-square ml-2 text-sm" aria-hidden="true"></i>
+                        Give another amount <Icon icon={faArrowUpRightFromSquare} className="ml-2 text-sm" />
                     </button>
                 </div>
             </div>
