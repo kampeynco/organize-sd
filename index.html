@@ -20,6 +20,8 @@
 </head>
 <body class="text-brand-ink">
     <div id="root"></div>
+    <!-- Only "/" matches the prerendered markup; clear it on other routes before it paints -->
+    <script>if (location.pathname !== '/') document.getElementById('root').innerHTML = '';</script>
     <script type="module" src="./index.tsx"></script>
 </body>
 </html>

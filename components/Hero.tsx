@@ -78,12 +78,12 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
             <span className="block text-signal">Win.</span>
           </h1>
 
-          <p className="animate-rise [animation-delay:340ms] mt-8 max-w-xl text-lg md:text-xl leading-relaxed text-white/85">
+          <p className="animate-rise [animation-delay:40ms] mt-8 max-w-xl text-lg md:text-xl leading-relaxed text-white/85">
             Organize SD trains South Dakotans to build and run grassroots field programs that recruit volunteers,
             reach voters, and win elections in 2028 and beyond.
           </p>
 
-          <div className="animate-rise [animation-delay:420ms] mt-9 flex flex-col sm:flex-row gap-3">
+          <div className="animate-rise [animation-delay:80ms] mt-9 flex flex-col sm:flex-row gap-3">
             <button
               onClick={onApplyClick}
               className="group inline-flex items-center justify-center gap-3 rounded-full bg-signal px-8 py-4 text-lg font-bold text-brand-ink shadow-xl shadow-brand-ink/30 hover:bg-signal-light transition-colors"
@@ -99,7 +99,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
             </a>
           </div>
 
-          <ul className="animate-rise [animation-delay:500ms] mt-10 flex flex-col sm:flex-row flex-wrap gap-x-7 gap-y-3 text-sm font-medium text-white/75">
+          <ul className="animate-rise [animation-delay:120ms] mt-10 flex flex-col sm:flex-row flex-wrap gap-x-7 gap-y-3 text-sm font-medium text-white/75">
             {PROOF_POINTS.map((p) => (
               <li key={p.text} className="flex items-center gap-2.5">
                 <i className={`fas ${p.icon} text-mint`} aria-hidden="true"></i>
@@ -110,7 +110,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
         </div>
 
         {/* Signup card */}
-        <div className="lg:col-span-5 lg:pl-6 animate-rise [animation-delay:560ms]">
+        <div className="lg:col-span-5 lg:pl-6 animate-rise [animation-delay:140ms]">
           <div className="relative">
             <div className="absolute -top-12 -right-2 sm:-top-14 sm:-right-4 md:-right-8 z-10 rotate-6">
               <CampaignBadge />

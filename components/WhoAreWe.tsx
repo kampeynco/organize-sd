@@ -31,8 +31,8 @@ export const WhoAreWe: React.FC = () => {
           <figure className="lg:col-span-7 relative rounded-[2rem] bg-brand text-white p-10 md:p-14 grain isolate overflow-hidden">
             <i className="fas fa-quote-left absolute -top-4 right-8 text-[10rem] text-white/[0.06]" aria-hidden="true"></i>
             <blockquote className="font-display font-extrabold text-3xl md:text-[2.75rem] leading-[1.05]">
-              “We aren't just consultants. We're the people who were on the ground in 2008 and 2012, and we're bringing
-              that same relentless organizing framework to South Dakota.”
+              “We're the people who were on the ground in 2008 and 2012, and we're bringing that same relentless
+              organizing framework to South Dakota.”
             </blockquote>
             <figcaption className="mt-8 flex items-center gap-3 text-sm font-bold uppercase tracking-[0.15em] text-mint">
               <span className="w-10 h-0.5 bg-mint" aria-hidden="true"></span>

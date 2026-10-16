@@ -20,7 +20,7 @@ export default {
         spinSlow: { to: { transform: 'rotate(360deg)' } },
       },
       animation: {
-        rise: 'rise .8s cubic-bezier(.2,.7,.2,1) both',
+        rise: 'rise .5s cubic-bezier(.2,.7,.2,1) both',
         fadeIn: 'fadeIn .3s ease-out both',
         spinSlow: 'spinSlow 28s linear infinite',
       },
