@@ -69,12 +69,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
       <div className="container mx-auto px-5 pt-32 pb-20 md:pt-40 md:pb-28 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         {/* Message */}
         <div className="lg:col-span-7">
-          <p className="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-inset ring-white/20 px-4 py-1.5 text-sm font-semibold text-white/90">
-            <span className="w-2 h-2 rounded-full bg-mint" aria-hidden="true"></span>
-            Organizer training for South Dakota
-          </p>
-
-          <h1 className="mt-6 font-display font-black uppercase leading-[0.82] tracking-tight text-[5.25rem] sm:text-[7.5rem] md:text-[9rem] xl:text-[10.5rem]">
+          <h1 className="font-display font-black uppercase leading-[0.82] tracking-tight text-[5.25rem] sm:text-[7.5rem] md:text-[9rem] xl:text-[10.5rem]">
             <span className="block">Train.</span>
             <span className="block">Organize.</span>
             <span className="block text-signal">Win.</span>
