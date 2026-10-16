@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { WhoAreWe } from './components/WhoAreWe';
@@ -14,8 +14,10 @@ import { ScrollToTop } from './components/ScrollToTop';
 import { StickyOptIn } from './components/StickyOptIn';
 import { ContactDialog } from './components/ContactDialog';
 import { DonateDialog } from './components/DonateDialog';
-import { PrivacyPage } from './components/PrivacyPage';
-import { ApplyForm } from './components/ApplyForm';
+
+// Secondary pages load on demand so the home page ships less JavaScript
+const PrivacyPage = lazy(() => import('./components/PrivacyPage').then((m) => ({ default: m.PrivacyPage })));
+const ApplyForm = lazy(() => import('./components/ApplyForm').then((m) => ({ default: m.ApplyForm })));
 
 /* ─── Lightweight History-based Router ─── */
 type AppView = 'home' | 'privacy' | 'apply';
@@ -110,10 +112,14 @@ const App: React.FC = () => {
             <ContactSection />
             <StickyOptIn />
           </>
-        ) : view === 'apply' ? (
-          <ApplyForm onBack={() => navigateTo('home')} />
         ) : (
-          <PrivacyPage onBack={() => navigateTo('home')} />
+          <Suspense fallback={<div className="min-h-screen bg-brand" aria-busy="true" />}>
+            {view === 'apply' ? (
+              <ApplyForm onBack={() => navigateTo('home')} />
+            ) : (
+              <PrivacyPage onBack={() => navigateTo('home')} />
+            )}
+          </Suspense>
         )}
       </main>
       {view !== 'apply' && (

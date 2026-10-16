@@ -72,9 +72,10 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
           </p>
 
           <h1 className="mt-6 font-display font-black uppercase leading-[0.82] tracking-tight text-[5.25rem] sm:text-[7.5rem] md:text-[9rem] xl:text-[10.5rem]">
-            <span className="block animate-rise [animation-delay:80ms]">Train.</span>
-            <span className="block animate-rise [animation-delay:160ms]">Organize.</span>
-            <span className="block animate-rise [animation-delay:240ms] text-signal">Win.</span>
+            {/* No entrance animation here: the headline is the largest paint, so it renders immediately */}
+            <span className="block">Train.</span>
+            <span className="block">Organize.</span>
+            <span className="block text-signal">Win.</span>
           </h1>
 
           <p className="animate-rise [animation-delay:340ms] mt-8 max-w-xl text-lg md:text-xl leading-relaxed text-white/85">
