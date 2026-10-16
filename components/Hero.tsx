@@ -25,7 +25,7 @@ const CampaignBadge: React.FC = () => (
       </text>
     </svg>
     <div className="absolute inset-0 grid place-items-center">
-      <span className="font-display font-black text-brand-ink text-3xl sm:text-4xl md:text-5xl leading-none">2026</span>
+      <span className="font-display font-black text-brand-ink text-3xl sm:text-4xl md:text-5xl leading-none">2028</span>
     </div>
   </div>
 );
@@ -79,7 +79,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
 
           <p className="animate-rise [animation-delay:340ms] mt-8 max-w-xl text-lg md:text-xl leading-relaxed text-white/85">
             Organize SD trains South Dakotans to build and run grassroots field programs that recruit volunteers,
-            reach voters, and win elections in 2026 and beyond.
+            reach voters, and win elections in 2028 and beyond.
           </p>
 
           <div className="animate-rise [animation-delay:420ms] mt-9 flex flex-col sm:flex-row gap-3">

@@ -39,7 +39,7 @@ export const WhoAreWe: React.FC = () => {
               The Organize SD collective
             </figcaption>
             <p className="mt-10 pt-8 border-t border-white/15 text-white/80 leading-relaxed">
-              Now we're focused on 2026: training the next generation of South Dakota leaders to build permanent
+              Now we're focused on 2028: training the next generation of South Dakota leaders to build permanent
               infrastructure that wins, neighborhood by neighborhood, town by town.
             </p>
           </figure>

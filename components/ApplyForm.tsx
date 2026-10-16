@@ -77,7 +77,7 @@ const QUESTIONS: Question[] = [
   },
   {
     id: 'elevator_pitch',
-    question: 'Give a 30-second pitch for why someone should vote in November 2026.',
+    question: 'Give a 30-second pitch for why someone should vote in November 2028.',
     subtitle: 'Write it out — imagine you\'re speaking to an undecided voter.',
     type: 'textarea',
     required: true,

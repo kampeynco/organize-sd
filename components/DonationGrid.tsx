@@ -27,7 +27,7 @@ export const DonationGrid: React.FC = () => {
                         Fund the next organizer
                     </h2>
                     <p className="mt-6 text-lg text-white/80 leading-relaxed">
-                        Your contribution puts trained organizers in South Dakota communities ahead of November 2026.
+                        Your contribution puts trained organizers in South Dakota communities ahead of November 2028.
                     </p>
                     <p className="mt-6 text-sm text-white/55">
                         Processed securely by ActBlue. Contributions are not tax-deductible.

@@ -31,7 +31,7 @@ export const MissionStatement: React.FC = () => {
 
         {/* Goals */}
         <div className="mt-20">
-          <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-brand-ink/60">What success looks like by November 2026</h3>
+          <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-brand-ink/60">What success looks like by November 2028</h3>
           <ol className="mt-6 grid md:grid-cols-3 gap-px bg-brand-ink/10 rounded-3xl overflow-hidden ring-1 ring-brand-ink/10">
             {OUTCOMES.map((o) => (
               <li key={o.stat} className="bg-white p-8 md:p-10">

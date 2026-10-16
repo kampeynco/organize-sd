@@ -75,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => 
               href={DONATE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-full text-sm font-bold text-white ring-1 ring-inset ring-white/40 hover:bg-white hover:text-brand transition-colors"
+              className="px-5 py-2.5 rounded-full text-sm font-bold text-white bg-ember hover:bg-ember-light transition-colors"
             >
               Donate
             </a>
@@ -121,7 +121,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => 
               href={DONATE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="py-3 rounded-full text-center font-bold ring-1 ring-inset ring-white/40"
+              className="py-3 rounded-full text-center font-bold bg-ember hover:bg-ember-light transition-colors"
             >
               Donate
             </a>

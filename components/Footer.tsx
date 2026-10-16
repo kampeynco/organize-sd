@@ -45,7 +45,7 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick, onPrivacyClick, 
                 href="https://secure.actblue.com/donate/organize-sd?refcode=webfoot&amount=100"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full px-6 py-3 text-sm font-bold ring-1 ring-inset ring-white/30 hover:bg-white hover:text-brand-ink transition-colors"
+                className="rounded-full px-6 py-3 text-sm font-bold text-white bg-ember hover:bg-ember-light transition-colors"
               >
                 Donate
               </a>

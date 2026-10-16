@@ -31,7 +31,7 @@ export const ContactSection: React.FC = () => {
           <div>
             <h2 className="font-display font-black uppercase text-brand-ink text-5xl md:text-6xl leading-[0.9]">Stay in the loop</h2>
             <p className="mt-4 text-lg text-brand-ink/80 max-w-md">
-              Updates on training cohorts, organizing toolkits, and the 2026 strategy. Weekly at most.
+              Updates on training cohorts, organizing toolkits, and the 2028 strategy. Weekly at most.
             </p>
           </div>
 
