@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick, onPrivacyClick, 
               <Logo sizes="160px" className="h-24" />
             </a>
             <p className="mt-4 max-w-sm text-white/70 leading-relaxed">
-              Training South Dakotans to build and run grassroots organizing programs that win.
+              Training South Dakota Democrats and progressives to build and run grassroots organizing programs that win.
             </p>
             <div className="mt-6 flex gap-3">
               <button
