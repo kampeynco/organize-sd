@@ -76,7 +76,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
           </h1>
 
           <p className="mt-8 max-w-xl text-lg md:text-xl leading-relaxed text-white/85">
-            Organize SD trains South Dakota Democrats and progressives to build and run grassroots field programs that recruit volunteers,
+            Organize SD trains progressive South Dakotans to build and run grassroots field programs that recruit volunteers,
             reach voters, and win elections in 2028 and beyond.
           </p>
 

@@ -4,7 +4,7 @@ import { Icon } from './Icon';
 import { faArrowTrendUp, faBullhorn, faMinus, faSeedling } from '@fortawesome/free-solid-svg-icons';
 
 const AUDIENCES = [
-  { icon: faSeedling, title: 'First-time organizers', text: "You're a Democrat or progressive who cares about your community and wants to learn how to move people." },
+  { icon: faSeedling, title: 'First-time organizers', text: "You're a progressive who cares about your community and wants to learn how to move people." },
   { icon: faArrowTrendUp, title: 'Rising field staff', text: 'You have some campaign experience and want to run a program, not just a shift.' },
   { icon: faBullhorn, title: 'Volunteer leaders', text: 'You already lead people locally and want proven systems to grow your team.' },
 ];

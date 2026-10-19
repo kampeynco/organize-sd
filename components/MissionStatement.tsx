@@ -17,7 +17,7 @@ export const MissionStatement: React.FC = () => {
             Training a new generation of South Dakota organizers.
           </h2>
           <p className="lg:col-span-5 text-lg md:text-xl leading-relaxed text-brand-ink/75 lg:border-l-4 lg:border-signal lg:pl-8">
-            Organize SD is a South Dakota-based training initiative for Democrats and progressives. We develop high-skill grassroots operatives who can
+            Organize SD is a training initiative for progressive South Dakotans. We develop high-skill grassroots operatives who can
             build and run effective organizing programs for federal, state, and local races, then stay to
             lead in their own communities.
           </p>
