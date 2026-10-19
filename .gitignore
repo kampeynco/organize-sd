@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .vercel
 .env*
+
+# Private reference docs (kept out of the public repo)
+/docs
