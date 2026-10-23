@@ -18,14 +18,16 @@ import { DonateDialog } from './components/DonateDialog';
 // Secondary pages load on demand so the home page ships less JavaScript
 const PrivacyPage = lazy(() => import('./components/PrivacyPage').then((m) => ({ default: m.PrivacyPage })));
 const ApplyForm = lazy(() => import('./components/ApplyForm').then((m) => ({ default: m.ApplyForm })));
+const ResultsPage = lazy(() => import('./components/ResultsPage').then((m) => ({ default: m.ResultsPage })));
 
 /* ─── Lightweight History-based Router ─── */
-type AppView = 'home' | 'privacy' | 'apply';
+type AppView = 'home' | 'privacy' | 'apply' | 'results';
 
 const pathToView = (pathname: string): AppView => {
   switch (pathname) {
     case '/apply': return 'apply';
     case '/privacy': return 'privacy';
+    case '/results': return 'results';
     default: return 'home';
   }
 };
@@ -34,6 +36,7 @@ const viewToPath = (view: AppView): string => {
   switch (view) {
     case 'apply': return '/apply';
     case 'privacy': return '/privacy';
+    case 'results': return '/results';
     default: return '/';
   }
 };
@@ -101,7 +104,13 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {view !== 'apply' && <Navbar onHomeClick={() => navigateTo('home')} onApplyClick={() => navigateTo('apply')} />}
+      {view !== 'apply' && (
+        <Navbar
+          onHomeClick={() => navigateTo('home')}
+          onApplyClick={() => navigateTo('apply')}
+          onResultsClick={() => navigateTo('results')}
+        />
+      )}
       <main className="flex-grow">
         {view === 'home' ? (
           <>
@@ -119,6 +128,8 @@ const App: React.FC = () => {
           <Suspense fallback={<div className="min-h-screen bg-brand" aria-busy="true" />}>
             {view === 'apply' ? (
               <ApplyForm onBack={() => navigateTo('home')} />
+            ) : view === 'results' ? (
+              <ResultsPage />
             ) : (
               <PrivacyPage onBack={() => navigateTo('home')} />
             )}
@@ -131,6 +142,7 @@ const App: React.FC = () => {
           onPrivacyClick={() => navigateTo('privacy')}
           onHomeClick={() => navigateTo('home')}
           onApplyClick={() => navigateTo('apply')}
+          onResultsClick={() => navigateTo('results')}
         />
       )}
       {view !== 'apply' && <ScrollToTop />}

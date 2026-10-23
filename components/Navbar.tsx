@@ -7,6 +7,7 @@ import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 interface NavbarProps {
   onHomeClick: () => void;
   onApplyClick: () => void;
+  onResultsClick: () => void;
 }
 
 const DONATE_URL = 'https://secure.actblue.com/donate/organize-sd?refcode=website&amount=100';
@@ -18,7 +19,7 @@ const NAV_LINKS = [
   { id: 'who-we-are', label: 'Who We Are' },
 ];
 
-export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick, onResultsClick }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -28,6 +29,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const openResults = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    onResultsClick();
+  };
 
   const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
@@ -75,6 +82,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => 
                 </a>
               </li>
             ))}
+            <li>
+              <a href="/results" onClick={openResults} className="hover:text-white transition-colors">
+                Results
+              </a>
+            </li>
           </ul>
           <div className="flex items-center gap-3">
             <a
@@ -122,6 +134,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => 
               {link.label}
             </a>
           ))}
+          <a
+            href="/results"
+            onClick={openResults}
+            className="py-3 text-lg font-semibold border-b border-white/10 hover:text-signal transition-colors"
+          >
+            Results
+          </a>
           <div className="grid grid-cols-2 gap-3 pt-5">
             <a
               href={DONATE_URL}
