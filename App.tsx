@@ -41,10 +41,10 @@ const viewToPath = (view: AppView): string => {
   }
 };
 
-const App: React.FC = () => {
-  // The home page is prerendered at build time, where there is no window
+/** `path` is the page to render at build time, where there is no window (see scripts/prerender.js) */
+const App: React.FC<{ path?: string }> = ({ path = '/' }) => {
   const [view, setViewState] = useState<AppView>(() =>
-    typeof window === 'undefined' ? 'home' : pathToView(window.location.pathname)
+    pathToView(typeof window === 'undefined' ? path : window.location.pathname)
   );
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isDonateDialogOpen, setIsDonateDialogOpen] = useState(false);

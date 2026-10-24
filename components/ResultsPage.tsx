@@ -3,12 +3,13 @@ import { Icon } from './Icon';
 import { faArrowLeft, faChevronDown, faCircleInfo, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import {
   fetchCountyMap,
-  fetchCountyResults,
+  fetchElectionInfo,
   fetchPrecinctMap,
   fetchPrecinctResults,
   fetchSummary,
   type CountyMap,
   type CountyResult,
+  type ElectionInfo,
   type ElectionSummary,
   type PrecinctMap,
   type PrecinctResult,
@@ -24,16 +25,19 @@ import {
   type MapResult,
 } from './ResultsMap';
 
-// Election night counts move every few minutes; the API caches for 30 seconds
+// Election night counts move every few minutes; the CDN keeps each copy for 30 seconds
 const REFRESH_MS = 60_000;
 // After a failed request, try again sooner than the next scheduled refresh
 const RETRY_MS = 10_000;
+// After the CDN answers with an old copy, by when it has usually fetched a fresh one
+const STALE_RECHECK_MS = 5_000;
 const SOS_RESULTS_URL = 'https://electionresults.sd.gov/';
 
 type County = CountyMap['counties'][number];
 
 const readParams = () => {
-  const p = new URLSearchParams(window.location.search);
+  // results.html is prerendered at build time, where there is no window
+  const p = new URLSearchParams(typeof window === 'undefined' ? '' : window.location.search);
   return { race: p.get('race'), county: p.get('county') };
 };
 
@@ -46,10 +50,10 @@ interface Loaded<T> {
 export const ResultsPage: React.FC = () => {
   const [summary, setSummary] = useState<ElectionSummary | null>(null);
   const [summaryError, setSummaryError] = useState('');
+  const [info, setInfo] = useState<ElectionInfo | null>(null);
   const [countyMap, setCountyMap] = useState<CountyMap | null>(null);
   const [raceId, setRaceId] = useState<string | null>(() => readParams().race);
   const [countyId, setCountyId] = useState<string | null>(() => readParams().county);
-  const [counties, setCounties] = useState<Loaded<CountyResult[]> | null>(null);
   const [precincts, setPrecincts] = useState<Loaded<PrecinctResult[]> | null>(null);
   const [precinctMap, setPrecinctMap] = useState<Loaded<PrecinctMap> | null>(null);
   const [detailError, setDetailError] = useState('');
@@ -85,24 +89,36 @@ export const ResultsPage: React.FC = () => {
     fetchCountyMap().then(setCountyMap).catch((e: Error) => setSummaryError(e.message));
   }, [countyMap, tick]);
 
+  // Whether the last summary was an old copy, so a run of them gets one quick recheck rather than a loop
+  const rechecking = useRef(false);
   useEffect(() => {
     let live = true;
+    let recheck: ReturnType<typeof setTimeout> | undefined;
     fetchSummary()
-      .then((s) => { if (live) { setSummary(s); setSummaryError(''); } })
+      .then(({ data, stale }) => {
+        if (!live) return;
+        setSummary(data);
+        setSummaryError('');
+        if (stale && !rechecking.current) recheck = setTimeout(() => setTick((t) => t + 1), STALE_RECHECK_MS);
+        rechecking.current = stale;
+      })
       .catch((e: Error) => { if (live) setSummaryError(e.message); });
+    return () => {
+      live = false;
+      clearTimeout(recheck);
+    };
+  }, [tick]);
+
+  // The title and test banner. The counts don't need them, so a failure keeps the last copy and waits for the next refresh.
+  useEffect(() => {
+    let live = true;
+    fetchElectionInfo()
+      .then((i) => { if (live) setInfo(i); })
+      .catch(() => {});
     return () => { live = false; };
   }, [tick]);
 
-  // The race object is replaced on every refresh, so these effects follow its key instead
-  useEffect(() => {
-    if (!race) return;
-    let live = true;
-    fetchCountyResults(race)
-      .then((r) => { if (live) { setCounties({ key: raceKey, data: r.counties }); setDetailError(''); } })
-      .catch((e: Error) => { if (live) setDetailError(e.message); });
-    return () => { live = false; };
-  }, [raceKey, tick]);
-
+  // The race object is replaced on every refresh, so this follows its key instead
   useEffect(() => {
     if (!race || !county) return;
     let live = true;
@@ -130,7 +146,7 @@ export const ResultsPage: React.FC = () => {
   }, [race?.id, countyMap, county]);
 
   const colors = useMemo(() => (race ? raceColors(race.candidates) : {}), [race]);
-  const countyData = counties?.key === raceKey ? counties.data : null;
+  const countyData = race?.counties ?? null;
   const precinctData = county && precincts?.key === precinctKey ? precincts.data : null;
   const precinctShapes = county && precinctMap?.key === county.id ? precinctMap.data : null;
   // Vote-center counties report by polling place (ids like C740) instead of by precinct
@@ -152,7 +168,7 @@ export const ResultsPage: React.FC = () => {
             <h1 className="mt-4 font-display font-black uppercase text-5xl sm:text-6xl xl:text-7xl leading-[0.9]">
               South Dakota<br /> results
             </h1>
-            <Updated summary={summary} />
+            <Updated summary={summary} info={info} />
             {summary && <Stats summary={summary} />}
           </div>
 
@@ -209,11 +225,11 @@ export const ResultsPage: React.FC = () => {
 
 /* ─── Hero ─── */
 
-const Updated: React.FC<{ summary: ElectionSummary | null }> = ({ summary }) => {
-  const testing = !!summary?.message && /test/i.test(summary.message);
+const Updated: React.FC<{ summary: ElectionSummary | null; info: ElectionInfo | null }> = ({ summary, info }) => {
+  const testing = !!info?.message && /test/i.test(info.message);
   return (
     <div className="mt-5 text-white/85">
-      <p className="text-lg md:text-xl">{summary?.title ?? 'Unofficial results'}</p>
+      <p className="text-lg md:text-xl">{info?.title ?? 'Unofficial results'}</p>
       {summary?.updated && (
         <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/60">
           Unofficial · updated {summary.updated}
@@ -225,7 +241,7 @@ const Updated: React.FC<{ summary: ElectionSummary | null }> = ({ summary }) => 
           )}
         </p>
       )}
-      {summary?.message && !testing && <p className="mt-1 text-sm text-white/60">{summary.message}</p>}
+      {info?.message && !testing && <p className="mt-1 text-sm text-white/60">{info.message}</p>}
     </div>
   );
 };

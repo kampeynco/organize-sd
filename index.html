@@ -38,8 +38,8 @@
 </head>
 <body class="text-brand-ink">
     <div id="root"></div>
-    <!-- Only "/" matches the prerendered markup; clear it on other routes before it paints -->
-    <script>if (location.pathname !== '/') document.getElementById('root').innerHTML = '';</script>
+    <!-- Prerendered markup only matches its own route (data-path); clear it on other routes before it paints -->
+    <script>(function (root) { if (root.dataset.path !== location.pathname) root.innerHTML = ''; })(document.getElementById('root'));</script>
     <script type="module" src="./index.tsx"></script>
 </body>
 </html>

@@ -24,15 +24,20 @@ export interface Race {
   partial: number;
   total: number;
   candidates: Candidate[];
+  counties: CountyResult[];
+}
+
+/** From the SOS results page, which can be slow, so it comes separately from the counts */
+export interface ElectionInfo {
+  /** e.g. "General Election November 3, 2026" */
+  title: string;
+  /** SOS banner text, e.g. "Testing In Progress" before election night */
+  message: string | null;
 }
 
 export interface ElectionSummary {
-  /** e.g. "General Election November 3, 2026" */
-  title: string;
   /** As the SOS prints it, e.g. "11/3/2026 10:51 PM CT" */
   updated: string;
-  /** SOS banner text, e.g. "Testing In Progress" before election night */
-  message: string | null;
   ballotsCast: number;
   activeVoters: number;
   precincts: { reporting: number; partial: number; total: number };
@@ -56,10 +61,6 @@ export interface PrecinctResult extends AreaResult {
   reported: boolean;
 }
 
-export interface CountyResults {
-  counties: CountyResult[];
-}
-
 export interface PrecinctResults {
   precincts: PrecinctResult[];
 }
@@ -76,7 +77,13 @@ export interface PrecinctMap {
   precincts: { id: string; d: string }[];
 }
 
-async function getJson<T>(url: string): Promise<T> {
+interface Fetched<T> {
+  data: T;
+  /** The CDN answered with an old copy while it fetches a fresh one */
+  stale: boolean;
+}
+
+async function fetchJson<T>(url: string): Promise<Fetched<T>> {
   let res: Response;
   try {
     res = await fetch(url);
@@ -90,19 +97,22 @@ async function getJson<T>(url: string): Promise<T> {
     const data = isJson ? await res.json().catch(() => ({})) : {};
     throw new Error(data.error || unavailable);
   }
-  return res.json().catch(() => {
+  const data: T = await res.json().catch(() => {
     throw new Error(unavailable);
   });
+  return { data, stale: res.headers.get('x-vercel-cache') === 'STALE' };
 }
 
-export const fetchSummary = () => getJson<ElectionSummary>('/api/election-results');
+const getJson = async <T>(url: string) => (await fetchJson<T>(url)).data;
 
-export const fetchCountyResults = (race: Race) =>
-  getJson<CountyResults>(`/api/election-results?type=${race.type}&race=${race.id}&osn=${race.osn}`);
+// results.html preloads these three URLs (see scripts/prerender.js), so change them in both places
+export const fetchSummary = () => fetchJson<ElectionSummary>('/api/election-results');
+
+export const fetchElectionInfo = () => getJson<ElectionInfo>('/api/election-results?part=info');
+
+export const fetchCountyMap = () => getJson<CountyMap>('/election/counties.json');
 
 export const fetchPrecinctResults = (race: Race, countyId: string) =>
   getJson<PrecinctResults>(`/api/election-results?type=${race.type}&race=${race.id}&osn=${race.osn}&county=${countyId}`);
-
-export const fetchCountyMap = () => getJson<CountyMap>('/election/counties.json');
 
 export const fetchPrecinctMap = (countyId: string) => getJson<PrecinctMap>(`/election/precincts/${countyId}.json`);
