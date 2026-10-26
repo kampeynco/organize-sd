@@ -9,7 +9,7 @@ interface PrivacyPageProps {
 
 export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onBack }) => {
   return (
-    <div className="bg-white pt-32 pb-24">
+    <div className="bg-white pt-40 lg:pt-32 pb-24">
       <div className="container mx-auto px-4 max-w-4xl">
         <button 
           onClick={onBack}

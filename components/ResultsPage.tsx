@@ -162,7 +162,7 @@ export const ResultsPage: React.FC = () => {
   return (
     <div className="bg-paper">
       <section className="grain relative isolate overflow-hidden bg-brand text-white">
-        <div className="container mx-auto px-4 sm:px-5 max-w-7xl pt-32 pb-12 md:pt-40 md:pb-16 grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-12 items-start">
+        <div className="container mx-auto px-4 sm:px-5 max-w-7xl pt-40 pb-12 md:pb-16 grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-12 items-start">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-mint">Election results</p>
             <h1 className="mt-4 font-display font-black uppercase text-5xl sm:text-6xl xl:text-7xl leading-[0.9]">
@@ -411,7 +411,7 @@ const MapCard: React.FC<{
   }
 
   return (
-    <div id="results-map" className="min-w-0 rounded-3xl bg-white p-4 sm:p-6 text-brand-ink shadow-2xl shadow-brand-ink/30 scroll-mt-24">
+    <div id="results-map" className="min-w-0 rounded-3xl bg-white p-4 sm:p-6 text-brand-ink shadow-2xl shadow-brand-ink/30 scroll-mt-32 lg:scroll-mt-24">
       {/* The dropdowns name what the map shows, so they stand in for a visible title */}
       <h2 className="sr-only">Results map</h2>
       <Pickers
