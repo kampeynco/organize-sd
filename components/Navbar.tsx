@@ -10,7 +10,7 @@ interface NavbarProps {
 }
 
 const DONATE_URL = 'https://secure.actblue.com/donate/organize-sd?refcode=website&amount=100';
-const DONATE_BAR_URL = 'https://secure.actblue.com/donate/organize-sd?refcode=webbar&amount=100';
+const DONATE_BAR_URL = 'https://secure.actblue.com/donate/organize-sd?refcode=webbar&amount=5';
 
 const NAV_LINKS = [
   { id: 'mission', label: 'Mission' },
@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => 
         rel="noopener noreferrer"
         className="lg:hidden block py-2.5 px-5 text-center text-sm font-bold text-white bg-ember hover:bg-ember-light transition-colors"
       >
-        Donate to Organize SD <span aria-hidden="true">→</span>
+        Donate $5 Now <span aria-hidden="true">→</span>
       </a>
 
       <nav
