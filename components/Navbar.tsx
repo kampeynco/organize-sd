@@ -10,6 +10,7 @@ interface NavbarProps {
 }
 
 const DONATE_URL = 'https://secure.actblue.com/donate/organize-sd?refcode=website&amount=100';
+const DONATE_BAR_URL = 'https://secure.actblue.com/donate/organize-sd?refcode=webbar&amount=100';
 
 const NAV_LINKS = [
   { id: 'mission', label: 'Mission' },
@@ -48,10 +49,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => 
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled || isMenuOpen ? 'bg-brand-deep/95 backdrop-blur-md shadow-lg shadow-brand-ink/20 py-3' : 'bg-transparent py-5'
+        scrolled || isMenuOpen ? 'bg-brand-deep/95 backdrop-blur-md shadow-lg shadow-brand-ink/20' : 'bg-transparent'
       }`}
     >
-      <nav className="container mx-auto px-5 flex justify-between items-center" aria-label="Main">
+      {/* Mobile donate bar; pages below lg pad their tops to clear it */}
+      <a
+        href={DONATE_BAR_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="lg:hidden block py-2.5 px-5 text-center text-sm font-bold text-white bg-ember hover:bg-ember-light transition-colors"
+      >
+        Donate to Organize SD <span aria-hidden="true">→</span>
+      </a>
+
+      <nav
+        className={`container mx-auto px-5 flex justify-between items-center transition-[padding] duration-300 ${
+          scrolled || isMenuOpen ? 'py-3' : 'py-5'
+        }`}
+        aria-label="Main"
+      >
         <a
           href="/"
           onClick={(e) => smoothScroll(e, 'top')}

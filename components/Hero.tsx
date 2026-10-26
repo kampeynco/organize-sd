@@ -66,7 +66,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
         </span>
       </div>
 
-      <div className="container mx-auto px-5 pt-32 pb-20 md:pt-40 md:pb-28 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="container mx-auto px-5 pt-40 pb-20 md:pb-28 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         {/* Message */}
         <div className="lg:col-span-7">
           <h1 className="font-display font-black uppercase leading-[0.82] tracking-tight text-[5.25rem] sm:text-[7.5rem] md:text-[9rem] xl:text-[10.5rem]">
