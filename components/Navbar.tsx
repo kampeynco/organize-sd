@@ -57,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, onApplyClick }) => 
         href={DONATE_BAR_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="lg:hidden block py-2.5 px-5 text-center text-sm font-bold text-white bg-ember hover:bg-ember-light transition-colors"
+        className="lg:hidden block py-2 px-5 text-center text-base font-bold text-white bg-ember hover:bg-ember-light transition-colors"
       >
         Donate $5 Now <span aria-hidden="true">→</span>
       </a>
