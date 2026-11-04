@@ -223,7 +223,8 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
       case 'scale':
         return (
           <div className="w-full max-w-2xl mx-auto">
-            <div className="flex flex-wrap justify-center gap-3">
+            {/* One row of ten; phones get two even rows of five so the buttons stay big enough to tap */}
+            <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 sm:gap-3">
               {Array.from({ length: (current.scaleMax || 10) - (current.scaleMin || 1) + 1 }, (_, i) => {
                 const val = (current.scaleMin || 1) + i;
                 const strVal = String(val);
@@ -232,7 +233,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
                   <button
                     key={val}
                     onClick={() => selectAndAdvance(strVal)}
-                    className={`w-14 h-14 md:w-16 md:h-16 rounded-xl text-lg md:text-xl font-black transition-all duration-200 border-2 ${
+                    className={`w-full aspect-square rounded-xl text-lg md:text-xl font-black transition-all duration-200 border-2 ${
                       isSelected
                         ? 'bg-teal-400 border-teal-400 text-[#311b92] scale-110 shadow-lg shadow-teal-400/30'
                         : 'bg-white/5 border-white/20 text-white hover:border-teal-400 hover:bg-white/10 hover:scale-105'

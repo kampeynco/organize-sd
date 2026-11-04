@@ -32,7 +32,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'weekend_availability',
-    question: 'What is your availability attending multi-day training sessions (weekend intensives)?',
+    question: 'Can you attend multi-day training sessions on weekends (weekend intensives)?',
     type: 'yesno',
     required: true,
   },
@@ -129,13 +129,6 @@ export const QUESTIONS: Question[] = [
     id: 'phone_internet',
     question: 'Do you have consistent access to a phone and internet?',
     subtitle: 'For those needing assistance with resources.',
-    type: 'yesno',
-    required: true,
-  },
-  {
-    id: 'travel_support',
-    question: 'Would you need travel or resource support to participate?',
-    subtitle: 'Mileage, hotel, childcare stipend, etc.',
     type: 'yesno',
     required: true,
   },
