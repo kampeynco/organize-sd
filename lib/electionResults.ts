@@ -1,10 +1,12 @@
-// Shapes returned by /api/election-results, which relays the Secretary of State's unofficial results
+// Shapes returned by /api/election-results, which serves our saved copy of the Secretary of State's unofficial results
 
 export type RaceType = 'SWR' | 'BQ';
 
 export interface Candidate {
   id: string;
   name: string;
+  /** Column heading in narrow tables; defaults to the last name */
+  short?: string;
   /** REP, DEM, IND, LIB, CON, NON; YES or NO for ballot questions */
   party: string;
   partyName: string;
@@ -110,7 +112,13 @@ export const fetchSummary = () => fetchJson<ElectionSummary>('/api/election-resu
 
 export const fetchElectionInfo = () => getJson<ElectionInfo>('/api/election-results?part=info');
 
-export const fetchCountyMap = () => getJson<CountyMap>('/election/counties.json');
+// Both views draw the county map, so they share one download (a failed one is dropped so the next call retries)
+let countyMap: Promise<CountyMap> | null = null;
+export const fetchCountyMap = () =>
+  (countyMap ??= getJson<CountyMap>('/election/counties.json').catch((err) => {
+    countyMap = null;
+    throw err;
+  }));
 
 export const fetchPrecinctResults = (race: Race, countyId: string) =>
   getJson<PrecinctResults>(`/api/election-results?type=${race.type}&race=${race.id}&osn=${race.osn}&county=${countyId}`);

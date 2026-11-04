@@ -24,7 +24,8 @@ const devApi = (): Plugin => ({
     server.middlewares.use(async (req, res, next) => {
       const url = new URL(req.url ?? '/', `http://${req.headers.host ?? 'localhost'}`);
       const name = url.pathname.match(/^\/api\/([\w-]+)$/)?.[1];
-      if (!name || !fs.existsSync(path.resolve(__dirname, 'api', `${name}.ts`))) return next();
+      // Like Vercel, files starting with "_" (api/_sos.ts) are shared helpers, not endpoints
+      if (!name || name.startsWith('_') || !fs.existsSync(path.resolve(__dirname, 'api', `${name}.ts`))) return next();
       try {
         const handlers = await server.ssrLoadModule(`/api/${name}.ts`);
         const handler = handlers[req.method ?? 'GET'];
@@ -37,7 +38,7 @@ const devApi = (): Plugin => ({
         );
         const hasBody = req.method !== 'GET' && req.method !== 'HEAD';
         const response: Response = await handler(
-          new Request(url, { method: req.method, headers, body: hasBody ? await readBody(req) : undefined })
+          new Request(url, { method: req.method, headers, body: hasBody ? new Uint8Array(await readBody(req)) : undefined })
         );
         res.statusCode = response.status;
         response.headers.forEach((value, key) => res.setHeader(key, value));

@@ -17,16 +17,34 @@ if (!template.includes(marker)) {
 }
 
 // The results page's code and first data start downloading with the HTML, instead of after the app's
-// JavaScript runs. The data URLs match lib/electionResults.ts, so the page's fetch() picks up these responses.
+// JavaScript runs. The data depends on the view in the address (?view=turnout or ?view=registration, and
+// &by=district for the district map). The URLs match lib/electionResults.ts, lib/voterTurnout.ts and
+// lib/voterRegistration.ts, so the page's fetch() picks up these responses.
 const resultsChunk = (await readdir(path.join(dist, 'assets'))).find((f) => /^ResultsPage-.*\.js$/.test(f));
 if (!resultsChunk) {
   throw new Error('prerender: could not find the ResultsPage chunk in dist/assets');
 }
+const viewPreloads = `(function () {
+      var search = location.search;
+      var view = (search.match(/[?&]view=(\\w+)/) || [])[1];
+      var urls =
+        view === 'registration' ? ['/api/voter-registration']
+        : view === 'turnout' ? ['/api/voter-turnout']
+        : ['/api/election-results', '/api/election-results?part=info'];
+      if ((view === 'turnout' || view === 'registration') && /[?&]by=district(&|$)/.test(search)) urls.push('/election/districts.json');
+      urls.forEach(function (href) {
+        var link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'fetch';
+        link.href = href;
+        link.crossOrigin = 'anonymous';
+        document.head.appendChild(link);
+      });
+    })();`;
 const resultsHead = [
   `<link rel="modulepreload" href="/assets/${resultsChunk}">`,
-  '<link rel="preload" as="fetch" href="/api/election-results" crossorigin>',
-  '<link rel="preload" as="fetch" href="/api/election-results?part=info" crossorigin>',
   '<link rel="preload" as="fetch" href="/election/counties.json" crossorigin>',
+  `<script>${viewPreloads}</script>`,
 ].join('\n    ');
 
 const pages = [

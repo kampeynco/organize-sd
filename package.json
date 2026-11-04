@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build && vite build --ssr entry-server.tsx --outDir dist-ssr && node scripts/prerender.js",
     "preview": "vite preview",
-    "build:election-maps": "node scripts/election-maps/build.mjs"
+    "build:election-maps": "node scripts/election-maps/build.mjs",
+    "build:districts": "node scripts/election-maps/build-districts.mjs",
+    "save:sos": "node --env-file=.env.local scripts/run-ts.mjs scripts/sos/save.ts"
   },
   "engines": {
     "node": "24.x"

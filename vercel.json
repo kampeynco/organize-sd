@@ -1,5 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [{ "path": "/api/save-sos", "schedule": "0 12 * * *" }],
+  "functions": {
+    "api/save-sos.ts": { "maxDuration": 60 }
+  },
   "rewrites": [
     { "source": "/results", "destination": "/results.html" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }

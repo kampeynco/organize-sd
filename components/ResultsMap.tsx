@@ -1,4 +1,4 @@
-import React, { useId, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 import { Icon } from './Icon';
 import { faMinus, faPlus, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import type { AreaResult, Candidate } from '../lib/electionResults';
@@ -99,12 +99,21 @@ interface LegendProps {
   candidates: Candidate[];
   colors: Record<string, string>;
   showNoBoundary?: boolean;
+  title?: string;
+  /** Results maps hatch areas with no votes yet; registration always has counts */
+  showUnreported?: boolean;
 }
 
-export const ResultsLegend: React.FC<LegendProps> = ({ candidates, colors, showNoBoundary }) => (
+export const ResultsLegend: React.FC<LegendProps> = ({
+  candidates,
+  colors,
+  showNoBoundary,
+  title = 'Leading, by margin (points)',
+  showUnreported = true,
+}) => (
   <div className="flex flex-col gap-4 text-sm text-brand-ink/80">
     <div>
-      <p className="text-xs font-bold uppercase tracking-[0.12em] text-brand-ink/60">Leading, by margin (points)</p>
+      <p className="text-xs font-bold uppercase tracking-[0.12em] text-brand-ink/60">{title}</p>
       <table className="mt-2 border-separate border-spacing-[2px] -ml-[2px]">
         <thead>
           <tr>
@@ -130,18 +139,20 @@ export const ResultsLegend: React.FC<LegendProps> = ({ candidates, colors, showN
       </table>
     </div>
     <ul className="flex flex-wrap gap-x-6 gap-y-2">
-      <li className="flex items-center gap-2">
-        <svg className="w-9 h-4 rounded-[3px] ring-1 ring-brand-ink/15" aria-hidden="true">
-          <rect width="100%" height="100%" fill="url(#results-hatch-legend)" />
-          <defs>
-            <pattern id="results-hatch-legend" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-              <rect width="6" height="6" fill="#ffffff" />
-              <line x1="0" y1="0" x2="0" y2="6" stroke="#b9b7ae" strokeWidth="2" />
-            </pattern>
-          </defs>
-        </svg>
-        No votes reported yet
-      </li>
+      {showUnreported && (
+        <li className="flex items-center gap-2">
+          <svg className="w-9 h-4 rounded-[3px] ring-1 ring-brand-ink/15" aria-hidden="true">
+            <rect width="100%" height="100%" fill="url(#results-hatch-legend)" />
+            <defs>
+              <pattern id="results-hatch-legend" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <rect width="6" height="6" fill="#ffffff" />
+                <line x1="0" y1="0" x2="0" y2="6" stroke="#b9b7ae" strokeWidth="2" />
+              </pattern>
+            </defs>
+          </svg>
+          No votes reported yet
+        </li>
+      )}
       <li className="flex items-center gap-2">
         <span className="w-9 h-4 rounded-[3px]" style={{ background: TIED }}></span>
         Tied
@@ -162,6 +173,8 @@ export interface MapResult extends AreaResult {
   reporting?: number;
   total?: number;
   reported?: boolean;
+  /** Line under the name in the tooltip, in place of the reporting progress */
+  detail?: string;
 }
 
 const Tooltip: React.FC<{ result: MapResult; candidates: Candidate[]; colors: Record<string, string>; noun: string }> = ({
@@ -172,11 +185,12 @@ const Tooltip: React.FC<{ result: MapResult; candidates: Candidate[]; colors: Re
 }) => {
   const s = standing(result.votes, candidates);
   const progress =
-    result.total !== undefined
+    result.detail ??
+    (result.total !== undefined
       ? `${result.reporting} of ${result.total} precincts reporting`
       : result.reported
         ? 'Reported'
-        : 'Not reported yet';
+        : 'Not reported yet');
   return (
     <>
       <p className="font-bold text-brand-ink leading-tight">
@@ -212,8 +226,12 @@ interface ResultsMapProps {
   results: Map<string, MapResult>;
   candidates: Candidate[];
   colors: Record<string, string>;
-  /** "county" or "precinct", for the tooltip and the accessible label */
-  noun: 'county' | 'precinct';
+  /** For the tooltip: county names get " County" after them */
+  noun: 'county' | 'precinct' | 'district';
+  /** Color for an area with a result, in place of the leader's color shaded by margin */
+  fill?: (result: MapResult) => string;
+  /** Tooltip contents, in place of the candidate breakdown */
+  tooltip?: (result: MapResult) => React.ReactNode;
   label: string;
   onSelect?: (id: string) => void;
   /** Area to outline, e.g. the county picked from the dropdown */
@@ -232,6 +250,8 @@ export const ResultsMap: React.FC<ResultsMapProps> = ({
   colors,
   noun,
   label,
+  fill,
+  tooltip,
   onSelect,
   highlight,
   zoomable,
@@ -247,9 +267,35 @@ export const ResultsMap: React.FC<ResultsMapProps> = ({
 
   const zoom = view[2] < full[2] - 0.5;
 
+  // On a zoomable map, bring a small highlighted area (a Sioux Falls district) into view, and go back out when it's cleared
+  useEffect(() => {
+    if (!zoomable) return;
+    if (!highlight) {
+      setView(full);
+      return;
+    }
+    const nums = areas.find((a) => a.id === highlight)?.d.match(/-?\d+(?:\.\d+)?/g)?.map(Number) ?? [];
+    if (nums.length < 2) return;
+    let [x0, y0, x1, y1] = [Infinity, Infinity, -Infinity, -Infinity];
+    for (let i = 0; i + 1 < nums.length; i += 2) {
+      x0 = Math.min(x0, nums[i]); x1 = Math.max(x1, nums[i]);
+      y0 = Math.min(y0, nums[i + 1]); y1 = Math.max(y1, nums[i + 1]);
+    }
+    const aspect = full[3] / full[2];
+    // Three times the area's size, so its neighbors show around it
+    const w = Math.min(full[2], Math.max(full[2] / 12, (x1 - x0) * 3, ((y1 - y0) * 3) / aspect));
+    if (w > full[2] * 0.6) return; // big enough to see on the whole map
+    const h = w * aspect;
+    setPinned(null);
+    setView(clampView([(x0 + x1) / 2 - w / 2, (y0 + y1) / 2 - h / 2, w, h], full));
+    // `full` and `areas` follow viewBox, which keys this map
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [highlight, zoomable, viewBox]);
+
   const fillFor = (id: string) => {
     const r = results.get(id);
     if (!r) return NO_BOUNDARY;
+    if (fill) return fill(r);
     const s = standing(r.votes, candidates);
     if (!s.total) return `url(#${hatchId})`;
     if (!s.leader) return TIED;
@@ -388,7 +434,7 @@ export const ResultsMap: React.FC<ResultsMapProps> = ({
           className="pointer-events-none absolute z-10 w-64 rounded-xl bg-white p-3 shadow-xl shadow-brand-ink/15 ring-1 ring-brand-ink/10"
           style={tipPosition}
         >
-          <Tooltip result={tipResult} candidates={candidates} colors={colors} noun={noun} />
+          {tooltip ? tooltip(tipResult) : <Tooltip result={tipResult} candidates={candidates} colors={colors} noun={noun} />}
         </div>
       )}
 
