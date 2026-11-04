@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && vite build --ssr entry-server.tsx --outDir dist-ssr && node scripts/prerender.js",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:election-maps": "node scripts/election-maps/build.mjs",
+    "build:districts": "node scripts/election-maps/build-districts.mjs",
+    "save:sos": "node --env-file=.env.local scripts/run-ts.mjs scripts/sos/save.ts"
   },
   "engines": {
     "node": "24.x"
@@ -24,6 +27,7 @@
     "@vitejs/plugin-react": "^5.1.2",
     "autoprefixer": "^10.6.1",
     "esbuild": "^0.25.0",
+    "mapshaper": "0.6.113",
     "postcss": "^8.5.30",
     "tailwindcss": "^3.4.17",
     "vite": "^6.4.1"

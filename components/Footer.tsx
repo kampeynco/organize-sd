@@ -9,9 +9,10 @@ interface FooterProps {
   onPrivacyClick: () => void;
   onHomeClick: () => void;
   onApplyClick: () => void;
+  onResultsClick: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onContactClick, onPrivacyClick, onHomeClick, onApplyClick }) => {
+export const Footer: React.FC<FooterProps> = ({ onContactClick, onPrivacyClick, onHomeClick, onApplyClick, onResultsClick }) => {
   const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     onHomeClick();
@@ -64,6 +65,7 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick, onPrivacyClick, 
                 <li><a href="#training" onClick={(e) => smoothScroll(e, 'training')} className={linkClass}>Training</a></li>
                 <li><a href="#schedule" onClick={(e) => smoothScroll(e, 'schedule')} className={linkClass}>Schedule</a></li>
                 <li><a href="#who-we-are" onClick={(e) => smoothScroll(e, 'who-we-are')} className={linkClass}>Who we are</a></li>
+                <li><a href="/results" onClick={(e) => { e.preventDefault(); onResultsClick(); }} className={linkClass}>Election results</a></li>
               </ul>
             </div>
             <div>

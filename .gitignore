@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+# Downloads cached by scripts/election-maps
+.cache
 *.local
 
 # Editor directories and files

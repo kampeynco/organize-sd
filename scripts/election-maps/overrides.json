@@ -1,0 +1,61 @@
+{
+  "skip": {
+    "04": "Beadle has 9 precincts now and 5 in the 2020 Census file",
+    "09": "Lawrence numbers its precincts now; the 2020 Census file names them by town",
+    "13": "Brule merged its 6 Census voting districts into 4 precincts",
+    "18": "Clark has 12 precincts now and 4 plus city wards in the 2020 Census file",
+    "19": "Clay renamed the Vermillion precincts (C, E, S, W) since the 2020 Census file (C, NE, NW, SE)",
+    "22": "Day renumbered its precincts since the 2020 Census file",
+    "29": "Grant renumbered its precincts; the 2020 Census file names them by commissioner",
+    "32": "Hamlin numbers its precincts now; the 2020 Census file names them by town",
+    "33": "Hand has 5 precincts now and 12 in the 2020 Census file",
+    "35": "Harding numbers its precincts now; the 2020 Census file names them by town",
+    "37": "Hutchinson dropped a precinct and renumbered the rest",
+    "41": "Jones has 2 precincts now and 3 plus Murdo wards in the 2020 Census file",
+    "42": "Kingsbury names its precincts by town now; the 2020 Census file numbers them",
+    "47": "McPherson has 4 precincts now and 12 in the 2020 Census file"
+  },
+  "unmapped": {},
+  "ignoreVtds": {
+    "460290VTD-5": "Codington's rural Voting District 5 is now several township precincts; its number matches ward E5 by accident"
+  },
+  "manual": {
+    "27": {
+      "0001": ["46047VTD-BE"],
+      "0002": ["46047VTD-CA"],
+      "0003": ["46047VTD-EA", "46047VTD-E1", "46047VTD-E2", "46047VTD-E3"],
+      "0004": ["46047VTD-H1"],
+      "0012": ["46047VTD-H2"],
+      "0010": ["46047VTD-H3"],
+      "0011": ["46047VTD-H4"],
+      "0005": ["46047VTD-JA"],
+      "0007": ["46047VTD-OA", "46047VTD-OE"]
+    },
+    "39": {
+      "0001": ["460710VTD-1"],
+      "0002": ["460710VTD-2"],
+      "0006": ["460710VTD-6"],
+      "0008": ["460710VTD-8"]
+    },
+    "48": {
+      "0001": ["46091VTD-A1"],
+      "0002": ["46091VTD-A2"],
+      "0003": ["46091VTD-A3"]
+    },
+    "50": {
+      "0002": ["460950VTD-2"],
+      "0003": ["460950VTD-3"]
+    },
+    "52": {
+      "0034": ["46101V-3/4B"]
+    },
+    "55": {
+      "0012": ["461090VTD12", "461090VTD14"],
+      "0013": ["461090VTD13"]
+    },
+    "57": {
+      "0009": ["461150VTD-9"],
+      "0010": ["46115VTD-10"]
+    }
+  }
+}
