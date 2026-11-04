@@ -1,151 +1,15 @@
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Logo } from './Logo';
 import { Icon } from './Icon';
 import { faArrowLeft, faArrowUp, faCheck, faCircleInfo, faPaperPlane, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-/* ─── Types ─── */
-type QuestionType = 'text' | 'textarea' | 'yesno' | 'scale' | 'multichoice';
-
-interface Question {
-  id: string;
-  question: string;
-  subtitle?: string;
-  type: QuestionType;
-  options?: string[];
-  scaleMin?: number;
-  scaleMax?: number;
-  required?: boolean;
-  /** If the user answered a specific value on a previous question, skip to a different question */
-  branchOn?: { answerId: string; value: string; gotoId: string };
-}
+import { MAX_ANSWER_LENGTH, answerError, validateApplication, visibleQuestions as getVisibleQuestions } from '../lib/application';
+import { submitApplication } from '../lib/submitApplication';
 
 interface ApplyFormProps {
   onBack: () => void;
 }
-
-/* ─── Question Data ─── */
-const QUESTIONS: Question[] = [
-  {
-    id: 'why_join',
-    question: 'Why do you want to join Organize SD?',
-    type: 'textarea',
-    required: true,
-  },
-  {
-    id: 'weekend_availability',
-    question: 'What is your availability attending multi-day training sessions (weekend intensives)?',
-    type: 'yesno',
-    required: true,
-  },
-  {
-    id: 'future_training',
-    question: 'Are you interested in future training opportunities?',
-    subtitle: 'Since you\'re unable to attend weekend intensives right now, we\'d love to keep you in the loop.',
-    type: 'yesno',
-    required: true,
-  },
-  {
-    id: 'travel',
-    question: 'Are you able to travel to the training location if required?',
-    type: 'yesno',
-    required: true,
-  },
-  {
-    id: 'comfort_strangers',
-    question: 'What\'s your comfort level having conversations with strangers?',
-    subtitle: '1 = very uncomfortable, 10 = totally at ease',
-    type: 'scale',
-    scaleMin: 1,
-    scaleMax: 10,
-    required: true,
-  },
-  {
-    id: 'important_issue',
-    question: 'What issue is most important to you and why?',
-    type: 'textarea',
-    required: true,
-  },
-  {
-    id: 'proudest_action',
-    question: 'What is the political action you are most proud of?',
-    type: 'textarea',
-    required: true,
-  },
-  {
-    id: 'leadership',
-    question: 'What leadership positions have you held?',
-    type: 'textarea',
-    required: true,
-  },
-  {
-    id: 'elevator_pitch',
-    question: 'Give a 30-second pitch for why someone should vote in November 2028.',
-    subtitle: 'Write it out — imagine you\'re speaking to an undecided voter.',
-    type: 'textarea',
-    required: true,
-  },
-  {
-    id: 'organizing_experience',
-    question: 'What is the most relevant organizing experience you\'ve had?',
-    subtitle: 'Work, volunteer, community, campus, union, faith, etc.',
-    type: 'textarea',
-    required: true,
-  },
-  {
-    id: 'start_from_zero',
-    question: 'Have you ever had to "start from zero" to build a group or program?',
-    subtitle: 'Political or non-political — tell us about it.',
-    type: 'textarea',
-    required: true,
-  },
-  {
-    id: 'rural_experience',
-    question: 'What\'s your experience working with rural communities or small towns (if any)?',
-    type: 'textarea',
-    required: false,
-  },
-  {
-    id: 'juggling',
-    question: 'Tell us about a time you had to juggle work/school/family responsibilities while meeting commitments.',
-    type: 'textarea',
-    required: true,
-  },
-  {
-    id: 'phone_internet',
-    question: 'Do you have consistent access to a phone and internet?',
-    subtitle: 'For those needing assistance with resources.',
-    type: 'yesno',
-    required: true,
-  },
-  {
-    id: 'travel_support',
-    question: 'Would you need travel or resource support to participate?',
-    subtitle: 'Mileage, hotel, childcare stipend, etc.',
-    type: 'yesno',
-    required: true,
-  },
-  {
-    id: 'learning_style',
-    question: 'What learning environment helps you most?',
-    type: 'multichoice',
-    options: ['Lecture', 'Hands-on practice', 'Reading', 'Roleplay', 'Mentoring'],
-    required: true,
-  },
-  {
-    id: 'organizing_role',
-    question: 'What kind of organizing role are you aiming for after the program?',
-    type: 'multichoice',
-    options: ['Paid organizer', 'Volunteer leader', 'Staff role', 'Campaign support', 'Community org'],
-    required: true,
-  },
-  {
-    id: 'diverse_teams',
-    question: 'What is your experience working on teams with people from different backgrounds and identities?',
-    type: 'textarea',
-    required: true,
-  },
-];
 
 /* ─── Component ─── */
 export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
@@ -157,27 +21,21 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  /* ─── Build the visible question list based on branching ─── */
-  const getVisibleQuestions = useCallback((): Question[] => {
-    const visible: Question[] = [];
-    for (const q of QUESTIONS) {
-      // "future_training" only shows if weekend_availability === 'No'
-      if (q.id === 'future_training' && answers['weekend_availability'] !== 'No') {
-        continue;
-      }
-      visible.push(q);
-    }
-    return visible;
-  }, [answers]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const submittingRef = useRef(false);
+  const submissionIdRef = useRef<string | null>(null);
+  const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (advanceTimer.current) clearTimeout(advanceTimer.current); }, []);
 
-  const visibleQuestions = getVisibleQuestions();
+  const visibleQuestions = getVisibleQuestions(answers);
   const current = visibleQuestions[currentStep];
   const totalSteps = visibleQuestions.length;
   const progress = totalSteps > 0 ? ((currentStep) / totalSteps) * 100 : 0;
 
   /* Focus the input when the step changes */
   useEffect(() => {
-    if (isSubmitted) return;
+    if (isSubmitted || isSubmitting) return;
     const timer = setTimeout(() => {
       if (current?.type === 'textarea') {
         textareaRef.current?.focus();
@@ -190,7 +48,9 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
 
   /* ─── Navigation ─── */
   const animateTo = (step: number, dir: 'forward' | 'backward') => {
-    if (isAnimating) return;
+    if (isAnimating || submittingRef.current) return;
+    if (advanceTimer.current) clearTimeout(advanceTimer.current);
+    setSubmitError('');
     setDirection(dir);
     setIsAnimating(true);
     setTimeout(() => {
@@ -200,6 +60,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
   };
 
   const goNext = () => {
+    if (isAnimating || submittingRef.current) return;
     if (currentStep < totalSteps - 1) {
       animateTo(currentStep + 1, 'forward');
     } else {
@@ -214,7 +75,9 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
   };
 
   const setAnswer = (value: string) => {
-    if (!current) return;
+    if (!current || submittingRef.current) return;
+    submissionIdRef.current = null;
+    setSubmitError('');
     setAnswers((prev) => ({ ...prev, [current.id]: value }));
   };
 
@@ -222,26 +85,45 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
 
   const canProceed = () => {
     if (!current) return false;
-    if (!current.required) return true;
-    return currentAnswer.trim().length > 0;
+    return !answerError(current, currentAnswer);
   };
 
   /* For yes/no & scale, auto-advance after selection */
   const selectAndAdvance = (value: string) => {
-    if (!current) return;
-    setAnswers((prev) => ({ ...prev, [current.id]: value }));
-    setTimeout(() => goNext(), 350);
+    if (!current || isAnimating || submittingRef.current) return;
+    setAnswer(value);
+    if (advanceTimer.current) clearTimeout(advanceTimer.current);
+    advanceTimer.current = setTimeout(() => goNext(), 350);
   };
 
-  const handleSubmit = () => {
-    console.log('Application submitted:', answers);
-    setIsSubmitted(true);
+  const handleSubmit = async () => {
+    if (submittingRef.current) return;
+    const result = validateApplication(answers);
+    if (result.error) {
+      const step = visibleQuestions.findIndex(q => q.id === result.field);
+      if (step >= 0) setCurrentStep(step);
+      setSubmitError(result.error);
+      return;
+    }
+    submittingRef.current = true;
+    setIsSubmitting(true);
+    setSubmitError('');
+    try {
+      submissionIdRef.current ??= crypto.randomUUID();
+      await submitApplication(submissionIdRef.current, result.answers);
+      setIsSubmitted(true);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Could not save your application. Please try again.');
+    } finally {
+      submittingRef.current = false;
+      setIsSubmitting(false);
+    }
   };
 
   /* ─── Keyboard ─── */
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (isSubmitted) return;
+      if (isSubmitted || isSubmitting) return;
       if (e.key === 'Enter' && !e.shiftKey && current?.type !== 'textarea') {
         e.preventDefault();
         if (canProceed()) goNext();
@@ -249,7 +131,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentStep, answers, isSubmitted]);
+  }, [currentStep, answers, isSubmitted, isSubmitting, isAnimating]);
 
   /* ─── Render Helpers ─── */
   const slideClass = isAnimating
@@ -266,7 +148,10 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
         return (
           <input
             ref={inputRef}
-            type="text"
+            type={current.inputType || 'text'}
+            autoComplete={current.autoComplete}
+            aria-labelledby="application-question"
+            maxLength={current.id === 'name' ? 200 : 254}
             value={currentAnswer}
             onChange={(e) => setAnswer(e.target.value)}
             placeholder="Type your answer here..."
@@ -279,6 +164,8 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
           <div className="w-full">
             <textarea
               ref={textareaRef}
+              aria-labelledby="application-question"
+              maxLength={MAX_ANSWER_LENGTH}
               value={currentAnswer}
               onChange={(e) => setAnswer(e.target.value)}
               placeholder="Type your answer here..."
@@ -425,6 +312,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
         <div className="flex items-center justify-between px-4 md:px-8 py-4">
           <button
             onClick={onBack}
+            disabled={isSubmitting}
             className="text-white/60 hover:text-white font-bold text-sm uppercase tracking-widest transition-colors flex items-center gap-2"
           >
             <Icon icon={faXmark} />
@@ -455,7 +343,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
           </div>
 
           {/* Question text */}
-          <h2 className="text-2xl md:text-4xl font-black text-white leading-tight mb-3 tracking-tight">
+          <h2 id="application-question" className="text-2xl md:text-4xl font-black text-white leading-tight mb-3 tracking-tight">
             {current?.question}
           </h2>
 
@@ -468,7 +356,13 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
           {!current?.subtitle && <div className="mb-8"></div>}
 
           {/* Input */}
-          {renderQuestionInput()}
+          <fieldset disabled={isSubmitting} aria-busy={isSubmitting}>
+            {renderQuestionInput()}
+          </fieldset>
+          {currentAnswer && current?.id === 'email' && answerError(current, currentAnswer) && (
+            <p className="text-rose-200 mt-4" role="alert">{answerError(current, currentAnswer)}</p>
+          )}
+          {submitError && <p className="text-rose-200 mt-4" role="alert">{submitError} Your answers are still here; please try again.</p>}
         </div>
       </div>
 
@@ -477,7 +371,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
         <div className="max-w-3xl mx-auto flex items-center justify-between">
           <button
             onClick={goPrev}
-            disabled={currentStep === 0}
+            disabled={currentStep === 0 || isSubmitting || isAnimating}
             className={`flex items-center gap-2 text-sm font-bold uppercase tracking-widest transition-all py-3 px-5 rounded-lg ${
               currentStep === 0
                 ? 'text-white/10 cursor-not-allowed'
@@ -491,14 +385,14 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
           {(current?.type === 'textarea' || current?.type === 'text') && (
             <button
               onClick={() => canProceed() ? goNext() : undefined}
-              disabled={!canProceed() && current.required !== false}
+              disabled={!canProceed() || isSubmitting || isAnimating}
               className={`flex items-center gap-3 font-black uppercase tracking-widest text-sm py-3 px-8 rounded-xl transition-all ${
                 canProceed() || !current.required
                   ? 'bg-teal-400 text-[#311b92] hover:bg-teal-300 hover:scale-105 shadow-lg shadow-teal-400/20'
                   : 'bg-white/10 text-white/30 cursor-not-allowed'
               }`}
             >
-              {currentStep === totalSteps - 1 ? 'Submit' : 'OK'}
+              {isSubmitting ? 'Submitting…' : currentStep === totalSteps - 1 ? 'Submit' : 'OK'}
               <Icon icon={currentStep === totalSteps - 1 ? faPaperPlane : faCheck} className="text-xs" />
             </button>
           )}
