@@ -5,6 +5,8 @@ export interface Question {
   id: string;
   question: string;
   subtitle?: string;
+  maxWords?: number;
+  answerGuidance?: string;
   type: QuestionType;
   inputType?: 'text' | 'email';
   autoComplete?: string;
@@ -22,6 +24,8 @@ export const QUESTIONS: Question[] = [
   { id: 'email', question: 'What is your email address?', subtitle: "We'll use this to follow up on your application.", type: 'text', inputType: 'email', autoComplete: 'email', required: true },
   {
     id: 'why_join',
+    maxWords: 150,
+    answerGuidance: 'Aim for 75–125 words. Share what motivates you to apply and what you hope to learn.',
     question: 'Why do you want to join Organize SD?',
     type: 'textarea',
     required: true,
@@ -56,24 +60,32 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'important_issue',
+    maxWords: 250,
+    answerGuidance: 'Aim for 100–200 words. Name one issue, explain why it matters to you, and describe the change you want to see.',
     question: 'What issue is most important to you and why?',
     type: 'textarea',
     required: true,
   },
   {
     id: 'proudest_action',
+    maxWords: 250,
+    answerGuidance: 'Aim for 100–200 words. Describe one action, your role, and its impact or what you learned.',
     question: 'What is the political action you are most proud of?',
     type: 'textarea',
     required: true,
   },
   {
     id: 'leadership',
+    maxWords: 150,
+    answerGuidance: 'Aim for 50–100 words. A short list is fine: include each role and your main responsibility. Informal leadership counts; if you are new to it, say so.',
     question: 'What leadership positions have you held?',
     type: 'textarea',
     required: true,
   },
   {
     id: 'elevator_pitch',
+    maxWords: 75,
+    answerGuidance: 'Aim for 50–65 words. Make one clear reason to vote and end with a call to action. Read it aloud to check that it fits about 30 seconds.',
     question: 'Give a 30-second pitch for why someone should vote in November 2028.',
     subtitle: 'Write it out — imagine you\'re speaking to an undecided voter.',
     type: 'textarea',
@@ -81,6 +93,8 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'organizing_experience',
+    maxWords: 250,
+    answerGuidance: 'Aim for 100–200 words. Describe one relevant experience, what you did, and the outcome. If you are new to organizing, share a related experience or skill.',
     question: 'What is the most relevant organizing experience you\'ve had?',
     subtitle: 'Work, volunteer, community, campus, union, faith, etc.',
     type: 'textarea',
@@ -88,6 +102,8 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'start_from_zero',
+    maxWords: 250,
+    answerGuidance: 'Aim for 100–200 words. Explain what you built, how you got started, and one challenge or lesson. If you have not done this yet, a brief answer is fine.',
     question: 'Have you ever had to "start from zero" to build a group or program?',
     subtitle: 'Political or non-political — tell us about it.',
     type: 'textarea',
@@ -95,12 +111,16 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'rural_experience',
+    maxWords: 150,
+    answerGuidance: 'Aim for 50–100 words. Describe the community, your connection to it, and what you learned. This question is optional; skip it if you have no relevant experience.',
     question: 'What\'s your experience working with rural communities or small towns (if any)?',
     type: 'textarea',
     required: false,
   },
   {
     id: 'juggling',
+    maxWords: 250,
+    answerGuidance: 'Aim for 100–200 words. Give one example of competing responsibilities, how you managed them, and the result.',
     question: 'Tell us about a time you had to juggle work/school/family responsibilities while meeting commitments.',
     type: 'textarea',
     required: true,
@@ -135,6 +155,8 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'diverse_teams',
+    maxWords: 250,
+    answerGuidance: 'Aim for 100–200 words. Share one team experience, how you worked across differences, and what you learned.',
     question: 'What is your experience working on teams with people from different backgrounds and identities?',
     type: 'textarea',
     required: true,
@@ -149,10 +171,15 @@ export function visibleQuestions(answers: Record<string, string>): Question[] {
   return QUESTIONS.filter(q => q.id !== 'future_training' || answers.weekend_availability === 'No');
 }
 
+export function countWords(value: string): number {
+  return value.trim().split(/\s+/u).filter(Boolean).length;
+}
+
 export function answerError(question: Question, value: string): string | null {
   const answer = value.trim();
   if (!answer) return question.required ? 'Please enter an answer.' : null;
   const max = question.id === 'name' ? 200 : question.id === 'email' ? 254 : MAX_ANSWER_LENGTH;
+  if (question.maxWords && countWords(answer) > question.maxWords) return `Please use ${question.maxWords} words or fewer.`;
   if (answer.length > max) return `Please use ${max} characters or fewer.`;
   if (question.id === 'email' && !EMAIL_RE.test(answer)) return 'Please enter a valid email address.';
   if (question.type === 'yesno' && !['Yes', 'No'].includes(answer)) return 'Please select Yes or No.';

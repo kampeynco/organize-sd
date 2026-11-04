@@ -17,7 +17,7 @@ async function load(file, mockDatabase = false) {
   return import(`data:text/javascript;base64,${Buffer.from(result.outputFiles[0].text).toString('base64')}`);
 }
 const { POST } = await load('api/applications.ts', true);
-const { validateApplication } = await load('lib/application.ts');
+const { validateApplication, QUESTIONS, countWords } = await load('lib/application.ts');
 const { submitApplication } = await load('lib/submitApplication.ts');
 const submissionId = '731d7fb2-2506-4b01-bdae-8efe2b8a5126';
 const answers = {
@@ -65,6 +65,23 @@ test('rejects invalid required fields, types, options, scales and excessive leng
     ['comfort_strangers', '11'], ['comfort_strangers', '1.5'], ['learning_style', 'invalid'],
     ['name', 'n'.repeat(201)], ['why_join', 'x'.repeat(10001)]]) {
     assert.equal(validateApplication({ ...answers, [key]: value }).field, key);
+  }
+});
+
+test('word limits accept the boundary and reject excess words for every written answer', async () => {
+  globalThis.applicationTestSQL = () => assert.fail('Unexpected database write');
+  assert.equal(countWords('  \n\t '), 0);
+  assert.equal(countWords("  Community-led organizing\nwith\tneighbors.  "), 4);
+  for (const question of QUESTIONS.filter(q => q.type === 'textarea')) {
+    const atLimit = Array(question.maxWords).fill('word').join(' \n\t');
+    assert.ok(validateApplication({ ...answers, [question.id]: atLimit }).answers, question.id);
+    const overLimit = { ...answers, [question.id]: `${atLimit} extra` };
+    const invalid = validateApplication(overLimit);
+    assert.equal(invalid.field, question.id);
+    assert.equal(invalid.error, `Please use ${question.maxWords} words or fewer.`);
+    const response = await POST(request({ submissionId, answers: overLimit }));
+    assert.equal(response.status, 400);
+    assert.equal((await response.json()).field, question.id);
   }
 });
 

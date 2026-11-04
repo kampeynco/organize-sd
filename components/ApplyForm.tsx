@@ -4,7 +4,7 @@ import { Logo } from './Logo';
 import { Icon } from './Icon';
 import { faArrowLeft, faArrowUp, faCheck, faCircleInfo, faPaperPlane, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import { MAX_ANSWER_LENGTH, answerError, validateApplication, visibleQuestions as getVisibleQuestions } from '../lib/application';
+import { MAX_ANSWER_LENGTH, answerError, countWords, validateApplication, visibleQuestions as getVisibleQuestions } from '../lib/application';
 import { submitApplication } from '../lib/submitApplication';
 
 interface ApplyFormProps {
@@ -82,6 +82,9 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
   };
 
   const currentAnswer = current ? answers[current.id] || '' : '';
+
+  const currentWordCount = countWords(currentAnswer);
+  const overWordLimit = !!current?.maxWords && currentWordCount > current.maxWords;
 
   const canProceed = () => {
     if (!current) return false;
@@ -162,9 +165,15 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
       case 'textarea':
         return (
           <div className="w-full">
+            <p id="answer-guidance" className="text-white/70 text-sm md:text-base leading-relaxed mb-4">
+              <span className="font-bold text-teal-300">Maximum {current.maxWords} words.</span>{' '}
+              {current.answerGuidance} Suggested lengths are a guide, not a minimum.
+            </p>
             <textarea
               ref={textareaRef}
               aria-labelledby="application-question"
+              aria-describedby={`answer-guidance answer-word-count${overWordLimit ? ' answer-word-error' : ''}`}
+              aria-invalid={overWordLimit || undefined}
               maxLength={MAX_ANSWER_LENGTH}
               value={currentAnswer}
               onChange={(e) => setAnswer(e.target.value)}
@@ -172,9 +181,19 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
               rows={4}
               className="w-full bg-white/5 border-2 border-white/20 focus:border-teal-400 text-white text-lg md:text-xl p-5 rounded-xl outline-none transition-colors placeholder-white/30 caret-teal-400 resize-none"
             />
-            <p className="text-white/40 text-xs mt-2 font-medium">
-              <Icon icon={faCircleInfo} className="mr-1" /> Press Shift + Enter for new line
-            </p>
+            <div className="flex flex-wrap items-center justify-between gap-2 mt-2 text-xs font-medium">
+              <p className="text-white/60">
+                <Icon icon={faCircleInfo} className="mr-1" /> Press Enter for a new line
+              </p>
+              <p id="answer-word-count" className={overWordLimit ? 'text-rose-200 font-bold' : 'text-white/70'}>
+                {currentWordCount} / {current.maxWords} words
+              </p>
+            </div>
+            {overWordLimit && (
+              <p id="answer-word-error" className="text-rose-200 text-sm mt-3" role="alert">
+                Please remove {currentWordCount - current.maxWords!} {currentWordCount - current.maxWords! === 1 ? 'word' : 'words'} to continue. Your answer has been kept so you can edit it.
+              </p>
+            )}
           </div>
         );
 
@@ -292,7 +311,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-[#311b92] flex flex-col relative overflow-hidden">
       {/* Decorative background blurs */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-teal-400/8 rounded-full blur-[150px]"></div>
         <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-rose-500/8 rounded-full blur-[120px]"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-400/5 rounded-full blur-[200px]"></div>
@@ -387,7 +406,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
               onClick={() => canProceed() ? goNext() : undefined}
               disabled={!canProceed() || isSubmitting || isAnimating}
               className={`flex items-center gap-3 font-black uppercase tracking-widest text-sm py-3 px-8 rounded-xl transition-all ${
-                canProceed() || !current.required
+                canProceed()
                   ? 'bg-teal-400 text-[#311b92] hover:bg-teal-300 hover:scale-105 shadow-lg shadow-teal-400/20'
                   : 'bg-white/10 text-white/30 cursor-not-allowed'
               }`}
