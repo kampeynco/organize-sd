@@ -14,24 +14,6 @@ const PROOF_POINTS = [
   { icon: faPeopleGroup, text: 'Statewide peer network' },
 ];
 
-/** Circular "campaign button" badge with text running around the edge */
-const CampaignBadge: React.FC = () => (
-  <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36" aria-hidden="true">
-    <svg viewBox="0 0 200 200" className="absolute inset-0 w-full h-full animate-spinSlow">
-      <defs>
-        <path id="badge-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
-      </defs>
-      <circle cx="100" cy="100" r="98" fill="#2dd4bf" />
-      <text className="font-display" fill="#120a3d" fontSize="21" fontWeight="800" letterSpacing="4.2">
-        <textPath href="#badge-circle">TRAIN · ORGANIZE · WIN · SOUTH DAKOTA ·</textPath>
-      </text>
-    </svg>
-    <div className="absolute inset-0 grid place-items-center">
-      <span className="font-display font-black text-brand-ink text-3xl sm:text-4xl md:text-5xl leading-none">2028</span>
-    </div>
-  </div>
-);
-
 export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
   const [email, setEmail] = useState('');
   const [zipcode, setZipcode] = useState('');
@@ -109,9 +91,6 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
         {/* Signup card */}
         <div className="lg:col-span-5 lg:pl-6">
           <div className="relative">
-            <div className="absolute -top-12 -right-2 sm:-top-14 sm:-right-4 md:-right-8 z-10 rotate-6">
-              <CampaignBadge />
-            </div>
             <div id="join" className="scroll-mt-28 rounded-3xl bg-white text-brand-ink p-7 md:p-9 shadow-2xl shadow-brand-ink/40">
               {submitted ? (
                 <div className="py-6 text-center" role="status">
@@ -123,7 +102,7 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
                 </div>
               ) : (
                 <>
-                  <h2 className="font-display font-black uppercase text-3xl md:text-4xl leading-none pr-16 sm:pr-24">Not ready to apply?</h2>
+                  <h2 className="font-display font-black uppercase text-3xl md:text-4xl leading-none">Not ready to apply?</h2>
                   <p className="mt-3 text-brand-ink/70">
                     Get updates on upcoming cohorts, organizing toolkits, and events near you.
                   </p>
