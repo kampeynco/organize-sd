@@ -1,0 +1,11 @@
+.env*
+.cache/
+assets/promo-video/
+assets/organize-sd-promo.mp4
+tests/
+db/
+docs/
+scripts/backups/
+*.agekey
+*.dump
+*.dump.age

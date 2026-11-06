@@ -29,3 +29,20 @@ dist-ssr
 
 # Private reference docs (kept out of the public repo)
 /docs
+
+# Database backup material and recovery identities must never be committed.
+*.dump
+*.dump.age
+*.agekey
+.backups/
+
+# Local video files
+*.[mM][pP]4
+*.[mM][oO][vV]
+*.[wW][eE][bB][mM]
+*.[mM]4[vV]
+*.[aA][vV][iI]
+*.[mM][kK][vV]
+*.[mM][pP][eE][gG]
+*.[mM][pP][gG]
+*.[wW][mM][vV]

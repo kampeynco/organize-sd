@@ -1,0 +1,50 @@
+{
+  "taskId": "e1991a62f7ab8e72742e1eb1731b4377",
+  "model": "ai-music-api/generate",
+  "state": "success",
+  "param": "{\"input\":\"{\\\"duration\\\":300,\\\"negative_tags\\\":\\\"vocals, singing, choir, spoken word, lo-fi, sad, slow, jazz, country twang\\\",\\\"instrumental\\\":true,\\\"custom_mode\\\":true,\\\"model\\\":\\\"V6\\\",\\\"style\\\":\\\"Anthemic cinematic heartland rock meets modern electronic, 124 BPM, driving four-on-the-floor kick, stomp-clap percussion, chugging palm-muted electric guitars, pulsing synth arpeggios, big tom fills, soaring instrumental lead melody, hopeful and urgent, wide-open prairie feel. Builds in waves: atmospheric intro, steady build, explosive drop, breakdown, bigger build, triumphant final chorus, clean ending. Instrumental only.\\\",\\\"title\\\":\\\"Train Organize Win\\\",\\\"style_weight\\\":0.8}\",\"model\":\"ai-music-api/generate\"}",
+  "resultJson": "{\"code\":200,\"data\":[{\"audio_url\":\"https://tempfile.aiquickdraw.com/r/bbd28573-18d1-45e0-92f4-27578dbdd41d.mp3\",\"createTime\":1793049756453,\"duration\":299.8,\"id\":\"bbd28573-18d1-45e0-92f4-27578dbdd41d\",\"image_url\":\"https://cdn2.suno.ai/image_bbd28573-18d1-45e0-92f4-27578dbdd41d.jpeg\",\"model_name\":\"chirp-hawk\",\"prompt\":\"\",\"stream_audio_url\":\"https://audiostream.kie.ai/stream/bbd28573-18d1-45e0-92f4-27578dbdd41d.mp3\",\"tags\":\"Anthemic cinematic heartland rock meets modern electronic, 124 BPM, driving four-on-the-floor kick, stomp-clap percussion, chugging palm-muted electric guitars, pulsing synth arpeggios, big tom fills, soaring instrumental lead melody, hopeful and urgent, wide-open prairie feel. Builds in waves: atmospheric intro, steady build, explosive drop, breakdown, bigger build, triumphant final chorus, clean ending. Instrumental only.\",\"title\":\"Train Organize Win\"},{\"audio_url\":\"https://tempfile.aiquickdraw.com/r/912ab9e8-238e-488e-a397-b3bcea8f13ac.mp3\",\"createTime\":1793049756453,\"duration\":298.8,\"id\":\"912ab9e8-238e-488e-a397-b3bcea8f13ac\",\"image_url\":\"https://cdn2.suno.ai/image_912ab9e8-238e-488e-a397-b3bcea8f13ac.jpeg\",\"model_name\":\"chirp-hawk\",\"prompt\":\"\",\"stream_audio_url\":\"https://audiostream.kie.ai/stream/912ab9e8-238e-488e-a397-b3bcea8f13ac.mp3\",\"tags\":\"Anthemic cinematic heartland rock meets modern electronic, 124 BPM, driving four-on-the-floor kick, stomp-clap percussion, chugging palm-muted electric guitars, pulsing synth arpeggios, big tom fills, soaring instrumental lead melody, hopeful and urgent, wide-open prairie feel. Builds in waves: atmospheric intro, steady build, explosive drop, breakdown, bigger build, triumphant final chorus, clean ending. Instrumental only.\",\"title\":\"Train Organize Win\"}],\"msg\":\"success\",\"task_id\":\"e1991a62f7ab8e72742e1eb1731b4377\"}",
+  "failCode": null,
+  "failMsg": null,
+  "costTime": 35,
+  "completeTime": 1793049756453,
+  "createTime": 1793049721397,
+  "creditsConsumed": 12,
+  "operationType": "ai-music-api/generate",
+  "status": "SUCCESS",
+  "type": "chirp-hawk",
+  "parentMusicId": "",
+  "response": {
+    "msg": "success",
+    "code": 200,
+    "data": [
+      {
+        "duration": 299.8,
+        "stream_audio_url": "https://audiostream.kie.ai/stream/bbd28573-18d1-45e0-92f4-27578dbdd41d.mp3",
+        "model_name": "chirp-hawk",
+        "createTime": 1793049756453,
+        "image_url": "https://cdn2.suno.ai/image_bbd28573-18d1-45e0-92f4-27578dbdd41d.jpeg",
+        "audio_url": "https://tempfile.aiquickdraw.com/r/bbd28573-18d1-45e0-92f4-27578dbdd41d.mp3",
+        "id": "bbd28573-18d1-45e0-92f4-27578dbdd41d",
+        "title": "Train Organize Win",
+        "prompt": "",
+        "tags": "Anthemic cinematic heartland rock meets modern electronic, 124 BPM, driving four-on-the-floor kick, stomp-clap percussion, chugging palm-muted electric guitars, pulsing synth arpeggios, big tom fills, soaring instrumental lead melody, hopeful and urgent, wide-open prairie feel. Builds in waves: atmospheric intro, steady build, explosive drop, breakdown, bigger build, triumphant final chorus, clean ending. Instrumental only."
+      },
+      {
+        "duration": 298.8,
+        "stream_audio_url": "https://audiostream.kie.ai/stream/912ab9e8-238e-488e-a397-b3bcea8f13ac.mp3",
+        "model_name": "chirp-hawk",
+        "createTime": 1793049756453,
+        "image_url": "https://cdn2.suno.ai/image_912ab9e8-238e-488e-a397-b3bcea8f13ac.jpeg",
+        "audio_url": "https://tempfile.aiquickdraw.com/r/912ab9e8-238e-488e-a397-b3bcea8f13ac.mp3",
+        "id": "912ab9e8-238e-488e-a397-b3bcea8f13ac",
+        "title": "Train Organize Win",
+        "prompt": "",
+        "tags": "Anthemic cinematic heartland rock meets modern electronic, 124 BPM, driving four-on-the-floor kick, stomp-clap percussion, chugging palm-muted electric guitars, pulsing synth arpeggios, big tom fills, soaring instrumental lead melody, hopeful and urgent, wide-open prairie feel. Builds in waves: atmospheric intro, steady build, explosive drop, breakdown, bigger build, triumphant final chorus, clean ending. Instrumental only."
+      }
+    ],
+    "task_id": "e1991a62f7ab8e72742e1eb1731b4377"
+  },
+  "successFlag": 1,
+  "paramJson": "{\"input\":\"{\\\"duration\\\":300,\\\"negative_tags\\\":\\\"vocals, singing, choir, spoken word, lo-fi, sad, slow, jazz, country twang\\\",\\\"instrumental\\\":true,\\\"custom_mode\\\":true,\\\"model\\\":\\\"V6\\\",\\\"style\\\":\\\"Anthemic cinematic heartland rock meets modern electronic, 124 BPM, driving four-on-the-floor kick, stomp-clap percussion, chugging palm-muted electric guitars, pulsing synth arpeggios, big tom fills, soaring instrumental lead melody, hopeful and urgent, wide-open prairie feel. Builds in waves: atmospheric intro, steady build, explosive drop, breakdown, bigger build, triumphant final chorus, clean ending. Instrumental only.\\\",\\\"title\\\":\\\"Train Organize Win\\\",\\\"style_weight\\\":0.8}\",\"model\":\"ai-music-api/generate\"}"
+}

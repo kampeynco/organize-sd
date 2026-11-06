@@ -1,5 +1,6 @@
+import { validateVoiceAnswer, type VoiceAnswer } from './voiceAnswer.js';
 /* ─── Types ─── */
-export type QuestionType = 'text' | 'textarea' | 'yesno' | 'scale' | 'multichoice';
+export type QuestionType = 'text' | 'textarea' | 'yesno' | 'scale' | 'multichoice' | 'voice';
 
 export interface Question {
   id: string;
@@ -84,11 +85,9 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 'elevator_pitch',
-    maxWords: 75,
-    answerGuidance: 'Aim for 50–65 words. Make one clear reason to vote and end with a call to action. Read it aloud to check that it fits about 30 seconds.',
     question: 'Give a 30-second pitch for why someone should vote in November 2028.',
-    subtitle: 'Write it out — imagine you\'re speaking to an undecided voter.',
-    type: 'textarea',
+    subtitle: 'Record your answer as if you’re speaking to an undecided voter.',
+    type: 'voice',
     required: true,
   },
   {
@@ -181,15 +180,16 @@ export function answerError(question: Question, value: string): string | null {
   return null;
 }
 
-export function validateApplication(value: unknown):
-  | { answers: Record<string, string>; error?: never; field?: never }
-  | { error: string; field?: string; answers?: never } {
+export function validateApplication(value: unknown, voiceValue?: unknown):
+  | { answers: Record<string, string>; voiceAnswer: VoiceAnswer; error?: never; field?: never }
+  | { error: string; field?: string; answers?: never; voiceAnswer?: never } {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return { error: 'Invalid application.' };
   const raw = value as Record<string, unknown>;
   const answers: Record<string, string> = {};
   // Validate branch selection before deciding whether future_training is required.
   const questions = visibleQuestions({ weekend_availability: typeof raw.weekend_availability === 'string' ? raw.weekend_availability.trim() : '' });
   for (const question of questions) {
+    if (question.type === 'voice') continue;
     const value = raw[question.id];
     if (value !== undefined && typeof value !== 'string') return { error: 'Please enter a valid answer.', field: question.id };
     const answer = typeof value === 'string' ? value.trim() : '';
@@ -197,5 +197,7 @@ export function validateApplication(value: unknown):
     if (error) return { error, field: question.id };
     answers[question.id] = question.id === 'email' ? answer.toLowerCase() : answer;
   }
-  return { answers };
+  const voice = validateVoiceAnswer(voiceValue);
+  if (voice.error) return { error: voice.error, field: 'elevator_pitch' };
+  return { answers, voiceAnswer: voice.voice };
 }

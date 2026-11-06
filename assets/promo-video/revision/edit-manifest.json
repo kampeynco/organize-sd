@@ -1,0 +1,1878 @@
+{
+  "totalBeats": 656,
+  "frames": 7172,
+  "segments": [
+    {
+      "type": "clip",
+      "id": "land-prairie",
+      "beats": 8,
+      "gain": 0.5,
+      "from": 0,
+      "ov": {
+        "scene": "bigover",
+        "params": {
+          "lines": [
+            {
+              "text": "SOUTH DAKOTA.",
+              "size": 230
+            }
+          ],
+          "shade": 0.3
+        }
+      },
+      "fadeIn": 0.6,
+      "chapter": "South Dakota",
+      "n": 0,
+      "beat": 0,
+      "start": 0,
+      "end": 90,
+      "startSeconds": 0,
+      "endSeconds": 3.75,
+      "frames": 90
+    },
+    {
+      "type": "clip",
+      "id": "land-badlands",
+      "beats": 8,
+      "gain": 0.4,
+      "from": 0.4,
+      "ov": {
+        "scene": "bigover",
+        "params": {
+          "lines": [
+            {
+              "text": "77,116",
+              "size": 300,
+              "color": "#ff8a3d"
+            },
+            {
+              "text": "SQUARE MILES",
+              "size": 110
+            }
+          ]
+        }
+      },
+      "chapter": "South Dakota",
+      "n": 1,
+      "beat": 8,
+      "start": 90,
+      "end": 176,
+      "startSeconds": 3.75,
+      "endSeconds": 7.333333333333333,
+      "frames": 86
+    },
+    {
+      "type": "clip",
+      "id": "land-blackhills",
+      "beats": 8,
+      "gain": 0.4,
+      "from": 0.4,
+      "ov": {
+        "scene": "bigover",
+        "params": {
+          "lines": [
+            {
+              "text": "66",
+              "size": 330,
+              "color": "#ff8a3d"
+            },
+            {
+              "text": "COUNTIES",
+              "size": 110
+            }
+          ]
+        }
+      },
+      "chapter": "South Dakota",
+      "n": 2,
+      "beat": 16,
+      "start": 176,
+      "end": 267,
+      "startSeconds": 7.333333333333333,
+      "endSeconds": 11.125,
+      "frames": 91
+    },
+    {
+      "type": "clip",
+      "id": "land-mainstreet",
+      "beats": 8,
+      "gain": 0.4,
+      "from": 0.4,
+      "ov": {
+        "scene": "bigover",
+        "params": {
+          "lines": [
+            {
+              "text": "HUNDREDS OF",
+              "size": 120
+            },
+            {
+              "text": "SMALL TOWNS",
+              "size": 200,
+              "color": "#ff8a3d"
+            }
+          ]
+        }
+      },
+      "chapter": "South Dakota",
+      "n": 3,
+      "beat": 24,
+      "start": 267,
+      "end": 358,
+      "startSeconds": 11.125,
+      "endSeconds": 14.916666666666666,
+      "frames": 91
+    },
+    {
+      "type": "clip",
+      "id": "land-porchlights",
+      "beats": 8,
+      "gain": 0.5,
+      "from": 0.2,
+      "ov": {
+        "scene": "bigover",
+        "params": {
+          "lines": [
+            {
+              "text": "AND A WHOLE LOT OF",
+              "size": 110
+            },
+            {
+              "text": "FRONT DOORS.",
+              "size": 230,
+              "color": "#ff8a3d"
+            }
+          ]
+        }
+      },
+      "chapter": "South Dakota",
+      "n": 4,
+      "beat": 32,
+      "start": 358,
+      "end": 449,
+      "startSeconds": 14.916666666666666,
+      "endSeconds": 18.708333333333332,
+      "frames": 91
+    },
+    {
+      "type": "gfx",
+      "scene": "statement",
+      "beats": 8,
+      "params": {
+        "lines": [
+          [
+            "ELECTIONS",
+            "AREN’T",
+            "WON"
+          ],
+          [
+            "ON",
+            "TV."
+          ]
+        ],
+        "accent": [
+          "TV."
+        ],
+        "wordAt": 0.23,
+        "size": 160
+      },
+      "chapter": "Why organize",
+      "n": 5,
+      "beat": 40,
+      "start": 449,
+      "end": 539,
+      "startSeconds": 18.708333333333332,
+      "endSeconds": 22.458333333333332,
+      "frames": 90
+    },
+    {
+      "type": "clip",
+      "id": "r3-diner",
+      "beats": 8,
+      "gain": 0,
+      "from": 0.2,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "It starts person to person",
+          "text": "Neighbors talking to neighbors."
+        }
+      },
+      "chapter": "Why organize",
+      "n": 6,
+      "beat": 48,
+      "start": 539,
+      "end": 630,
+      "startSeconds": 22.458333333333332,
+      "endSeconds": 26.25,
+      "frames": 91
+    },
+    {
+      "type": "gfx",
+      "scene": "statement",
+      "beats": 8,
+      "params": {
+        "lines": [
+          [
+            "THEY’RE",
+            "WON",
+            "ONE"
+          ],
+          [
+            "CONVERSATION"
+          ],
+          [
+            "AT",
+            "A",
+            "TIME."
+          ]
+        ],
+        "accent": [
+          "CONVERSATION"
+        ],
+        "wordAt": 0.23,
+        "size": 150
+      },
+      "chapter": "Why organize",
+      "n": 7,
+      "beat": 56,
+      "start": 630,
+      "end": 720,
+      "startSeconds": 26.25,
+      "endSeconds": 30,
+      "frames": 90
+    },
+    {
+      "type": "gfx",
+      "scene": "slam",
+      "beats": 8,
+      "params": {
+        "word": "TRAIN.",
+        "num": "01 / 03",
+        "kicker": "Three-day weekend intensive"
+      },
+      "hit": true,
+      "chapter": "Train",
+      "n": 8,
+      "beat": 64,
+      "start": 720,
+      "end": 810,
+      "startSeconds": 30,
+      "endSeconds": 33.75,
+      "frames": 90
+    },
+    {
+      "type": "clip",
+      "id": "train-arrive",
+      "beats": 6,
+      "gain": 0.2,
+      "from": 0.3,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Friday through Sunday",
+          "text": "Meet your organizing team."
+        }
+      },
+      "chapter": "Train",
+      "n": 9,
+      "beat": 72,
+      "start": 810,
+      "end": 878,
+      "startSeconds": 33.75,
+      "endSeconds": 36.583333333333336,
+      "frames": 68
+    },
+    {
+      "type": "clip",
+      "id": "r3-trainer",
+      "beats": 12,
+      "gain": 0,
+      "from": 0,
+      "dialog": true,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Learn the fundamentals",
+          "text": "Ask a good question."
+        },
+        "beats": 7
+      },
+      "chapter": "Train",
+      "n": 10,
+      "beat": 78,
+      "start": 878,
+      "end": 1013,
+      "startSeconds": 36.583333333333336,
+      "endSeconds": 42.208333333333336,
+      "frames": 135
+    },
+    {
+      "type": "gfx",
+      "scene": "statement",
+      "beats": 8,
+      "params": {
+        "lines": [
+          [
+            "ASK."
+          ],
+          [
+            "LISTEN."
+          ],
+          [
+            "FOLLOW",
+            "UP."
+          ]
+        ],
+        "accent": [
+          "LISTEN."
+        ],
+        "wordAt": 0.35,
+        "size": 190
+      },
+      "chapter": "Train",
+      "n": 11,
+      "beat": 90,
+      "start": 1013,
+      "end": 1103,
+      "startSeconds": 42.208333333333336,
+      "endSeconds": 45.958333333333336,
+      "frames": 90
+    },
+    {
+      "type": "clip",
+      "id": "r3-practice",
+      "beats": 13,
+      "gain": 0,
+      "from": 0,
+      "dialog": true,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Listening practice",
+          "text": "Try it with a partner."
+        },
+        "beats": 7
+      },
+      "chapter": "Train",
+      "n": 12,
+      "beat": 98,
+      "start": 1103,
+      "end": 1249,
+      "startSeconds": 45.958333333333336,
+      "endSeconds": 52.041666666666664,
+      "frames": 146
+    },
+    {
+      "type": "clip",
+      "id": "r3-materials",
+      "beats": 9,
+      "gain": 0.1,
+      "from": 0,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Leave with a plan",
+          "text": "Routes. Scripts. Next steps."
+        },
+        "beats": 5
+      },
+      "chapter": "Train",
+      "n": 13,
+      "beat": 111,
+      "start": 1249,
+      "end": 1349,
+      "startSeconds": 52.041666666666664,
+      "endSeconds": 56.208333333333336,
+      "frames": 100
+    },
+    {
+      "type": "gfx",
+      "scene": "snowflake",
+      "beats": 24,
+      "params": {
+        "captions": [
+          "One organizer.",
+          "Builds leaders.",
+          "Who build teams.",
+          "That reach every door."
+        ]
+      },
+      "chapter": "Train",
+      "n": 14,
+      "beat": 120,
+      "start": 1349,
+      "end": 1616,
+      "startSeconds": 56.208333333333336,
+      "endSeconds": 67.33333333333333,
+      "frames": 267
+    },
+    {
+      "type": "clip",
+      "id": "r3-phone",
+      "beats": 12,
+      "gain": 0,
+      "from": 0,
+      "dialog": true,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Recruiting practice",
+          "text": "Make a specific invitation."
+        },
+        "beats": 7
+      },
+      "chapter": "Train",
+      "n": 15,
+      "beat": 144,
+      "start": 1616,
+      "end": 1749,
+      "startSeconds": 67.33333333333333,
+      "endSeconds": 72.875,
+      "frames": 133
+    },
+    {
+      "type": "clip",
+      "id": "land-falls",
+      "beats": 8,
+      "gain": 0.3,
+      "from": 4.2,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Take the skills home",
+          "text": "From Sioux Falls…"
+        }
+      },
+      "chapter": "Train",
+      "n": 16,
+      "beat": 156,
+      "start": 1749,
+      "end": 1838,
+      "startSeconds": 72.875,
+      "endSeconds": 76.58333333333333,
+      "frames": 89
+    },
+    {
+      "type": "clip",
+      "id": "land-mainstreet",
+      "beats": 8,
+      "gain": 0.3,
+      "from": 4.2,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Take the skills home",
+          "text": "…to every Main Street."
+        }
+      },
+      "chapter": "Train",
+      "n": 17,
+      "beat": 164,
+      "start": 1838,
+      "end": 1926,
+      "startSeconds": 76.58333333333333,
+      "endSeconds": 80.25,
+      "frames": 88
+    },
+    {
+      "type": "clip",
+      "id": "land-farmstead",
+      "beats": 8,
+      "gain": 0.3,
+      "from": 0.3,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Across South Dakota",
+          "text": "Rural communities, too."
+        }
+      },
+      "chapter": "Train",
+      "n": 18,
+      "beat": 172,
+      "start": 1926,
+      "end": 2014,
+      "startSeconds": 80.25,
+      "endSeconds": 83.91666666666667,
+      "frames": 88
+    },
+    {
+      "type": "clip",
+      "id": "r3-diner",
+      "beats": 8,
+      "gain": 0,
+      "from": 1.2,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "One-on-one recruitment",
+          "text": "Invite a neighbor to volunteer."
+        }
+      },
+      "chapter": "Train",
+      "n": 19,
+      "beat": 180,
+      "start": 2014,
+      "end": 2102,
+      "startSeconds": 83.91666666666667,
+      "endSeconds": 87.58333333333333,
+      "frames": 88
+    },
+    {
+      "type": "gfx",
+      "scene": "statement",
+      "beats": 8,
+      "params": {
+        "lines": [
+          [
+            "A",
+            "PERSONAL",
+            "INVITATION."
+          ],
+          [
+            "A",
+            "CLEAR",
+            "NEXT",
+            "STEP."
+          ]
+        ],
+        "accent": [
+          "INVITATION.",
+          "STEP."
+        ],
+        "wordAt": 0.23,
+        "size": 145
+      },
+      "chapter": "Train",
+      "n": 20,
+      "beat": 188,
+      "start": 2102,
+      "end": 2190,
+      "startSeconds": 87.58333333333333,
+      "endSeconds": 91.25,
+      "frames": 88
+    },
+    {
+      "type": "clip",
+      "id": "r3-campus-print",
+      "beats": 12,
+      "gain": 0.1,
+      "from": 0,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "From interest to action",
+          "text": "Sign up for a shift."
+        },
+        "beats": 6
+      },
+      "chapter": "Train",
+      "n": 21,
+      "beat": 196,
+      "start": 2190,
+      "end": 2321,
+      "startSeconds": 91.25,
+      "endSeconds": 96.70833333333333,
+      "frames": 131
+    },
+    {
+      "type": "clip",
+      "id": "train-arrive",
+      "beats": 4,
+      "gain": 0.15,
+      "from": 6.15,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Welcome new volunteers",
+          "text": "Grow your team."
+        }
+      },
+      "chapter": "Train",
+      "n": 22,
+      "beat": 208,
+      "start": 2321,
+      "end": 2365,
+      "startSeconds": 96.70833333333333,
+      "endSeconds": 98.54166666666667,
+      "frames": 44
+    },
+    {
+      "type": "gfx",
+      "scene": "statement",
+      "beats": 12,
+      "params": {
+        "lines": [
+          [
+            "COME",
+            "TO",
+            "LEARN."
+          ],
+          [
+            "LEAVE",
+            "READY"
+          ],
+          [
+            "TO",
+            "ORGANIZE."
+          ]
+        ],
+        "accent": [
+          "ORGANIZE."
+        ],
+        "wordAt": 0.23,
+        "size": 170
+      },
+      "chapter": "Train",
+      "n": 23,
+      "beat": 212,
+      "start": 2365,
+      "end": 2496,
+      "startSeconds": 98.54166666666667,
+      "endSeconds": 104,
+      "frames": 131
+    },
+    {
+      "type": "gfx",
+      "scene": "slam",
+      "beats": 8,
+      "params": {
+        "word": "ORGANIZE.",
+        "num": "02 / 03",
+        "kicker": "Right where you live",
+        "size": 400
+      },
+      "hit": true,
+      "chapter": "Organize",
+      "n": 24,
+      "beat": 224,
+      "start": 2496,
+      "end": 2583,
+      "startSeconds": 104,
+      "endSeconds": 107.625,
+      "frames": 87
+    },
+    {
+      "type": "gfx",
+      "scene": "statement",
+      "beats": 8,
+      "params": {
+        "lines": [
+          [
+            "START",
+            "WITH"
+          ],
+          [
+            "A",
+            "PLAN."
+          ]
+        ],
+        "accent": [
+          "PLAN."
+        ],
+        "wordAt": 0.23,
+        "size": 230
+      },
+      "chapter": "Organize",
+      "n": 25,
+      "beat": 232,
+      "start": 2583,
+      "end": 2670,
+      "startSeconds": 107.625,
+      "endSeconds": 111.25,
+      "frames": 87
+    },
+    {
+      "type": "clip",
+      "id": "r3-materials",
+      "beats": 12,
+      "gain": 0.1,
+      "from": 0.1,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Before the shift",
+          "text": "Know the route and the goal."
+        },
+        "beats": 6
+      },
+      "chapter": "Organize",
+      "n": 26,
+      "beat": 240,
+      "start": 2670,
+      "end": 2801,
+      "startSeconds": 111.25,
+      "endSeconds": 116.70833333333333,
+      "frames": 131
+    },
+    {
+      "type": "clip",
+      "id": "field-kitchen",
+      "beats": 12,
+      "gain": 0,
+      "frame": [
+        245,
+        0,
+        1431,
+        805
+      ],
+      "from": 0.2,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Prepare together",
+          "text": "Plan the week as a team."
+        }
+      },
+      "chapter": "Organize",
+      "n": 27,
+      "beat": 252,
+      "start": 2801,
+      "end": 2932,
+      "startSeconds": 116.70833333333333,
+      "endSeconds": 122.16666666666667,
+      "frames": 131
+    },
+    {
+      "type": "clip",
+      "id": "r3-campus-print",
+      "beats": 12,
+      "gain": 0.1,
+      "from": 0.1,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Recruit volunteers",
+          "text": "Sign new people up."
+        },
+        "beats": 6
+      },
+      "chapter": "Organize",
+      "n": 28,
+      "beat": 264,
+      "start": 2932,
+      "end": 3063,
+      "startSeconds": 122.16666666666667,
+      "endSeconds": 127.625,
+      "frames": 131
+    },
+    {
+      "type": "clip",
+      "id": "r3-phone",
+      "beats": 8,
+      "gain": 0,
+      "from": 0.3,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Make the invitation",
+          "text": "Ask for a specific next step."
+        }
+      },
+      "chapter": "Organize",
+      "n": 29,
+      "beat": 276,
+      "start": 3063,
+      "end": 3150,
+      "startSeconds": 127.625,
+      "endSeconds": 131.25,
+      "frames": 87
+    },
+    {
+      "type": "clip",
+      "id": "land-porchlights",
+      "beats": 8,
+      "gain": 0.3,
+      "from": 3.6,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Then reach your neighbors",
+          "text": "One doorstep at a time."
+        }
+      },
+      "chapter": "Organize",
+      "n": 30,
+      "beat": 284,
+      "start": 3150,
+      "end": 3238,
+      "startSeconds": 131.25,
+      "endSeconds": 134.91666666666666,
+      "frames": 88
+    },
+    {
+      "type": "gfx",
+      "scene": "statement",
+      "beats": 8,
+      "params": {
+        "lines": [
+          [
+            "A",
+            "QUESTION."
+          ],
+          [
+            "TIME",
+            "TO",
+            "LISTEN."
+          ]
+        ],
+        "accent": [
+          "LISTEN."
+        ],
+        "wordAt": 0.23,
+        "size": 210
+      },
+      "chapter": "Organize",
+      "n": 31,
+      "beat": 292,
+      "start": 3238,
+      "end": 3324,
+      "startSeconds": 134.91666666666666,
+      "endSeconds": 138.5,
+      "frames": 86
+    },
+    {
+      "type": "clip",
+      "id": "r2-doorstep",
+      "beats": 20,
+      "gain": 0,
+      "from": 0,
+      "dialog": true,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "At the door",
+          "text": "Ask what matters."
+        },
+        "beats": 6
+      },
+      "chapter": "Organize",
+      "n": 32,
+      "beat": 300,
+      "start": 3324,
+      "end": 3542,
+      "startSeconds": 138.5,
+      "endSeconds": 147.58333333333334,
+      "frames": 218
+    },
+    {
+      "type": "gfx",
+      "scene": "statement",
+      "beats": 8,
+      "params": {
+        "lines": [
+          [
+            "START",
+            "WITH",
+            "WHAT"
+          ],
+          [
+            "PEOPLE",
+            "TELL",
+            "YOU."
+          ]
+        ],
+        "accent": [
+          "PEOPLE"
+        ],
+        "wordAt": 0.23,
+        "size": 190
+      },
+      "chapter": "Organize",
+      "n": 33,
+      "beat": 320,
+      "start": 3542,
+      "end": 3628,
+      "startSeconds": 147.58333333333334,
+      "endSeconds": 151.16666666666666,
+      "frames": 86
+    },
+    {
+      "type": "clip",
+      "id": "r3-resident",
+      "beats": 17,
+      "gain": 0,
+      "from": 0.35,
+      "dialog": true,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Make room for an answer",
+          "text": "Every neighbor deserves a voice."
+        },
+        "beats": 6
+      },
+      "chapter": "Organize",
+      "n": 34,
+      "beat": 328,
+      "start": 3628,
+      "end": 3812,
+      "startSeconds": 151.16666666666666,
+      "endSeconds": 158.83333333333334,
+      "frames": 184
+    },
+    {
+      "type": "clip",
+      "id": "field-elder",
+      "beats": 7,
+      "gain": 0,
+      "from": 3.4,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Listen locally",
+          "text": "Learn from your neighbors."
+        }
+      },
+      "chapter": "Organize",
+      "n": 35,
+      "beat": 345,
+      "start": 3812,
+      "end": 3888,
+      "startSeconds": 158.83333333333334,
+      "endSeconds": 162,
+      "frames": 76
+    },
+    {
+      "type": "gfx",
+      "scene": "statement",
+      "beats": 8,
+      "params": {
+        "lines": [
+          [
+            "LISTEN."
+          ],
+          [
+            "CONNECT."
+          ],
+          [
+            "FOLLOW",
+            "UP."
+          ]
+        ],
+        "accent": [
+          "CONNECT."
+        ],
+        "wordAt": 0.35,
+        "size": 190
+      },
+      "chapter": "Organize",
+      "n": 36,
+      "beat": 352,
+      "start": 3888,
+      "end": 3975,
+      "startSeconds": 162,
+      "endSeconds": 165.625,
+      "frames": 87
+    },
+    {
+      "type": "clip",
+      "id": "r3-materials",
+      "beats": 8,
+      "gain": 0.1,
+      "from": 2.1,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "After each conversation",
+          "text": "Plan the next visit."
+        }
+      },
+      "chapter": "Organize",
+      "n": 37,
+      "beat": 360,
+      "start": 3975,
+      "end": 4061,
+      "startSeconds": 165.625,
+      "endSeconds": 169.20833333333334,
+      "frames": 86
+    },
+    {
+      "type": "clip",
+      "id": "field-kitchen",
+      "beats": 8,
+      "gain": 0,
+      "frame": [
+        245,
+        0,
+        1431,
+        805
+      ],
+      "from": 3.2,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Debrief as a team",
+          "text": "Share what you learned."
+        }
+      },
+      "chapter": "Organize",
+      "n": 38,
+      "beat": 368,
+      "start": 4061,
+      "end": 4147,
+      "startSeconds": 169.20833333333334,
+      "endSeconds": 172.79166666666666,
+      "frames": 86
+    },
+    {
+      "type": "gfx",
+      "scene": "map",
+      "beats": 16,
+      "params": {
+        "kicker": "From Sioux Falls to the Black Hills",
+        "text": "Every county. Every door."
+      },
+      "chapter": "Organize",
+      "n": 39,
+      "beat": 376,
+      "start": 4147,
+      "end": 4320,
+      "startSeconds": 172.79166666666666,
+      "endSeconds": 180,
+      "frames": 173
+    },
+    {
+      "type": "clip",
+      "id": "r3-campus-print",
+      "beats": 8,
+      "gain": 0.1,
+      "from": 2.1,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Build the team",
+          "text": "Every name counts."
+        }
+      },
+      "chapter": "Organize",
+      "n": 40,
+      "beat": 392,
+      "start": 4320,
+      "end": 4406,
+      "startSeconds": 180,
+      "endSeconds": 183.58333333333334,
+      "frames": 86
+    },
+    {
+      "type": "clip",
+      "id": "r3-phone",
+      "beats": 8,
+      "gain": 0,
+      "from": 2.1,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Follow through",
+          "text": "Keep the conversation going."
+        }
+      },
+      "chapter": "Organize",
+      "n": 41,
+      "beat": 400,
+      "start": 4406,
+      "end": 4492,
+      "startSeconds": 183.58333333333334,
+      "endSeconds": 187.16666666666666,
+      "frames": 86
+    },
+    {
+      "type": "clip",
+      "id": "r3-diner",
+      "beats": 4,
+      "gain": 0,
+      "from": 2.8,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "One person at a time",
+          "text": "Invite a neighbor."
+        }
+      },
+      "chapter": "Organize",
+      "n": 42,
+      "beat": 408,
+      "start": 4492,
+      "end": 4535,
+      "startSeconds": 187.16666666666666,
+      "endSeconds": 188.95833333333334,
+      "frames": 43
+    },
+    {
+      "type": "clip",
+      "id": "land-storm",
+      "beats": 8,
+      "gain": 0.4,
+      "from": 0.3,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Keep showing up",
+          "text": "Rain or shine."
+        }
+      },
+      "chapter": "Organize",
+      "n": 43,
+      "beat": 412,
+      "start": 4535,
+      "end": 4621,
+      "startSeconds": 188.95833333333334,
+      "endSeconds": 192.54166666666666,
+      "frames": 86
+    },
+    {
+      "type": "gfx",
+      "scene": "statement",
+      "beats": 8,
+      "params": {
+        "lines": [
+          [
+            "BUILD",
+            "THE",
+            "HABIT."
+          ],
+          [
+            "BUILD",
+            "THE",
+            "TEAM."
+          ]
+        ],
+        "accent": [
+          "TEAM."
+        ],
+        "wordAt": 0.23,
+        "size": 185
+      },
+      "chapter": "Organize",
+      "n": 44,
+      "beat": 420,
+      "start": 4621,
+      "end": 4707,
+      "startSeconds": 192.54166666666666,
+      "endSeconds": 196.125,
+      "frames": 86
+    },
+    {
+      "type": "clip",
+      "id": "land-windmill",
+      "beats": 8,
+      "gain": 0.4,
+      "from": 0.3,
+      "ov": {
+        "scene": "bigover",
+        "params": {
+          "lines": [
+            {
+              "text": "BUILDING FOR",
+              "size": 120
+            },
+            {
+              "text": "2028",
+              "size": 330,
+              "color": "#ff8a3d"
+            },
+            {
+              "text": "AND BEYOND.",
+              "size": 120
+            }
+          ]
+        }
+      },
+      "chapter": "Build for the future",
+      "n": 45,
+      "beat": 428,
+      "start": 4707,
+      "end": 4794,
+      "startSeconds": 196.125,
+      "endSeconds": 199.75,
+      "frames": 87
+    },
+    {
+      "type": "clip",
+      "id": "land-mainstreet",
+      "beats": 8,
+      "gain": 0.3,
+      "from": 4.2,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Lasting power",
+          "text": "Built town by town."
+        }
+      },
+      "chapter": "Build for the future",
+      "n": 46,
+      "beat": 436,
+      "start": 4794,
+      "end": 4881,
+      "startSeconds": 199.75,
+      "endSeconds": 203.375,
+      "frames": 87
+    },
+    {
+      "type": "gfx",
+      "scene": "statement",
+      "beats": 12,
+      "params": {
+        "lines": [
+          [
+            "OUR",
+            "GOAL:"
+          ],
+          [
+            "LOCAL",
+            "TEAMS."
+          ],
+          [
+            "LASTING",
+            "CAPACITY."
+          ]
+        ],
+        "accent": [
+          "TEAMS.",
+          "CAPACITY."
+        ],
+        "wordAt": 0.23,
+        "size": 175
+      },
+      "chapter": "Build for the future",
+      "n": 47,
+      "beat": 444,
+      "start": 4881,
+      "end": 5011,
+      "startSeconds": 203.375,
+      "endSeconds": 208.79166666666666,
+      "frames": 130
+    },
+    {
+      "type": "gfx",
+      "scene": "slam",
+      "beats": 8,
+      "params": {
+        "word": "WIN.",
+        "num": "03 / 03",
+        "kicker": "2028 and beyond",
+        "size": 560
+      },
+      "hit": true,
+      "chapter": "Win",
+      "n": 48,
+      "beat": 456,
+      "start": 5011,
+      "end": 5097,
+      "startSeconds": 208.79166666666666,
+      "endSeconds": 212.375,
+      "frames": 86
+    },
+    {
+      "type": "gfx",
+      "scene": "statement",
+      "beats": 8,
+      "params": {
+        "lines": [
+          [
+            "BY",
+            "2028:"
+          ]
+        ],
+        "accent": [
+          "2028:"
+        ],
+        "wordAt": 0.23,
+        "size": 320
+      },
+      "chapter": "Win",
+      "n": 49,
+      "beat": 464,
+      "start": 5097,
+      "end": 5184,
+      "startSeconds": 212.375,
+      "endSeconds": 216,
+      "frames": 87
+    },
+    {
+      "type": "clip",
+      "id": "r3-trainer",
+      "beats": 12,
+      "gain": 0,
+      "from": 0.1,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "The goal",
+          "text": "More trained organizers."
+        }
+      },
+      "chapter": "Win",
+      "n": 50,
+      "beat": 472,
+      "start": 5184,
+      "end": 5313,
+      "startSeconds": 216,
+      "endSeconds": 221.375,
+      "frames": 129
+    },
+    {
+      "type": "clip",
+      "id": "field-kitchen",
+      "beats": 8,
+      "gain": 0,
+      "frame": [
+        245,
+        0,
+        1431,
+        805
+      ],
+      "from": 2.1,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "The goal",
+          "text": "Stronger volunteer teams."
+        }
+      },
+      "chapter": "Win",
+      "n": 51,
+      "beat": 484,
+      "start": 5313,
+      "end": 5399,
+      "startSeconds": 221.375,
+      "endSeconds": 224.95833333333334,
+      "frames": 86
+    },
+    {
+      "type": "clip",
+      "id": "r2-doorstep",
+      "beats": 12,
+      "gain": 0,
+      "from": 3.8,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "The goal",
+          "text": "Better voter conversations."
+        }
+      },
+      "chapter": "Win",
+      "n": 52,
+      "beat": 492,
+      "start": 5399,
+      "end": 5528,
+      "startSeconds": 224.95833333333334,
+      "endSeconds": 230.33333333333334,
+      "frames": 129
+    },
+    {
+      "type": "clip",
+      "id": "r3-campus-print",
+      "beats": 8,
+      "gain": 0.1,
+      "from": 1.6,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "The goal",
+          "text": "More people signing up."
+        }
+      },
+      "chapter": "Win",
+      "n": 53,
+      "beat": 504,
+      "start": 5528,
+      "end": 5615,
+      "startSeconds": 230.33333333333334,
+      "endSeconds": 233.95833333333334,
+      "frames": 87
+    },
+    {
+      "type": "gfx",
+      "scene": "map",
+      "beats": 12,
+      "params": {
+        "kicker": "Built county by county",
+        "text": "Ready for 2028."
+      },
+      "chapter": "Win",
+      "n": 54,
+      "beat": 512,
+      "start": 5615,
+      "end": 5743,
+      "startSeconds": 233.95833333333334,
+      "endSeconds": 239.29166666666666,
+      "frames": 128
+    },
+    {
+      "type": "clip",
+      "id": "r4-watchparty",
+      "beats": 12,
+      "gain": 0.5,
+      "from": 1.35,
+      "mute": [
+        [
+          1.8,
+          4.15
+        ]
+      ],
+      "ov": [
+        {
+          "scene": "lower",
+          "params": {
+            "kicker": "Election night",
+            "text": "Watch the returns together."
+          },
+          "beats": 6
+        },
+        {
+          "scene": "lower",
+          "params": {
+            "kicker": "The goal",
+            "text": "Win together."
+          },
+          "at": 6,
+          "beats": 6
+        }
+      ],
+      "chapter": "Win",
+      "n": 55,
+      "beat": 524,
+      "start": 5743,
+      "end": 5872,
+      "startSeconds": 239.29166666666666,
+      "endSeconds": 244.66666666666666,
+      "frames": 129
+    },
+    {
+      "type": "clip",
+      "id": "land-harvest",
+      "beats": 8,
+      "gain": 0.3,
+      "from": 0.3,
+      "ov": {
+        "scene": "bigover",
+        "params": {
+          "lines": [
+            {
+              "text": "IT STARTS WITH",
+              "size": 120
+            },
+            {
+              "text": "ONE WEEKEND.",
+              "size": 230,
+              "color": "#ff8a3d"
+            }
+          ]
+        }
+      },
+      "chapter": "Win",
+      "n": 56,
+      "beat": 536,
+      "start": 5872,
+      "end": 5958,
+      "startSeconds": 244.66666666666666,
+      "endSeconds": 248.25,
+      "frames": 86
+    },
+    {
+      "type": "clip",
+      "id": "r3-materials",
+      "beats": 8,
+      "gain": 0.1,
+      "from": 1.7,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Leave ready",
+          "text": "Put your plan into action."
+        }
+      },
+      "chapter": "Win",
+      "n": 57,
+      "beat": 544,
+      "start": 5958,
+      "end": 6044,
+      "startSeconds": 248.25,
+      "endSeconds": 251.83333333333334,
+      "frames": 86
+    },
+    {
+      "type": "clip",
+      "id": "land-porchlights",
+      "beats": 8,
+      "gain": 0.3,
+      "from": 3.6,
+      "ov": {
+        "scene": "bigover",
+        "params": {
+          "lines": [
+            {
+              "text": "AND ONE",
+              "size": 120
+            },
+            {
+              "text": "CONVERSATION",
+              "size": 220,
+              "color": "#ff8a3d"
+            },
+            {
+              "text": "AT A TIME.",
+              "size": 120
+            }
+          ]
+        }
+      },
+      "chapter": "Win",
+      "n": 58,
+      "beat": 552,
+      "start": 6044,
+      "end": 6130,
+      "startSeconds": 251.83333333333334,
+      "endSeconds": 255.41666666666666,
+      "frames": 86
+    },
+    {
+      "type": "clip",
+      "id": "r3-diner",
+      "beats": 4,
+      "gain": 0,
+      "from": 0.4,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Start with someone you know",
+          "text": "Make the invitation."
+        }
+      },
+      "chapter": "Win",
+      "n": 59,
+      "beat": 560,
+      "start": 6130,
+      "end": 6168,
+      "startSeconds": 255.41666666666666,
+      "endSeconds": 257,
+      "frames": 38
+    },
+    {
+      "type": "clip",
+      "id": "land-prairie",
+      "beats": 8,
+      "gain": 0.3,
+      "from": 3.6,
+      "ov": {
+        "scene": "bigover",
+        "params": {
+          "lines": [
+            {
+              "text": "A STRONGER",
+              "size": 150
+            },
+            {
+              "text": "SOUTH DAKOTA.",
+              "size": 230,
+              "color": "#ff8a3d"
+            }
+          ]
+        }
+      },
+      "chapter": "Win",
+      "n": 60,
+      "beat": 564,
+      "start": 6168,
+      "end": 6260,
+      "startSeconds": 257,
+      "endSeconds": 260.8333333333333,
+      "frames": 92
+    },
+    {
+      "type": "clip",
+      "id": "r3-trainer",
+      "beats": 2,
+      "gain": 0,
+      "from": 1.5,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Your next step",
+          "text": "Join the weekend intensive.",
+          "size": 92
+        },
+        "beats": 12
+      },
+      "chapter": "Skills recap",
+      "n": 61,
+      "beat": 572,
+      "start": 6260,
+      "end": 6281,
+      "startSeconds": 260.8333333333333,
+      "endSeconds": 261.7083333333333,
+      "frames": 21
+    },
+    {
+      "type": "clip",
+      "id": "r3-materials",
+      "beats": 2,
+      "gain": 0,
+      "from": 1.5,
+      "purpose": "Recap: preparation.",
+      "chapter": "Skills recap",
+      "n": 62,
+      "beat": 574,
+      "start": 6281,
+      "end": 6303,
+      "startSeconds": 261.7083333333333,
+      "endSeconds": 262.625,
+      "frames": 22
+    },
+    {
+      "type": "clip",
+      "id": "r3-phone",
+      "beats": 2,
+      "gain": 0,
+      "from": 3.8,
+      "purpose": "Recap: recruitment.",
+      "chapter": "Skills recap",
+      "n": 63,
+      "beat": 576,
+      "start": 6303,
+      "end": 6325,
+      "startSeconds": 262.625,
+      "endSeconds": 263.5416666666667,
+      "frames": 22
+    },
+    {
+      "type": "clip",
+      "id": "r3-campus-print",
+      "beats": 2,
+      "gain": 0,
+      "from": 4.1,
+      "purpose": "Recap: volunteering.",
+      "chapter": "Skills recap",
+      "n": 64,
+      "beat": 578,
+      "start": 6325,
+      "end": 6347,
+      "startSeconds": 263.5416666666667,
+      "endSeconds": 264.4583333333333,
+      "frames": 22
+    },
+    {
+      "type": "clip",
+      "id": "r2-doorstep",
+      "beats": 2,
+      "gain": 0,
+      "from": 4,
+      "purpose": "Recap: listening.",
+      "chapter": "Skills recap",
+      "n": 65,
+      "beat": 580,
+      "start": 6347,
+      "end": 6369,
+      "startSeconds": 264.4583333333333,
+      "endSeconds": 265.375,
+      "frames": 22
+    },
+    {
+      "type": "clip",
+      "id": "field-kitchen",
+      "beats": 2,
+      "gain": 0,
+      "frame": [
+        245,
+        0,
+        1431,
+        805
+      ],
+      "from": 5,
+      "purpose": "Recap: teamwork.",
+      "chapter": "Skills recap",
+      "n": 66,
+      "beat": 582,
+      "start": 6369,
+      "end": 6391,
+      "startSeconds": 265.375,
+      "endSeconds": 266.2916666666667,
+      "frames": 22
+    },
+    {
+      "type": "clip",
+      "id": "r3-trainer",
+      "beats": 8,
+      "gain": 0,
+      "from": 0.3,
+      "hit": true,
+      "ov": {
+        "scene": "bigover",
+        "params": {
+          "lines": [
+            {
+              "text": "TRAIN.",
+              "size": 380
+            }
+          ],
+          "shade": 0.45,
+          "exit": false
+        }
+      },
+      "chapter": "Finale",
+      "n": 67,
+      "beat": 584,
+      "start": 6391,
+      "end": 6479,
+      "startSeconds": 266.2916666666667,
+      "endSeconds": 269.9583333333333,
+      "frames": 88
+    },
+    {
+      "type": "clip",
+      "id": "r3-campus-print",
+      "beats": 8,
+      "gain": 0,
+      "from": 0.3,
+      "hit": true,
+      "ov": {
+        "scene": "bigover",
+        "params": {
+          "lines": [
+            {
+              "text": "ORGANIZE.",
+              "size": 340
+            }
+          ],
+          "shade": 0.45,
+          "exit": false
+        }
+      },
+      "chapter": "Finale",
+      "n": 68,
+      "beat": 592,
+      "start": 6479,
+      "end": 6568,
+      "startSeconds": 269.9583333333333,
+      "endSeconds": 273.6666666666667,
+      "frames": 89
+    },
+    {
+      "type": "clip",
+      "id": "r4-watchparty",
+      "beats": 6,
+      "gain": 0.4,
+      "from": 4.05,
+      "hit": true,
+      "ov": {
+        "scene": "bigover",
+        "params": {
+          "lines": [
+            {
+              "text": "WIN.",
+              "size": 420,
+              "color": "#ff8a3d"
+            }
+          ],
+          "shade": 0.45,
+          "exit": false
+        }
+      },
+      "chapter": "Finale",
+      "n": 69,
+      "beat": 600,
+      "start": 6568,
+      "end": 6634,
+      "startSeconds": 273.6666666666667,
+      "endSeconds": 276.4166666666667,
+      "frames": 66
+    },
+    {
+      "type": "clip",
+      "id": "r3-materials",
+      "beats": 6,
+      "gain": 0,
+      "from": 2,
+      "ov": {
+        "scene": "lower",
+        "params": {
+          "kicker": "Learn the skills",
+          "text": "Put them to work."
+        },
+        "beats": 14
+      },
+      "chapter": "Finale",
+      "n": 70,
+      "beat": 606,
+      "start": 6634,
+      "end": 6700,
+      "startSeconds": 276.4166666666667,
+      "endSeconds": 279.1666666666667,
+      "frames": 66
+    },
+    {
+      "type": "clip",
+      "id": "r2-doorstep",
+      "beats": 4,
+      "gain": 0,
+      "from": 7.8,
+      "purpose": "Callback: listening to a parent at his door.",
+      "chapter": "Finale",
+      "n": 71,
+      "beat": 612,
+      "start": 6700,
+      "end": 6744,
+      "startSeconds": 279.1666666666667,
+      "endSeconds": 281,
+      "frames": 44
+    },
+    {
+      "type": "clip",
+      "id": "r3-phone",
+      "beats": 4,
+      "gain": 0,
+      "from": 4,
+      "purpose": "Callback: inviting the next volunteer.",
+      "chapter": "Finale",
+      "n": 72,
+      "beat": 616,
+      "start": 6744,
+      "end": 6788,
+      "startSeconds": 281,
+      "endSeconds": 282.8333333333333,
+      "frames": 44
+    },
+    {
+      "type": "gfx",
+      "scene": "endcard",
+      "beats": 20,
+      "params": {
+        "cta": "Apply for the next weekend intensive",
+        "url": "organizesd.org"
+      },
+      "hit": true,
+      "chapter": "Apply",
+      "n": 73,
+      "beat": 620,
+      "start": 6788,
+      "end": 7008,
+      "startSeconds": 282.8333333333333,
+      "endSeconds": 292,
+      "frames": 220
+    },
+    {
+      "type": "gfx",
+      "scene": "disclaimer",
+      "beats": 16,
+      "params": {
+        "lines": [
+          "Organize SD is a Section 527 political organization.",
+          "Not authorized by any candidate or candidate’s committee. Contributions are not tax-deductible.",
+          "Contains AI-generated imagery."
+        ]
+      },
+      "chapter": "Apply",
+      "n": 74,
+      "beat": 640,
+      "start": 7008,
+      "end": 7172,
+      "startSeconds": 292,
+      "endSeconds": 298.8333333333333,
+      "frames": 164
+    }
+  ]
+}

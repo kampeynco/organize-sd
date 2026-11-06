@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import { VoiceAnswerRecorder } from './VoiceAnswerRecorder';
+import { type VoiceAnswer } from '../lib/voiceAnswer';
 import { Logo } from './Logo';
 import { Icon } from './Icon';
 import { faArrowLeft, faArrowUp, faCheck, faCircleInfo, faPaperPlane, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +17,8 @@ interface ApplyFormProps {
 export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [voiceAnswer, setVoiceAnswer] = useState<VoiceAnswer | null>(null);
+  const [voiceBusy, setVoiceBusy] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
   const [isAnimating, setIsAnimating] = useState(false);
@@ -88,6 +92,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
 
   const canProceed = () => {
     if (!current) return false;
+    if (current.type === 'voice') return !voiceBusy && !!voiceAnswer;
     return !answerError(current, currentAnswer);
   };
 
@@ -101,7 +106,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
 
   const handleSubmit = async () => {
     if (submittingRef.current) return;
-    const result = validateApplication(answers);
+    const result = validateApplication(answers, voiceAnswer);
     if (result.error) {
       const step = visibleQuestions.findIndex(q => q.id === result.field);
       if (step >= 0) setCurrentStep(step);
@@ -113,7 +118,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
     setSubmitError('');
     try {
       submissionIdRef.current ??= crypto.randomUUID();
-      await submitApplication(submissionIdRef.current, result.answers);
+      await submitApplication(submissionIdRef.current, result.answers, result.voiceAnswer);
       setIsSubmitted(true);
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'Could not save your application. Please try again.');
@@ -127,14 +132,14 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isSubmitted || isSubmitting) return;
-      if (e.key === 'Enter' && !e.shiftKey && current?.type !== 'textarea') {
+      if (e.key === 'Enter' && !e.shiftKey && current?.type !== 'textarea' && current?.type !== 'voice') {
         e.preventDefault();
         if (canProceed()) goNext();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentStep, answers, isSubmitted, isSubmitting, isAnimating]);
+  }, [currentStep, answers, voiceAnswer, voiceBusy, isSubmitted, isSubmitting, isAnimating]);
 
   /* ─── Render Helpers ─── */
   const slideClass = isAnimating
@@ -147,6 +152,13 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
     if (!current) return null;
 
     switch (current.type) {
+      case 'voice':
+        return <VoiceAnswerRecorder value={voiceAnswer} onBusyChange={setVoiceBusy} onChange={voice => {
+          submissionIdRef.current = null;
+          setSubmitError('');
+          setVoiceAnswer(voice);
+        }} />;
+
       case 'text':
         return (
           <input
@@ -333,6 +345,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
           <button
             onClick={onBack}
             disabled={isSubmitting}
+            aria-label="Close"
             className="text-white/60 hover:text-white font-bold text-sm uppercase tracking-widest transition-colors flex items-center gap-2"
           >
             <Icon icon={faXmark} />
@@ -391,7 +404,8 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
         <div className="max-w-3xl mx-auto flex items-center justify-between">
           <button
             onClick={goPrev}
-            disabled={currentStep === 0 || isSubmitting || isAnimating}
+            aria-label="Back"
+            disabled={currentStep === 0 || isSubmitting || isAnimating || voiceBusy}
             className={`flex items-center gap-2 text-sm font-bold uppercase tracking-widest transition-all py-3 px-5 rounded-lg ${
               currentStep === 0
                 ? 'text-white/10 cursor-not-allowed'
@@ -402,7 +416,7 @@ export const ApplyForm: React.FC<ApplyFormProps> = ({ onBack }) => {
             <span className="hidden sm:inline">Back</span>
           </button>
 
-          {(current?.type === 'textarea' || current?.type === 'text') && (
+          {(current?.type === 'textarea' || current?.type === 'text' || current?.type === 'voice') && (
             <button
               onClick={() => canProceed() ? goNext() : undefined}
               disabled={!canProceed() || isSubmitting || isAnimating}

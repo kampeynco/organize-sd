@@ -41,7 +41,7 @@ Whatever is on screen is in the address, so any view can be shared:
 
 ### Where the data comes from
 
-The page reads a saved copy of the SOS data in the Neon database (`DATABASE_URL`), in the `sos` schema
+The page reads a saved copy of the SOS data in the Neon database (`RESULTS_DATABASE_URL`), in the `sos` schema
 (`scripts/sos/schema.sql`). The copy keeps the page up after the SOS results site moves on to the next election,
 and keeps our visitors off the state's servers.
 
@@ -51,7 +51,7 @@ and keeps our visitors off the state's servers.
 - A Vercel cron (`vercel.json`) calls `api/save-sos.ts` every day at 12:00 UTC to copy the SOS data again
   (`api/_sos-save.ts`). It needs a `CRON_SECRET` environment variable in the Vercel project: Vercel sends it with
   the cron's request, and the endpoint turns away any request without it. `npm run save:sos` makes the same copy
-  now, using `DATABASE_URL` from `.env.local`.
+  now, using `IMPORT_DATABASE_URL` from the private runtime environment.
 - Each copy replaces the election's results and turnout, but only while the SOS results site still shows that
   election (its title names `ELECTION_DATE`); after that the saved copy keeps it. Registration is saved every
   time, one copy per day, so it builds a history. To follow a later election, change `ELECTION_ID` and
@@ -94,5 +94,5 @@ pages still have the hidden fields and markup described above. A failed copy lea
 
 `npm run dev` runs the functions in `api/` too (see `devApi` in `vite.config.ts`). Use it instead of `vercel dev`,
 which rewrites every non-API path to `index.html`, including Vite's own modules. The results page and the signup
-function need `DATABASE_URL` in the dev server's environment, and signups go to whatever database it points at.
+functions need the restricted credentials described in `db/README.md`. Use the isolated QA environment for local development.
 To use the one in `.env.local`, start the dev server with `node --env-file=.env.local node_modules/vite/bin/vite.js`.

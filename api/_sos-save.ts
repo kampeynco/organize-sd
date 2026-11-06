@@ -8,6 +8,7 @@
 // The election is saved only while the SOS results site still shows it. When the site moves on to the next
 // election, the saved copy keeps this one, and only registration keeps updating. Saving the election replaces its
 // rows; registration keeps one copy per day (the latest run that day), so it builds a history.
+import { databaseUrl } from './_database.js';
 import { Pool, type PoolClient } from '@neondatabase/serverless';
 import { districtId, vipRows } from './_sos.js';
 import { clean, countyTurnout, districtTurnout, electionInfo, mapData, precinctBallots, type RaceType } from './_sos-live.js';
@@ -252,7 +253,7 @@ const settle = <T>(p: Promise<T>) =>
 
 /** Copy the SOS data now. The election and registration save separately, so one failing doesn't stop the other. */
 export async function saveSos() {
-  const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+  const pool = new Pool({ connectionString: databaseUrl('importer') });
   try {
     // Election first: registration maps county names to the county ids it saves
     const election = await settle(saveElection(pool));

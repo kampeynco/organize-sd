@@ -152,7 +152,12 @@ export const ResultsView: React.FC<{
         <div className="container mx-auto px-4 sm:px-5 max-w-7xl pt-40 pb-12 md:pb-16 grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-12 items-start">
           <div>
             {toggle}
-            <h1 className="mt-8 font-display font-black uppercase text-5xl sm:text-6xl xl:text-7xl leading-[0.9]">
+            <div className="mt-8">
+              <span className="inline-flex rounded-full bg-mint px-4 py-1.5 text-sm font-bold text-brand-ink">
+                2026 Midterm Elections
+              </span>
+            </div>
+            <h1 className="mt-4 font-display font-black uppercase text-5xl sm:text-6xl xl:text-7xl leading-[0.9]">
               South Dakota<br /> results
             </h1>
             <Updated summary={summary} info={info} />

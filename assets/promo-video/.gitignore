@@ -1,0 +1,11 @@
+node_modules
+build
+
+# Local Python environment and bytecode caches
+.venv/
+__pycache__/
+*.py[cod]
+
+# Generated review frames and contact sheets
+/revision/review/
+/revision/review3/

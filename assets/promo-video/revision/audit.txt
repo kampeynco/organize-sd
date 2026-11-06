@@ -1,0 +1,10 @@
+PASS: 75 segments, 656 beats, 7172 frames; rejected footage absent, every clip contextualized, full dialogue retained.
+r3-diner: 22.458–26.250s
+r3-trainer: 36.583–42.208s
+r3-practice: 45.958–52.042s
+r3-phone: 67.333–72.875s
+r3-materials: 52.042–56.208s
+r3-campus-print: 91.250–96.708s
+r2-doorstep: 138.500–147.583s
+r3-resident: 151.167–158.833s
+r4-watchparty: 239.292–244.667s

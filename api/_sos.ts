@@ -1,6 +1,7 @@
 // Helpers shared by the /results endpoints and the code that copies the Secretary of State's data. Vercel skips
 // files whose names start with "_", so this isn't an endpoint itself.
 import { neon } from '@neondatabase/serverless';
+import { databaseUrl } from './_database.js';
 
 /**
  * A JSON response. Vercel-CDN-Cache-Control applies to Vercel's CDN only: browsers get Vercel's default
@@ -18,7 +19,7 @@ export const json = (body: unknown, status: number, cdnCache: string) =>
 /* ─── The saved copy (Neon; tables in scripts/sos/schema.sql) ─── */
 
 /** The database /results reads. Its SOS data changes only when it's copied again (api/save-sos.ts). */
-export const savedCopy = () => neon(process.env.DATABASE_URL!);
+export const savedCopy = () => neon(databaseUrl('results'));
 
 /** The election /results shows: the latest one saved. A SQL subquery, for `where election_id = ${LATEST_ELECTION}`. */
 export const LATEST_ELECTION = '(select election_id from sos.elections order by election_date desc limit 1)';

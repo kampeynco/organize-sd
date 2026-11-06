@@ -1,0 +1,127 @@
+   0   0:00.00   3.75s  land-prairie @0s
+   8   0:03.75   3.58s  land-badlands @0.4s
+  16   0:07.33   3.79s  land-blackhills @0.4s
+  24   0:11.13   3.79s  land-mainstreet @0.4s
+  32   0:14.92   3.79s  land-porchlights @0.2s
+  40   0:18.71   3.75s  [statement] 
+  48   0:22.46   3.79s  r3-diner @0.2s
+  56   0:26.25   3.75s  [statement] 
+  64   0:30.00   3.75s  [slam] TRAIN.
+  72   0:33.75   2.83s  train-arrive @0.3s
+  78   0:36.58   5.63s  r3-trainer @0s
+  90   0:42.21   3.75s  [statement] 
+  98   0:45.96   6.08s  r3-practice @0s
+ 111   0:52.04   4.17s  r3-materials @0s
+ 120   0:56.21  11.13s  [snowflake] 
+ 144   1:07.33   5.54s  r3-phone @0s
+ 156   1:12.88   3.71s  land-falls @4.2s
+ 164   1:16.58   3.67s  land-mainstreet @4.2s
+ 172   1:20.25   3.67s  land-farmstead @0.3s
+ 180   1:23.92   3.67s  r3-diner @1.2s
+ 188   1:27.58   3.67s  [statement] 
+ 196   1:31.25   5.46s  r3-campus-print @0s
+ 208   1:36.71   1.83s  train-arrive @6.15s
+ 212   1:38.54   5.46s  [statement] 
+ 224   1:44.00   3.63s  [slam] ORGANIZE.
+ 232   1:47.63   3.63s  [statement] 
+ 240   1:51.25   5.46s  r3-materials @0.1s
+ 252   1:56.71   5.46s  field-kitchen @0.2s
+ 264   2:02.17   5.46s  r3-campus-print @0.1s
+ 276   2:07.63   3.63s  r3-phone @0.3s
+ 284   2:11.25   3.67s  land-porchlights @3.6s
+ 292   2:14.92   3.58s  [statement] 
+ 300   2:18.50   9.08s  r2-doorstep @0s
+ 320   2:27.58   3.58s  [statement] 
+ 328   2:31.17   7.67s  r3-resident @0.35s
+ 345   2:38.83   3.17s  field-elder @3.4s
+ 352   2:42.00   3.63s  [statement] 
+ 360   2:45.63   3.58s  r3-materials @2.1s
+ 368   2:49.21   3.58s  field-kitchen @3.2s
+ 376   2:52.79   7.21s  [map] 
+ 392   3:00.00   3.58s  r3-campus-print @2.1s
+ 400   3:03.58   3.58s  r3-phone @2.1s
+ 408   3:07.17   1.79s  r3-diner @2.8s
+ 412   3:08.96   3.58s  land-storm @0.3s
+ 420   3:12.54   3.58s  [statement] 
+ 428   3:16.13   3.63s  land-windmill @0.3s
+ 436   3:19.75   3.63s  land-mainstreet @4.2s
+ 444   3:23.38   5.42s  [statement] 
+ 456   3:28.79   3.58s  [slam] WIN.
+ 464   3:32.38   3.63s  [statement] 
+ 472   3:36.00   5.38s  r3-trainer @0.1s
+ 484   3:41.38   3.58s  field-kitchen @2.1s
+ 492   3:44.96   5.38s  r2-doorstep @3.8s
+ 504   3:50.33   3.63s  r3-campus-print @1.6s
+ 512   3:53.96   5.33s  [map] 
+ 524   3:59.29   5.38s  r4-watchparty @1.35s
+ 536   4:04.67   3.58s  land-harvest @0.3s
+ 544   4:08.25   3.58s  r3-materials @1.7s
+ 552   4:11.83   3.58s  land-porchlights @3.6s
+ 560   4:15.42   1.58s  r3-diner @0.4s
+ 564   4:17.00   3.83s  land-prairie @3.6s
+ 572   4:20.83   0.88s  r3-trainer @1.5s
+ 574   4:21.71   0.92s  r3-materials @1.5s
+ 576   4:22.63   0.92s  r3-phone @3.8s
+ 578   4:23.54   0.92s  r3-campus-print @4.1s
+ 580   4:24.46   0.92s  r2-doorstep @4s
+ 582   4:25.38   0.92s  field-kitchen @5s
+ 584   4:26.29   3.67s  r3-trainer @0.3s
+ 592   4:29.96   3.71s  r3-campus-print @0.3s
+ 600   4:33.67   2.75s  r4-watchparty @4.05s
+ 606   4:36.42   2.75s  r3-materials @2s
+ 612   4:39.17   1.83s  r2-doorstep @7.8s
+ 616   4:41.00   1.83s  r3-phone @4s
+ 620   4:42.83   9.17s  [endcard] 
+ 640   4:52.00   6.83s  [disclaimer] 
+    ov 0 90 bigover
+    ov 90 176 bigover
+    ov 176 267 bigover
+    ov 267 358 bigover
+    ov 358 449 bigover
+    ov 539 630 lower
+    ov 810 878 lower
+    ov 878 957 lower
+    ov 1103 1182 lower
+    ov 1249 1305 lower
+    ov 1616 1694 lower
+    ov 1749 1838 lower
+    ov 1838 1926 lower
+    ov 1926 2014 lower
+    ov 2014 2102 lower
+    ov 2190 2255 lower
+    ov 2321 2365 lower
+    ov 2670 2736 lower
+    ov 2801 2932 lower
+    ov 2932 2998 lower
+    ov 3063 3150 lower
+    ov 3150 3238 lower
+    ov 3324 3390 lower
+    ov 3628 3693 lower
+    ov 3812 3888 lower
+    ov 3975 4061 lower
+    ov 4061 4147 lower
+    ov 4320 4406 lower
+    ov 4406 4492 lower
+    ov 4492 4535 lower
+    ov 4535 4621 lower
+    ov 4707 4794 bigover
+    ov 4794 4881 lower
+    ov 5184 5313 lower
+    ov 5313 5399 lower
+    ov 5399 5528 lower
+    ov 5528 5615 lower
+    ov 5743 5808 lower
+    ov 5808 5872 lower
+    ov 5872 5958 bigover
+    ov 5958 6044 lower
+    ov 6044 6130 bigover
+    ov 6130 6168 lower
+    ov 6168 6260 bigover
+    ov 6260 6391 lower
+    ov 6391 6479 bigover
+    ov 6479 6568 bigover
+    ov 6568 6634 bigover
+    ov 6634 6788 lower
+total 656 beats, 4:58.83; score sections at 8, 40, 300, 328, 428, 456, 520, 572, 584, 604, 620, 640
+
+no freeze frames or flash cuts

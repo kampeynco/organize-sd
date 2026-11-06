@@ -3,12 +3,16 @@
 import { readFile, writeFile, readdir, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
 const ssrDir = path.join(root, 'dist-ssr');
 
 const { render } = await import(path.join(ssrDir, 'entry-server.js'));
+
+const config = JSON.parse(await readFile(path.join(root, 'vercel.json'), 'utf8'));
+const csp = config.headers.flatMap(rule => rule.headers).find(header => header.key === 'Content-Security-Policy')?.value;
 
 const template = await readFile(path.join(dist, 'index.html'), 'utf8');
 const marker = '<div id="root"></div>';
@@ -58,6 +62,12 @@ for (const { route, file, head } of pages) {
   const html = template
     .replace(marker, `<div id="root" data-path="${route}">${appHtml}</div>`)
     .replace('</head>', head ? `    ${head}\n</head>` : '</head>');
+  // Fail the build if a bootstrap/preload script would be blocked by the deployed CSP.
+  for (const match of html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
+    if (!match[1]) continue;
+    const hash = createHash('sha256').update(match[1]).digest('base64');
+    if (!csp?.includes(`'sha256-${hash}'`)) throw new Error(`CSP does not allow an inline script in ${file}`);
+  }
   await writeFile(path.join(dist, file), html);
   console.log(`prerender: injected ${(appHtml.length / 1024).toFixed(1)} KB of ${route} HTML into ${file}`);
 }

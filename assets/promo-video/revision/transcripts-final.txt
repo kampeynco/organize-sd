@@ -1,0 +1,5 @@
+r2-doorstep.wav | 0.00-0.64 What / 0.64-0.90 matters / 0.90-1.16 most / 1.16-1.38 to / 1.38-1.48 your / 1.48-1.70 family / 1.70-1.96 right / 1.96-2.30 now? / 4.00-4.48 Finding / 4.48-4.84 affordable / 4.84-5.42 childcare. / 6.26-6.94 That's / 6.94-7.04 our / 7.04-7.24 biggest / 7.24-7.56 worry.
+r2-phone.wav | 0.50-0.90 Would / 0.90-1.04 you / 1.04-1.18 like / 1.18-1.34 to / 1.34-1.50 join / 1.50-1.66 our / 1.66-1.90 next / 1.90-2.38 volunteer / 2.38-2.82 training?
+r2-practice.wav | 0.00-0.68 What / 0.68-0.82 would / 0.82-0.96 you / 0.96-1.18 change / 1.18-1.36 in / 1.36-1.48 your / 1.48-1.88 neighborhood? / 4.84-5.04 Safer / 5.04-5.32 streets.
+r2-resident-close.wav | 0.00-0.62 What / 0.62-0.72 do / 0.72-0.80 you / 0.80-0.94 think / 0.94-1.16 about / 1.16-1.30 the / 1.30-1.64 neighborhood? / 4.56-4.68 You / 4.68-4.90 know, / 5.76-6.18 nobody's / 6.18-6.34 ever / 6.34-6.62 asked / 6.62-6.84 me / 6.84-7.00 that / 7.00-7.38 before.
+r2-trainer.wav | 0.00-0.70 Ask / 0.70-0.88 a / 0.88-1.06 good / 1.06-1.56 question, / 1.82-2.74 then / 2.74-2.94 give / 2.94-3.26 people / 3.26-3.50 time / 3.50-3.70 to / 3.70-4.02 answer.

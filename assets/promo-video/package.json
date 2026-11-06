@@ -1,0 +1,16 @@
+{
+  "name": "organize-sd-promo-video",
+  "private": true,
+  "type": "module",
+  "description": "Generates the Organize SD promo video: kie.ai clips + music, canvas motion graphics, ffmpeg edit.",
+  "scripts": {
+    "clips": "node generate.mjs",
+    "music": "node music.mjs",
+    "beats": "node beats.mjs",
+    "graphics": "node graphics/render.mjs",
+    "edit": "node edit.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.64.1"
+  }
+}

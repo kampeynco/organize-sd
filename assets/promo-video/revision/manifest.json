@@ -1,0 +1,205 @@
+{
+  "r2-trainer": {
+    "imageUrl": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r2-trainer-4157430facf8.png",
+    "imageHash": "4157430facf8a7fe6325348ecc0df1644e548fffba9efc2593af81be6ff0c9e4",
+    "input": {
+      "prompt": "One continuous eye-level documentary shot, no cuts or transitions. Preserve the reference image composition, people, clothing, printed letters and logo geometry. Natural restrained motion, realistic anatomy, exactly two arms and two hands per adult. No extra people enter, no objects appear or disappear. No subtitles, captions, background music or laughter. Keep all ORGANIZE SD branding legible and unchanged. The trainer in the white shirt speaks calmly to her two seated adult learners: \"Ask a good question. Then give people time to answer.\" Her hands stay low, with one small open-palm gesture, then settle. The two learners listen without moving their hands into view. The printed poster stays still. Clear warm natural female voice, quiet room tone. Finish the sentence by five seconds, then hold.",
+      "first_frame_url": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r2-trainer-4157430facf8.png",
+      "duration": 6,
+      "resolution": "1080p",
+      "aspect_ratio": "adaptive",
+      "generate_audio": true
+    },
+    "model": "bytedance/seedance-2-5",
+    "taskId": "18c33b9b13991153feaee7cf8504832a",
+    "state": "success",
+    "created": "2026-10-27T06:20:17.949Z",
+    "checked": "2026-10-27T06:28:38.179Z",
+    "credits": 948,
+    "videoUrl": "https://tempfile.aiquickdraw.com/seedance/1793082281160-47doavyr71q.mp4"
+  },
+  "r2-phone": {
+    "imageUrl": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r2-phone-73d8a382587e.png",
+    "imageHash": "73d8a382587e056863a078f7b839d497e111e34a7522aec8d08f5fda52a09f54",
+    "input": {
+      "prompt": "One continuous eye-level documentary shot, no cuts or transitions. Preserve the reference image composition, people, clothing, printed letters and logo geometry. Natural restrained motion, realistic anatomy, exactly two arms and two hands per adult. No extra people enter, no objects appear or disappear. No subtitles, captions, background music or laughter. Keep all ORGANIZE SD branding legible and unchanged. A volunteer making a recruitment phone call in the training room. She holds the SAME single phone firmly against her right ear with her RIGHT hand for the ENTIRE shot. Her left hand rests flat on the table, never moves or gestures. She says in a calm conversational voice, \"Would you like to join our next volunteer training?\" Then she closes her mouth and listens. No mention of Brookings, no introduction, no additional speech. Preserve her printed shirt and the branded folder. No second phone, no floating phone, no other hands. Finish speech by four seconds.",
+      "first_frame_url": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r2-phone-73d8a382587e.png",
+      "duration": 6,
+      "resolution": "1080p",
+      "aspect_ratio": "adaptive",
+      "generate_audio": true
+    },
+    "model": "bytedance/seedance-2-5",
+    "taskId": "2fce8d28fcb5f6e18faad44896325fe3",
+    "state": "success",
+    "created": "2026-10-27T06:20:19.756Z",
+    "checked": "2026-10-27T06:23:17.729Z",
+    "credits": 948,
+    "videoUrl": "https://tempfile.aiquickdraw.com/seedance/1793082111103-bapji41pbki.mp4"
+  },
+  "r2-campus": {
+    "imageUrl": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r2-campus-484ca53bfa6e.png",
+    "imageHash": "484ca53bfa6e93e8740a8283c0e4523bf4a519c459ec98ef937986bb7f1dea9b",
+    "input": {
+      "prompt": "One continuous eye-level documentary shot, no cuts or transitions. Preserve the reference image composition, people, clothing, printed letters and logo geometry. Natural restrained motion, realistic anatomy, exactly two arms and two hands per adult. No extra people enter, no objects appear or disappear. No subtitles, captions, background music or laughter. Keep all ORGANIZE SD branding legible and unchanged. Exactly one student signs the form with the single pen in his RIGHT hand, adding one short dark ink line. The clipboard rests motionless FLAT ON THE TABLE throughout. The organizer watches, both hands stay in her lap, never touching the paper or pen. After signing the student leaves the pen touching the form, glances up and nods once. No one else writes, no handoff, no shared clipboard, no high-five. Preserve FIELD CREW shirt lettering, tablecloth and ORGANIZE SD VOLUNTEER SIGN-UP header. Light outdoor ambience, no speech.",
+      "first_frame_url": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r2-campus-484ca53bfa6e.png",
+      "duration": 6,
+      "resolution": "1080p",
+      "aspect_ratio": "adaptive",
+      "generate_audio": true
+    },
+    "model": "bytedance/seedance-2-5",
+    "taskId": "d4ac9081405b0e8a0f9033e5877bd74b",
+    "state": "success",
+    "created": "2026-10-27T06:20:21.825Z",
+    "checked": "2026-10-27T06:23:20.842Z",
+    "credits": 948,
+    "videoUrl": "https://tempfile.aiquickdraw.com/seedance/1793082191460-ntz62521ppc.mp4"
+  },
+  "r2-doorstep": {
+    "imageUrl": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r2-doorstep-13742661d109.png",
+    "imageHash": "13742661d10979a9abcbfa8cdbc3bfbd3ded4378863666662875b3d3ceaf6b8d",
+    "input": {
+      "prompt": "One continuous eye-level documentary shot, no cuts or transitions. Preserve the reference image composition, people, clothing, printed letters and logo geometry. Natural restrained motion, realistic anatomy, exactly two arms and two hands per adult. No extra people enter, no objects appear or disappear. No subtitles, captions, background music or laughter. Keep all ORGANIZE SD branding legible and unchanged. The organizer stays outside the open door; the father stays inside his doorway and cradles his baby securely in the same two arms throughout. Nobody walks, passes, knocks or changes places. Organizer asks gently, \"What matters most to your family right now?\" She then listens with her mouth closed. The father looks at her and answers, \"Finding affordable childcare. That's our biggest worry.\" He speaks TO the organizer, never to the camera. Natural conversational pacing, no simultaneous speech. Baby stays safely supported, subtle breathing only, no arm repositioning. Organizer lowers her two hands gently and keeps them still. Complete the answer by nine seconds. Quiet daytime neighborhood ambience.",
+      "first_frame_url": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r2-doorstep-13742661d109.png",
+      "duration": 10,
+      "resolution": "1080p",
+      "aspect_ratio": "adaptive",
+      "generate_audio": true
+    },
+    "model": "bytedance/seedance-2-5",
+    "taskId": "ed3f7feb7cc1365b66de621f57c63996",
+    "state": "success",
+    "created": "2026-10-27T06:20:23.022Z",
+    "checked": "2026-10-27T06:24:31.765Z",
+    "credits": 1580,
+    "videoUrl": "https://tempfile.aiquickdraw.com/seedance/1793082221336-u2fyoivlj08.mp4"
+  },
+  "r2-practice": {
+    "imageUrl": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r2-practice-52063cc4cd45.png",
+    "imageHash": "52063cc4cd45bf6f58d11e3d600e099061fddaad0de03556534405248ce8379e",
+    "input": {
+      "prompt": "One continuous eye-level documentary shot, no cuts or transitions. Preserve the reference image composition, people, clothing, printed letters and logo geometry. Natural restrained motion, realistic anatomy, exactly two arms and two hands per adult. No extra people enter, no objects appear or disappear. No subtitles, captions, background music or laughter. Keep all ORGANIZE SD branding legible and unchanged. This is a seated pair practicing listening at an organizer workshop. The woman in the purple shirt asks naturally, \"What would you change in your neighborhood?\" The older man listens, then answers quietly, \"Safer streets.\" Each speaker takes a turn, no overlapping speech. They remain seated, hands rested separately, no gesturing or handshakes. Genuine attentive expressions, no theatrical acting. Finish by five seconds. Quiet room tone.",
+      "first_frame_url": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r2-practice-52063cc4cd45.png",
+      "duration": 6,
+      "resolution": "1080p",
+      "aspect_ratio": "adaptive",
+      "generate_audio": true
+    },
+    "model": "bytedance/seedance-2-5",
+    "taskId": "9bfce822d96e7b17a79891321f08daa1",
+    "state": "success",
+    "created": "2026-10-27T06:22:23.068Z",
+    "checked": "2026-10-27T06:28:39.141Z",
+    "credits": 948,
+    "videoUrl": "https://tempfile.aiquickdraw.com/seedance/1793082362589-jhn74333rrf.mp4"
+  },
+  "r2-materials": {
+    "imageUrl": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r2-materials-5d6c296bc555.png",
+    "imageHash": "5d6c296bc555525ea7ed21e98f946866c3e7816a294f934a086ef36e28078692",
+    "input": {
+      "prompt": "One continuous eye-level documentary shot, no cuts or transitions. Preserve the reference image composition, people, clothing, printed letters and logo geometry. Natural restrained motion, realistic anatomy, exactly two arms and two hands per adult. No extra people enter, no objects appear or disappear. No subtitles, captions, background music or laughter. Keep all ORGANIZE SD branding legible and unchanged. Slow subtle camera push over an Organize SD canvass preparation table. All printed materials remain stationary and identical. ONE organizer's right index finger, connected to their visible forearm, gently points at ONE orange route on the map, then remains still. The other arm remains below frame. No writing, no drawing, no picking things up, no passing materials. The map and training booklet clearly retain ORGANIZE SD branding. Quiet paper-and-room ambience, absolutely no speech.",
+      "first_frame_url": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r2-materials-5d6c296bc555.png",
+      "duration": 6,
+      "resolution": "1080p",
+      "aspect_ratio": "adaptive",
+      "generate_audio": true
+    },
+    "model": "bytedance/seedance-2-5",
+    "taskId": "91a593c5b0fb1784d6a2e1ee54a290a0",
+    "state": "success",
+    "created": "2026-10-27T06:22:24.658Z",
+    "checked": "2026-10-27T06:28:40.481Z",
+    "credits": 948,
+    "videoUrl": "https://tempfile.aiquickdraw.com/seedance/1793082342013-66str0ohd6r.mp4"
+  },
+  "r3-diner": {
+    "imageUrl": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r3-diner-ee4ede0516ad.png",
+    "imageHash": "ee4ede0516adb63aa5118c4b4090f75c17a32a8ab04a4282b9f1bf8d9795acba",
+    "input": {
+      "prompt": "One continuous eye-level documentary shot, locked-off camera, no cuts or transitions. Preserve the reference image composition, both people, their clothing and every object on the table. The woman and the older man in the flat cap keep a quiet, friendly conversation in the booth. She speaks a few words, he listens, nods, smiles and answers briefly. Their hands stay on the table or around their own mugs; no handshake, no reaching across, no lifting cups. The diner is otherwise empty: no waitress, no staff, no other customers, nobody walks past, enters or leaves the frame. The background booth and wall stay empty and still. Cups, plates, pie, coffee pot and napkin holder stay exactly in place. Realistic anatomy, exactly two arms and two hands per adult. Quiet diner room tone, no music, no laughter.",
+      "first_frame_url": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r3-diner-ee4ede0516ad.png",
+      "duration": 5,
+      "resolution": "1080p",
+      "aspect_ratio": "adaptive",
+      "generate_audio": true
+    },
+    "model": "bytedance/seedance-2-5",
+    "taskId": "cc8586a4db89110ab10fa427ec747737",
+    "state": "success",
+    "created": "2026-10-27T16:54:38.468Z",
+    "checked": "2026-10-27T16:57:19.818Z",
+    "credits": 790,
+    "videoUrl": "https://tempfile.aiquickdraw.com/seedance/1793120183987-93gp43il9me.mp4"
+  },
+  "r3-campus": {
+    "imageUrl": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r3-campus-85db9da49c30.png",
+    "imageHash": "85db9da49c30ec3773d2ec462779531dc392577f3b7cf4652aad8147c9df3bef",
+    "input": {
+      "prompt": "One continuous eye-level documentary shot, locked-off camera, no cuts or transitions. Preserve the reference image exactly: both people, their clothing and shirt print, the clipboard and its sheet, and the ORGANIZE SD logo and lettering on the tablecloth. The clipboard lies flat on the table turned toward the student: its metal clip and printed header are on the edge nearest the camera, so the sheet reads upright for him. The clipboard never moves, rotates or flips. The student writes his name on the empty line nearest him with the single pen in his right hand, one short handwritten line, then lifts the pen slightly, looks up at the organizer and nods once. She smiles and keeps both hands in her lap. Nobody else touches the clipboard or pen; no handoff, no second pen, no high-five. Realistic anatomy, exactly two arms and two hands per person. Gentle breeze in the trees, light outdoor ambience, no speech, no music, no laughter.",
+      "first_frame_url": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r3-campus-85db9da49c30.png",
+      "duration": 6,
+      "resolution": "1080p",
+      "aspect_ratio": "adaptive",
+      "generate_audio": true
+    },
+    "model": "bytedance/seedance-2-5",
+    "taskId": "2f8ed1aadca9666a488bff52454b05e0",
+    "state": "success",
+    "created": "2026-10-27T18:57:14.069Z",
+    "checked": "2026-10-27T18:58:50.523Z",
+    "credits": 948,
+    "videoUrl": "https://tempfile.aiquickdraw.com/seedance/1793127513143-ewz8mhc9jvt.mp4"
+  },
+  "r3-resident": {
+    "input": {
+      "prompt": "Cinematic documentary footage, one continuous take, no cuts or transitions. Daytime on the front porch of a modest single-story house with beige vinyl siding and white window trim in a South Dakota town in late autumn. Medium close-up, eye level, of an older white woman in her seventies with short silver-gray hair, wearing a navy cardigan over a light blue collared blouse, standing in her open front doorway. A young female canvasser with a dark ponytail stands on the porch at the left edge of the frame, seen from behind over her shoulder and softly out of focus, wearing a plain purple t-shirt with no printing. The canvasser asks warmly, \"What do you think about the neighborhood?\" The older woman pauses, considers, a small surprised smile forms, and she answers slowly and sincerely, \"You know... nobody's ever asked me that before.\" She speaks to the canvasser, never to the camera. One speaker at a time. Locked-off camera with a very slow gentle push in, soft overcast daylight, shallow depth of field, natural skin texture. Both women keep their hands low and still; nobody enters or leaves. No text, no logos, no signs, no house numbers anywhere in frame. Quiet residential ambience, no music, no laughter. Finish the answer by seven and a half seconds.",
+      "duration": 8,
+      "resolution": "1080p",
+      "aspect_ratio": "16:9",
+      "generate_audio": true
+    },
+    "model": "bytedance/seedance-2-5",
+    "taskId": "54e25ae7f996521e56c43249cd5d2fad",
+    "state": "success",
+    "created": "2026-10-27T18:57:14.235Z",
+    "checked": "2026-10-27T18:59:22.599Z",
+    "credits": 1264,
+    "videoUrl": "https://tempfile.aiquickdraw.com/seedance/1793127533014-0hp86qyrbkn.mp4"
+  },
+  "r3-watchparty": {
+    "input": {
+      "prompt": "Cinematic documentary footage, one continuous take, no cuts or transitions. Election night watch party inside a small-town community hall in South Dakota, warm evening tungsten light, wood-paneled walls, folding tables with paper cups and bowls of popcorn. High on the back wall, well above everyone's heads, hangs a large plain solid purple fabric banner with no text and no logo. Seven volunteers who look like the real state — mostly white Midwesterners, one Lakota Native American man, one Hispanic woman, ages twenty-five to seventy — in jeans, flannel and plain purple t-shirts with no printing, sit and stand together facing a large television just off camera to the right, its glow on their faces. For the first four seconds they watch quietly, tense and hopeful; an older woman presses her own hands together, a young man leans forward. Then the result comes in and they erupt with joy: they stand up, cheer, clap and raise their fists, beaming at each other. No hugs, no high-fives, nobody touches anyone else. Locked-off camera at eye level with a slow push in. Realistic anatomy, exactly two arms and two hands per person, nobody passes through anyone, no objects appear or disappear. No text, no signs, no screens visible, no confetti. Natural room sound and joyful cheering, no music.",
+      "duration": 10,
+      "resolution": "1080p",
+      "aspect_ratio": "16:9",
+      "generate_audio": true
+    },
+    "model": "bytedance/seedance-2-5",
+    "taskId": "9a75ae08033a9a97ca0806cb1e99c9f0",
+    "state": "success",
+    "created": "2026-10-27T18:57:14.398Z",
+    "checked": "2026-10-27T18:59:54.123Z",
+    "credits": 1580,
+    "videoUrl": "https://tempfile.aiquickdraw.com/seedance/1793127585906-z5hyu5lx69a.mp4"
+  },
+  "r4-watchparty": {
+    "imageUrl": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r4-watchparty-aa28478de1d7.png",
+    "imageHash": "aa28478de1d7feb6f211f61adca0fc3d8d9849cee60c60c7c2dffe4224b90e96",
+    "input": {
+      "prompt": "One continuous eye-level documentary shot, no cuts or transitions. The camera is locked off on a tripod for the entire shot: no push in, no zoom, no pan, no shake. Preserve the reference image exactly: the community hall, all nine people and their clothing, the tables, cups and popcorn, and the purple fabric backdrop with the orange ORGANIZE SD logo printed on it, which stays exactly as it is, fixed to the fabric, never changing, moving or fading. It is election night; the group is watching the returns on a television just off camera. For the first four seconds they watch quietly, tense and hopeful; the two older women press their own hands together. Then the result comes in and they erupt with joy: they stand up, cheer, clap and raise their fists, beaming at each other. No hugs, no high-fives, nobody touches anyone else, nobody walks out of frame, nobody new enters. Realistic anatomy, exactly two arms and two hands per person, nobody passes through anyone, no objects appear or disappear. No other text or signs, no screens visible, no confetti. Natural room sound and joyful cheering, no music.",
+      "first_frame_url": "https://tempfile.redpandaai.co/kieai/699913/organize-sd-revision/r4-watchparty-aa28478de1d7.png",
+      "duration": 10,
+      "resolution": "1080p",
+      "aspect_ratio": "adaptive",
+      "generate_audio": true
+    },
+    "model": "bytedance/seedance-2-5",
+    "taskId": "65c5353655065195abd974389158a0af",
+    "state": "success",
+    "created": "2026-10-27T22:25:06.832Z",
+    "checked": "2026-10-27T22:29:13.653Z",
+    "credits": 1580,
+    "videoUrl": "https://tempfile.aiquickdraw.com/seedance/1793140143843-lliswb5u1v.mp4"
+  }
+}

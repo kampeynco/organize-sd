@@ -1,10 +1,12 @@
-export async function submitApplication(submissionId: string, answers: Record<string, string>): Promise<void> {
+import type { VoiceAnswer } from './voiceAnswer';
+
+export async function submitApplication(submissionId: string, answers: Record<string, string>, voiceAnswer: VoiceAnswer): Promise<void> {
   let response: Response;
   try {
     response = await fetch('/api/applications', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ submissionId, answers }),
+      body: JSON.stringify({ submissionId, answers, voiceAnswer }),
       signal: AbortSignal.timeout(30000),
     });
   } catch {

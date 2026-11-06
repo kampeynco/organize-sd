@@ -1,0 +1,3 @@
+stream|codec_name=h264|width=1920|height=1080|color_range=tv|color_space=bt709|r_frame_rate=24/1|nb_frames=7172
+stream|codec_name=aac|sample_rate=48000|channels=2|r_frame_rate=0/0|nb_frames=14009
+format|duration=298.833000|size=467770987
