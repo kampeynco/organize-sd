@@ -38,6 +38,11 @@ retain their previous environment until replaced. Do not roll back to a pre-secu
   and a streamed 1.6 MB body limit. Identical UUID retries succeed; changed content returns 409.
 - `/api/signup` accepts at most 4 KB of JSON and validates the email, ZIP, and source. Repeating an email
   returns the same success without overwriting its original ZIP/source or revealing whether it exists.
+- Text opt-ins (hero card): an optional US mobile number is accepted only with `smsConsent: true`, and
+  consent only with a number. The API normalizes it to E.164 and stores it in the append-only
+  `public.sms_optins` with the exact consent language from `lib/sms.ts` (server-side, never client text),
+  so existing subscribers can add a phone without their signup changing. STOP/START state lives in the
+  SMS platform. Apply `006-sms-optins.sql` before deploying the endpoint that calls `submit_signup_with_sms`.
 - Both use atomic PostgreSQL rate limits shared across all server instances. Per hour, applications allow
   10 attempts per network, 5 per email, and 500 overall; signups allow 20, 5, and 2,000 respectively.
   Limits count retries. A rejected request returns 429 with `Retry-After: 3600` and `Cache-Control: no-store`.

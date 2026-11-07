@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { submitSignup } from '../lib/signup';
+import { SMS_CONSENT_LABEL, SMS_DISCLOSURE, SMS_TERMS_PATH, formatUsPhone, normalizeUsPhone } from '../lib/sms';
 import { Icon } from './Icon';
 import { faArrowRight, faCalendarDays, faCheck, faFlagUsa, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,6 +18,9 @@ const PROOF_POINTS = [
 export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
   const [email, setEmail] = useState('');
   const [zipcode, setZipcode] = useState('');
+  const [phone, setPhone] = useState('');
+  const [smsConsent, setSmsConsent] = useState(false);
+  const [smsPhone, setSmsPhone] = useState<string | null>(null);
   const [company, setCompany] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
@@ -24,10 +28,26 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Texts are optional, but a number needs the consent box and the box needs a number.
+    const trimmedPhone = phone.trim();
+    const normalizedPhone = trimmedPhone === '' ? null : normalizeUsPhone(trimmedPhone);
+    if (trimmedPhone !== '' && !normalizedPhone) {
+      setError('Please enter a valid 10-digit US mobile number.');
+      return;
+    }
+    if (normalizedPhone && !smsConsent) {
+      setError('Check the box to agree to text messages, or leave the mobile number blank.');
+      return;
+    }
+    if (!normalizedPhone && smsConsent) {
+      setError('Enter your mobile number to receive text messages.');
+      return;
+    }
     setSending(true);
     setError('');
     try {
-      await submitSignup('hero', email, zipcode, company);
+      await submitSignup('hero', email, zipcode, company, { phone: trimmedPhone, consent: smsConsent });
+      setSmsPhone(normalizedPhone);
       setSubmitted(true);
     } catch (err) {
       setError((err as Error).message);
@@ -99,6 +119,11 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
                   </div>
                   <h2 className="mt-5 font-display font-black uppercase text-3xl">You're on the list</h2>
                   <p className="mt-2 text-brand-ink/70">We'll email {email} when the next cohort near {zipcode} opens.</p>
+                  {smsPhone && (
+                    <p className="mt-2 text-sm text-brand-ink/60">
+                      Texts will go to {formatUsPhone(smsPhone)}. Reply STOP anytime to opt out.
+                    </p>
+                  )}
                 </div>
               ) : (
                 <>
@@ -137,6 +162,46 @@ export const Hero: React.FC<HeroProps> = ({ onApplyClick }) => {
                         className="w-full rounded-xl border border-brand-ink/15 bg-paper px-4 py-3.5 text-base placeholder:text-brand-ink/40 focus:border-brand focus:ring-2 focus:ring-brand/20 focus:outline-none transition"
                       />
                       <p id="hero-zip-hint" className="mt-1.5 text-xs text-brand-ink/60">Used to match you with the nearest cohort.</p>
+                    </div>
+                    <div>
+                      <label htmlFor="hero-phone" className="block text-sm font-semibold mb-1.5">
+                        Mobile number <span className="font-normal text-brand-ink/60">(optional)</span>
+                      </label>
+                      <input
+                        id="hero-phone"
+                        type="tel"
+                        inputMode="tel"
+                        autoComplete="tel-national"
+                        maxLength={20}
+                        placeholder="(605) 555-0123"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value.replace(/[^\d\s().+-]/g, ''))}
+                        className="w-full rounded-xl border border-brand-ink/15 bg-paper px-4 py-3.5 text-base placeholder:text-brand-ink/40 focus:border-brand focus:ring-2 focus:ring-brand/20 focus:outline-none transition"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="hero-sms-consent" className="flex items-start gap-3 text-sm font-medium leading-snug cursor-pointer">
+                        <input
+                          id="hero-sms-consent"
+                          type="checkbox"
+                          checked={smsConsent}
+                          onChange={(e) => setSmsConsent(e.target.checked)}
+                          aria-describedby="hero-sms-disclosure"
+                          className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer accent-brand"
+                        />
+                        <span>{SMS_CONSENT_LABEL}</span>
+                      </label>
+                      <p id="hero-sms-disclosure" className="mt-2 pl-8 text-xs leading-relaxed text-brand-ink/60">
+                        {SMS_DISCLOSURE}{' '}
+                        <a
+                          href={SMS_TERMS_PATH}
+                          target="_blank"
+                          rel="noopener"
+                          className="font-semibold underline underline-offset-2 hover:text-brand"
+                        >
+                          Privacy Policy &amp; SMS Terms
+                        </a>
+                      </p>
                     </div>
                     <input
                       type="text"

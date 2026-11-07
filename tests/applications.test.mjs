@@ -157,6 +157,35 @@ test('signup rejects malformed, null, oversized, non-JSON and cross-origin submi
   assert.equal((await signup(signupRequest({}, { 'Content-Type': 'text/plain' }))).status, 415);
   assert.equal((await signup(signupRequest({}, { Origin: 'https://attacker.example' }))).status, 403);
 });
+const { SMS_CONSENT_RECORD, SMS_CONSENT_LABEL, SMS_DISCLOSURE, normalizeUsPhone, formatUsPhone } = await load('lib/sms.ts');
+const signupBody = { email: ' A@Example.com ', zip: '57104', source: 'hero' };
+test('US mobile numbers normalize to E.164 and reject non-NANP input', () => {
+  for (const input of ['6055550123', '(605) 555-0123', '605.555.0123', '+1 605 555 0123', '1-605-555-0123'])
+    assert.equal(normalizeUsPhone(input), '+16055550123');
+  for (const input of ['', '555-0123', '05555501234', '1055550123', '6051550123', '+44 20 7946 0958', '6'.repeat(33)])
+    assert.equal(normalizeUsPhone(input), null);
+  assert.equal(formatUsPhone('+16055550123'), '(605) 555-0123');
+});
+test('signup requires a valid phone and explicit consent together, never one without the other', async () => {
+  globalThis.applicationTestSQL = () => assert.fail('Unexpected database write');
+  for (const extra of [{ phone: '555-0123', smsConsent: true }, { phone: '6055550123' }, { phone: '6055550123', smsConsent: false },
+    { phone: '6055550123', smsConsent: 'yes' }, { phone: 6055550123, smsConsent: true }, { smsConsent: true }, { phone: '  ', smsConsent: true }]) {
+    assert.equal((await signup(signupRequest({ ...signupBody, ...extra }))).status, 400, JSON.stringify(extra));
+  }
+});
+test('signup stores the normalized phone with the server-side consent language, and email-only stays email-only', async () => {
+  const calls = [];
+  globalThis.applicationTestSQL = async (strings, ...values) => { calls.push({ query: strings.join('?'), values }); return [{ result: 'ok' }]; };
+  const sms = await signup(signupRequest({ ...signupBody, phone: '(605) 555-0123', smsConsent: true, consentText: 'forged' }));
+  assert.equal(sms.status, 200);
+  const emailOnly = await signup(signupRequest({ ...signupBody, phone: '', smsConsent: false }));
+  assert.equal(emailOnly.status, 200);
+  assert.ok(calls.every(call => call.query.includes('submission_api.submit_signup_with_sms(')));
+  assert.deepEqual(calls[0].values.slice(0, 5), ['a@example.com', '57104', 'hero', '+16055550123', SMS_CONSENT_RECORD]);
+  assert.deepEqual(calls[1].values.slice(0, 5), ['a@example.com', '57104', 'hero', null, null]);
+  assert.ok(SMS_CONSENT_RECORD.includes(SMS_CONSENT_LABEL) && SMS_CONSENT_RECORD.includes(SMS_DISCLOSURE));
+  assert.ok(SMS_CONSENT_RECORD.length <= 2000);
+});
 test('both endpoints report durable rate limits and fail closed on missing configuration', async () => {
   globalThis.applicationTestSQL = async () => [{ result: 'limited' }];
   for (const response of [await POST(request()), await signup(signupRequest({ email: 'a@example.com', zip: '57104', source: 'hero' }))]) {
